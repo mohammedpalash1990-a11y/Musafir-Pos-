@@ -1,4 +1,4 @@
-var V='musafir-pos-v57';
+var V='musafir-pos-v58';
 var CORE=['./','./index.html','./order.html','./manifest.json','./menu-manifest.json','./logo-192.png','./logo-512.png','./favicon-32.png'];
 var VID=[];
 var FB='https://www.gstatic.com/firebasejs/10.12.2/';
@@ -26,7 +26,7 @@ function vid(r){
  }).catch(function(){return Response.error()})}
 
 self.addEventListener('fetch',function(e){
- var r=e.request;if(r.method!=='GET')return;var u=new URL(r.url);if(/\/admin\.html$/.test(u.pathname))return;if(u.searchParams.has('_v'))return;var NAV=/order\.html$/.test(u.pathname)?'./order.html':'./index.html';
+ var r=e.request;if(r.method!=='GET')return;var u=new URL(r.url);if(/\/admin\.html$/.test(u.pathname))return;if(u.searchParams.has('_v'))return;var NAV=/\/order(\.html)?\/?$/.test(u.pathname)?'./order.html':'./index.html';
  var ok=u.origin===location.origin||u.host==='www.gstatic.com'||u.host==='fonts.gstatic.com'||u.host==='fonts.googleapis.com';
  if(!ok)return;
  if(u.origin===location.origin&&/\.(mp4|webm)$/.test(u.pathname)){e.respondWith(vid(r));return}
@@ -37,7 +37,7 @@ self.addEventListener('fetch',function(e){
  function nf(key,url){return new Promise(function(res){var done=false;
   var fb=function(){return caches.match(key,{ignoreSearch:true})};
   var to=setTimeout(function(){fb().then(function(h){if(h&&!done){done=true;res(h)}})},9000);
-  fetch(url,{cache:'no-store'}).then(function(n){if(n&&n.ok){var cp=n.clone();caches.open(V).then(function(c){c.put(key,cp)})}
+  fetch(url,{cache:'no-store'}).then(function(n){if(n&&n.redirected&&n.url){if(!done){done=true;clearTimeout(to);res(Response.redirect(n.url,302))}return}if(n&&n.ok){var cp=n.clone();caches.open(V).then(function(c){c.put(key,cp)})}
    if(!done){done=true;clearTimeout(to);res(n)}}).catch(function(){clearTimeout(to);if(done)return;fb().then(function(h){done=true;res(h||Response.error())})})})}
  /* পেজ: আগে নেট (৯ সেকেন্ড), না পেলে ফোনে জমানো কপি। এতে নতুন ফাইল সাথে সাথে আসে, অফলাইনেও চলে */
  if(r.mode==='navigate'){e.respondWith(nf(NAV,r.url));return}
