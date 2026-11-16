@@ -245,7 +245,14 @@ header img{width:40px!important;height:40px!important;border-radius:12px!importa
 @keyframes skl{to{background-position:-200% 0}}
 .sk3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.sk3 i{height:78px;border-radius:14px}
 header .skl{background:rgba(255,255,255,.25)}
-body::after{content:'Powered by Musafir POS';display:block;text-align:center;font-size:11px;opacity:.5;padding:4px 0 84px}</style><link rel="apple-touch-icon" href="logo-192.png"></head><body><div id="app"></div><canvas id="cfx"></canvas><div id="bar"></div><div id="ovl"></div>
+body::after{content:'Powered by Musafir POS';display:block;text-align:center;font-size:11px;opacity:.5;padding:4px 0 84px}
+.tg.pmx{flex-wrap:wrap}.tg.pmx button{flex:1 1 28%}
+.pyp{background:var(--ln);border-radius:14px;padding:12px;margin:8px 0}.pyp label{display:block;margin:10px 0 4px;font-size:.9em}.pyp input[type=text],.pyp input[type=tel]{width:100%}
+.pyn{display:flex;align-items:center;gap:10px;margin:6px 0}.pyn b{font-size:1.35em;letter-spacing:1px;flex:1;word-break:break-all}.pyn button{padding:9px 14px;border-radius:10px;background:var(--ac);color:var(--acink);font-weight:800}
+.pyq{display:block;max-width:240px;width:70%;margin:10px auto;background:#fff;border-radius:12px;padding:6px}
+.pys{max-width:120px;max-height:120px;border-radius:8px;margin-top:6px;display:block}
+.pyb{border-radius:14px;padding:12px 14px;margin-bottom:10px;font-weight:700;text-align:center}.pyb.v{background:#5a3b12;color:#ffe2a8}.pyb.k{background:#14432a;color:#b7f5cf}.pyb.n{background:#5a1a14;color:#ffc9c0}
+</style><link rel="apple-touch-icon" href="logo-192.png"></head><body><div id="app"></div><canvas id="cfx"></canvas><div id="bar"></div><div id="ovl"></div>
 <script type="module">
 let FS=null,db=null;
 const FBV='https://www.gstatic.com/firebasejs/10.12.2/';
@@ -266,14 +273,16 @@ const RB='https://firestore.googleapis.com/v1/projects/index-9d688/databases/(de
 const toFS=v=>{if(v===null||v===undefined)return{nullValue:null};const t=typeof v;if(t==='string')return{stringValue:v};if(t==='boolean')return{booleanValue:v};if(t==='number')return Number.isInteger(v)?{integerValue:String(v)}:{doubleValue:v};if(Array.isArray(v))return{arrayValue:{values:v.map(toFS)}};const f={};Object.keys(v).forEach(k=>{f[k]=toFS(v[k])});return{mapValue:{fields:f}}};
 const fromFS=v=>{if(!v)return null;if('stringValue'in v)return v.stringValue;if('integerValue'in v)return +v.integerValue;if('doubleValue'in v)return v.doubleValue;if('booleanValue'in v)return v.booleanValue;if('arrayValue'in v)return(v.arrayValue.values||[]).map(fromFS);if('mapValue'in v){const o={},f=v.mapValue.fields||{};Object.keys(f).forEach(k=>{o[k]=fromFS(f[k])});return o}return null};
 async function restPut(id,data,ms){const c=new AbortController(),tm=setTimeout(()=>c.abort(),ms||15000);
- try{const r=await fetch(RB+'/orders?documentId='+encodeURIComponent(id)+'&key='+RK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:toFS(data).mapValue.fields}),signal:c.signal});
+ try{const fl=toFS(data).mapValue.fields;let r;
+  if(data.pay){/* অনলাইন পেমেন্ট: সার্ভারের সময় (sts) বসাতে commit ব্যবহার */const DN='projects/index-9d688/databases/(default)/documents';r=await fetch('https://firestore.googleapis.com/v1/'+DN+':commit?key='+RK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({writes:[{update:{name:DN+'/orders/'+id,fields:fl},updateTransforms:[{fieldPath:'sts',setToServerValue:'REQUEST_TIME'}],currentDocument:{exists:false}}]}),signal:c.signal})}
+  else r=await fetch(RB+'/orders?documentId='+encodeURIComponent(id)+'&key='+RK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:fl}),signal:c.signal});
   if(r.ok)return{ok:true};let j=null;try{j=await r.json()}catch(e){}
   const st=(j&&j.error&&j.error.status)||('http-'+r.status);
-  if(r.status===409||st==='ALREADY_EXISTS')return{ok:true,dup:true};
+  if(r.status===409||st==='ALREADY_EXISTS'||(data.pay&&st==='FAILED_PRECONDITION'))return{ok:true,dup:true};
   return{ok:false,code:st,perm:st==='PERMISSION_DENIED'}}
  catch(e){return{ok:false,code:e&&e.name==='AbortError'?'timeout':'network'}}finally{clearTimeout(tm)}}
-const SHOP='';const P=new URLSearchParams(location.search),uid=P.get('s')||SHOP,oid=P.get('o');let tbl=(P.get('t')||'').slice(0,10);
-const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SHOP='';const P=new URLSearchParams(location.search),uid=P.get('s')||SHOP,oid=P.get('o');let tbl=(P.get('t')||(P.get('k')==='1'?'KIOSK':'')).slice(0,10);
+const KM=P.get('k')==='1',KP=()=>KM?'&k=1':'';const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const ls=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);v===null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){}return null};
 /* ---------- ভাষা (ডিফল্ট বাংলা) ও সাইজ ---------- */
 const SZ=[{z:.72,cw:96},{z:.86,cw:110},{z:1,cw:150},{z:1.18,cw:180},{z:1.35,cw:230}];
@@ -295,6 +304,7 @@ const nmOf=i=>isSA()?((a=>a.length?a.join('\n'):(i.e||i.n||''))([i.n,i.e].filter
 const T2=(b,e)=>lang==='en'?((isSA()&&AR2[e])?AR2[e]+' / '+e:e):b;
 AR2['Paid']='مدفوع';AR2['Digital receipt']='الإيصال الرقمي';AR2['Guest']='ضيف';AR2['Log in']='تسجيل الدخول';
 const rcUrl=id=>{try{return new URL('./?r='+encodeURIComponent(id),location.href).href}catch(e){return './?r='+encodeURIComponent(id)}};
+const payHtml=o=>{if(!o||!o.pay)return '';const s=o.pst==='ok'?'k':(o.pst==='no'||o.status==='cancelled')?'n':'v',tm=new Date(o.t),hm=p2(tm.getHours())+':'+p2(tm.getMinutes());const inf=`<div style="font-weight:500;font-size:.85em;margin-top:4px">${esc(PMN[o.pay.m]?pmL(o.pay.m):o.pay.m||'')} · ${m(o.pay.amt||o.total)}${o.pay.trx?' · TrxID '+esc(o.pay.trx):''}${o.pay.l4?' · ****'+esc(o.pay.l4):''} · ${hm}</div>`;return `<div class="pyb ${s}">${s==='k'?'✅ '+T2('পেমেন্ট নিশ্চিত হয়েছে','Payment confirmed'):s==='n'?'❌ '+T2('পেমেন্ট খুঁজে পাওয়া যায়নি। অনুগ্রহ করে দোকানে যোগাযোগ করুন।','We could not find your payment. Please contact the shop.'):'⏳ '+T2('পেমেন্ট যাচাই হচ্ছে… দোকান মিলিয়ে নিলে অর্ডার শুরু হবে।','Checking your payment… your order starts once the shop confirms.')}${inf}</div>`};
 const paidHtml=o=>(o&&o.paid&&o.rc)?`<div class="cd" style="animation:none;text-align:center"><div style="font-weight:800;font-size:1.15em;color:#1a8f3c;margin-bottom:8px">✅ ${T2('পরিশোধিত','Paid')}</div><a class="big" style="display:block;text-decoration:none;text-align:center" href="${rcUrl(o.rc)}" target="_blank" rel="noopener">🧾 ${T2('ডিজিটাল রসিদ','Digital receipt')}</a></div>`:'';
 let tAll=false,C={},Q={},items=[],cart={},cat='',q='',lastO=null,F={tn:'',nm:'',nt:'',pm:''},R={s:0,c:''},dirty=false;
 /* বাড়ি থেকে অর্ডার (পিকআপ/ডেলিভারি): লিংকে &h=1 থাকলে চালু */
@@ -306,11 +316,11 @@ const hasLoc=()=>Q.lat!==''&&Q.lat!=null&&Q.lng!==''&&Q.lng!=null&&isFinite(+Q.l
 const dist=(a,b,c,d)=>{const r=x=>x*Math.PI/180,u=r(c-a),v=r(d-b),x=Math.sin(u/2)**2+Math.cos(r(a))*Math.cos(r(c))*Math.sin(v/2)**2;return 12742*Math.asin(Math.sqrt(x))};
 function zoneInfo(){const r=+Q.rad||0;if(!(r>0&&hasLoc()))return{need:false,out:false,msg:''};if(!H.loc)return{need:true,out:false,msg:t('needlc')};const d=dist(+Q.lat,+Q.lng,H.loc.lat,H.loc.lng);H.loc.d=Math.round(d*10)/10;return d<=r?{need:true,out:false,msg:t('inz')}:{need:true,out:true,msg:t('outz')+' ('+r+t('km')+')'}}
 const feeNow=()=>{if(!(HM&&H.ty==='delivery'))return 0;const f=+Q.fee||0;return(+Q.free>0&&sub()>=+Q.free)?0:f};
-try{ls('qo_f',null);F.nm=ls('qo_nm')||''}catch(e){}
+try{ls('qo_f',null);F.nm=KM?'':(ls('qo_nm')||'')}catch(e){}
 const saveF=()=>{};
 const cartKey=()=>'qo_cart_'+uid;
 const saveCart=()=>{Object.keys(cart).length?ls(cartKey(),JSON.stringify({t:Date.now(),c:cart})):ls(cartKey(),null)};
-function restoreCart(){try{const d=JSON.parse(ls(cartKey())||'null');if(!d||Date.now()-d.t>6*3600*1000)return;Object.keys(d.c||{}).forEach(id=>{const it=allItems().find(x=>x.id==id);if(!it||(it.s!==''&&it.s!=null&&it.s<=0))return;let n=+d.c[id].q||0;if(it.s!==''&&it.s!=null&&n>it.s)n=it.s;if(n>0)cart[id]={id:it.id,n:it.n,e:it.e,p:it.p,q:n,...(it.cb?{cb:it.cb,o:it.o}:{})}})}catch(e){}}
+function restoreCart(){if(KM)return;try{const d=JSON.parse(ls(cartKey())||'null');if(!d||Date.now()-d.t>6*3600*1000)return;Object.keys(d.c||{}).forEach(id=>{const it=allItems().find(x=>x.id==id);if(!it||(it.s!==''&&it.s!=null&&it.s<=0))return;let n=+d.c[id].q||0;if(it.s!==''&&it.s!=null&&n>it.s)n=it.s;if(n>0)cart[id]={id:it.id,n:it.n,e:it.e,p:it.p,q:n,...(it.cb?{cb:it.cb,o:it.o}:{})}})}catch(e){}}
 const m=n=>(C.sa?'\u20C1 ':(C.cur||'৳'))+(C.sa?(Math.round(n*100)/100).toFixed(2):Math.round(n*100)/100),sub=()=>Object.values(cart).reduce((a,x)=>a+x.p*x.q,0),cnt=()=>Object.values(cart).reduce((a,x)=>a+x.q,0);
 const hue=id=>{let h=0;String(id).split('').forEach(c=>h=(h*31+c.charCodeAt(0))%360);return h};
 const greet=()=>{const h=new Date().getHours(),g=t('g');return h<5?g[0]:h<12?g[1]:h<16?g[2]:h<19?g[3]:g[4]};
@@ -366,15 +376,15 @@ const LG=()=>LGT[lang==='en'?'en':'bn'];
 const GSVG='<svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17.5z"/><path fill="#FBBC05" d="M10.5 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.9-4.7l-7.9-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.9 2.3-8.4 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>';
 const LOGO='<svg viewBox="0 0 64 64"><path d="M21 27l5-10 4.5 7 4-9 5 12" fill="none" stroke="#F5B52E" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 30h32v4a16 16 0 0 1-32 0z" fill="none" stroke="#F5F7F3" stroke-width="3.2" stroke-linejoin="round"/><path d="M48 33h2a5.5 5.5 0 0 1 0 11h-5" fill="none" stroke="#F5F7F3" stroke-width="3.2" stroke-linecap="round"/><path d="M13 54h38" stroke="#F5B52E" stroke-width="3.4" stroke-linecap="round"/></svg>';
 const avHTML=a=>a&&a.p?`<img src="${esc(a.p)}" alt="" referrerpolicy="no-referrer" onerror="this.replaceWith(document.createTextNode('${esc(((a.n||a.e||'?')[0]||'?').toUpperCase())}'))">`:esc(((a&&(a.n||a.e)||'?')[0]||'?').toUpperCase());
-function acctBtn(){if(!(Q&&Q.lg))return hist().length?`<button id="acc" class="accb in" aria-label="orders"><div class="av2">🧾</div></button>`:'';return ACC?`<button id="acc" class="accb in" aria-label="account"><div class="av2">${avHTML(ACC)}</div></button>`:`<button id="acc" class="accb"><div class="av2">👤</div><span>${isSA()?'دخول / Sign in':LG().login}</span></button>`}
+function acctBtn(){if(KM)return '';if(!(Q&&Q.lg))return hist().length?`<button id="acc" class="accb in" aria-label="orders"><div class="av2">🧾</div></button>`:'';return ACC?`<button id="acc" class="accb in" aria-label="account"><div class="av2">${avHTML(ACC)}</div></button>`:`<button id="acc" class="accb"><div class="av2">👤</div><span>${isSA()?'دخول / Sign in':LG().login}</span></button>`}
 const accRender=()=>{const e=$('#acc');if(e)e.outerHTML=acctBtn();const a=$('#ast');if(a&&ACC)a.remove()};
 function acctData(){return (Q&&Q.lg&&ACC)?{lg:1,cuid:ACC.id,cn:ACC.e||'',cname:ACC.n||''}:{}}
 const setAcc=u=>{ACC=u?{id:u.uid,n:u.displayName||'',e:u.email||'',p:u.photoURL||''}:null;ls('qo_u',ACC?JSON.stringify(ACC):null);try{if(ACC&&ACC.n&&!F.nm){F.nm=ACC.n;const i=$('#nm');if(i&&!i.value)i.value=ACC.n}}catch(e){}accRender()};
 const authLoad=async()=>{if(AU)return AU;AM=await import(FBV+'firebase-auth.js');await fbWait(8000);if(!window.__fbApp)throw new Error('nofb');AU=AM.getAuth(window.__fbApp);return AU};
 function authInit(){if(AINIT)return;AINIT=true;authLoad().then(()=>{AM.onAuthStateChanged(AU,u=>{try{if(u){const first=!ACC;setAcc(u);lgClose();if(first)toast((LG().wel)+(u.displayName?', '+u.displayName.split(' ')[0]:''))}else if(ACC)setAcc(null)}catch(e){}})}).catch(()=>{AINIT=false})}
 function toast(m){const d=document.createElement('div');d.style.cssText='position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:9500;background:#F5B52E;color:#2a1b00;font-weight:800;padding:10px 18px;border-radius:99px;box-shadow:0 8px 24px rgba(0,0,0,.4);max-width:90vw';d.textContent=m;document.body.appendChild(d);setTimeout(()=>d.remove(),2600)}
-function lgCheck(){if(!(Q&&Q.lg)||oid)return;authInit()}
-function authStripOld(){if(!(Q&&Q.lg)||ACC||oid)return '';return `<button id="ast" class="ast"><span>👤</span><b>${T2('সাইন ইন','Sign in')}</b><i>·</i><b>${T2('সাইন আপ','Sign up')}</b><em>${T2('(ঐচ্ছিক)','(optional)')}</em></button>`}
+function lgCheck(){if(KM||!(Q&&Q.lg)||oid)return;authInit()}
+function authStripOld(){if(KM||!(Q&&Q.lg)||ACC||oid)return '';return `<button id="ast" class="ast"><span>👤</span><b>${T2('সাইন ইন','Sign in')}</b><i>·</i><b>${T2('সাইন আপ','Sign up')}</b><em>${T2('(ঐচ্ছিক)','(optional)')}</em></button>`}
 document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('#ast'))lgOpen()});
 function lgClose(){const d=$('#lgx');if(!d)return;d.classList.add('out');setTimeout(()=>{d.remove();setTimeout(instToast,500)},300)}
 function lgOpen(){if($('#lgx'))return;const L=LG(),d=document.createElement('div');d.id='lgx';d.className='lg-ov';
@@ -404,7 +414,7 @@ function accOpen(){if(!ACC&&!hist().length){lgOpen();return}if($('#lgsb'))return
  const lL=b.querySelector('#lgsL');if(lL)lL.onclick=()=>{cl();lgOpen()};const lO=b.querySelector('#lgsO');if(lO)lO.onclick=async()=>{try{await authLoad();await AM.signOut(AU)}catch(e){}setAcc(null);try{sessionStorage.setItem('qo_skip','1')}catch(e){}cl()};
  fbWait(8000).then(async fb=>{if(!fb)return;for(const x of h.slice(0,8)){try{const s=await fb.getDoc(fb.doc(db,'orders',x.id));if(s.exists()){const e=b.querySelector('.lgo[data-id="'+x.id+'"] .st');if(e){const c=stCls(s.data().status,false);e.className='st '+c[0];e.textContent=c[1];const dd=s.data();if(dd.paid&&dd.rc&&!e.parentNode.querySelector('.rcl'))e.parentNode.insertAdjacentHTML('beforeend','<a class="rcl" style="margin-left:8px;font-weight:700;text-decoration:none;color:#1a8f3c" href="'+rcUrl(dd.rc)+'" target="_blank" rel="noopener">✅ '+T2('পরিশোধিত','Paid')+' · 🧾</a>')}}}catch(e){}}})}
 document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('#acc');if(a){e.preventDefault();e.stopPropagation();(ACC||hist().length)?accOpen():lgOpen()}},true);
-function instToast(){try{if(oid||$('#lgx')||sessionStorage.getItem('qo_it')||matchMedia('(display-mode:standalone)').matches||navigator.standalone||!(C&&C.name))return;sessionStorage.setItem('qo_it','1');const en=lang==='en',d=document.createElement('div');d.className='it-t';d.innerHTML=`<b>📲 ${en?'Add to Home Screen':'হোম স্ক্রিনে যোগ করুন'}</b><span>${esc(C.name)} ${en?'will open like an app: menu, orders and live order status':'অ্যাপের মতো খুলবে: মেনু, অর্ডার ও অর্ডারের অবস্থা'}</span><small>${en?'Browser ⋮ menu → Add to Home screen':'ব্রাউজারের ⋮ মেনু → Add to Home screen'}</small>`;document.body.appendChild(d);setTimeout(()=>d.classList.add('x'),2600);setTimeout(()=>d.remove(),3300)}catch(e){}}
+function instToast(){try{if(KM||oid||$('#lgx')||sessionStorage.getItem('qo_it')||matchMedia('(display-mode:standalone)').matches||navigator.standalone||!(C&&C.name))return;sessionStorage.setItem('qo_it','1');const en=lang==='en',d=document.createElement('div');d.className='it-t';d.innerHTML=`<b>📲 ${en?'Add to Home Screen':'হোম স্ক্রিনে যোগ করুন'}</b><span>${esc(C.name)} ${en?'will open like an app: menu, orders and live order status':'অ্যাপের মতো খুলবে: মেনু, অর্ডার ও অর্ডারের অবস্থা'}</span><small>${en?'Browser ⋮ menu → Add to Home screen':'ব্রাউজারের ⋮ মেনু → Add to Home screen'}</small>`;document.body.appendChild(d);setTimeout(()=>d.classList.add('x'),2600);setTimeout(()=>d.remove(),3300)}catch(e){}}
 function hdr(){const cur=bi?'bi':lang;$('#app').innerHTML=`<header><img src="${C.lg||'logo-192.png'}" alt="" style="object-fit:contain"><div class="hn"><b>${esc(C.name||T2('মেনু','Menu'))}</b>${(()=>{const g=C.sa?[Q.tag,Q.te].filter(Boolean).join(' / '):(lang==='en'?(Q.te||Q.tag):(Q.tag||Q.te));return g?`<small class="hs">${esc(g)}</small>`:''})()}${tbl?`<span class="chip">${t('table')}${esc(tbl)}</span>`:''}</div>
  <div class="hb">${C.sa?'':[['bn','বাং'],['en','EN']].map(x=>`<button data-lang="${x[0]}" class="${cur===x[0]?'on':''}">${x[1]}</button>`).join('')}</div>${acctBtn()}</header>
  <div id="ib"><div class="zp"><button data-sz="-1" aria-label="${t('sizeS')}" ${si<=0?'disabled':''}>A−</button><button data-sz="1" aria-label="${t('sizeL')}" ${si>=SZ.length-1?'disabled':''}>A+</button></div><button class="sun" id="th" aria-label="theme">${SUN}</button><div class="clk"><b id="ck"></b><span id="cdt"></span></div></div><div class="w" id="bd"></div>`;clk();try{lgCheck()}catch(e){}setTimeout(instToast,1600)}
@@ -462,10 +472,12 @@ document.addEventListener('click',e=>{const t0=e.target;if(!t0.dataset)return;
  else if(t0.id==='lc')getLoc();
  else if(t0.id==='inst'){if(DI){DI.prompt();DI=null;t0.remove()}else alert(t('iosTip'))}
  else if(t0.id==='wab'){const o=collect();if(o)open('https://wa.me/'+Q.wa+'?text='+encodeURIComponent(waText(o)),'_blank')}
- else if(t0.dataset.pm){F.pm=t0.dataset.pm;sheet()}
+ else if(t0.dataset.cp){try{navigator.clipboard.writeText(t0.dataset.cp)}catch(e){}t0.textContent='✓'}
+ else if(t0.dataset.pm){if(F.pm!==t0.dataset.pm)PY={trx:'',l4:'',sh:''};F.pm=t0.dataset.pm;sheet()}
  else if(t0.id==='nfy'){try{Notification.requestPermission().then(()=>paint())}catch(e){}}
  else if(t0.dataset.c!==undefined&&t0.closest('.ch')){const v=t0.dataset.c;tAll=v==='*';cat=v==='*'?'':v;list()}});
-document.addEventListener('input',e=>{const i=e.target.id;if(i==='tn'){F.tn=e.target.value;saveF()}else if(i==='nm'){F.nm=e.target.value;saveF()}else if(i==='nt'){F.nt=e.target.value;saveF()}else if(i==='ph'){H.ph=e.target.value;saveH()}else if(i==='ad'){H.ad=e.target.value;saveH()}else if(i==='rc')R.c=e.target.value});
+document.addEventListener('input',e=>{const i=e.target.id;if(i==='tn'){F.tn=e.target.value;saveF()}else if(i==='nm'){F.nm=e.target.value;saveF()}else if(i==='nt'){F.nt=e.target.value;saveF()}else if(i==='ph'){H.ph=e.target.value;saveH()}else if(i==='ad'){H.ad=e.target.value;saveH()}else if(i==='py_t'){PY.trx=e.target.value=e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'')}else if(i==='py_l'){PY.l4=e.target.value=e.target.value.replace(/\D/g,'').slice(0,4)}else if(i==='rc')R.c=e.target.value});
+document.addEventListener('change',e=>{if(e.target.id!=='py_f'||!e.target.files||!e.target.files[0])return;shrink(e.target.files[0],d=>{if(!d){alert(T2('ছবিটি নেওয়া যায়নি, আরেকটি ছবি দিন','Could not use this image, try another'));return}PY.sh=d;sheet()})});
 document.addEventListener('focusout',e=>{if(e.target.id==='rc'&&dirty){dirty=false;setTimeout(paint,150)}});
 const closeSh=()=>{$('#ovl').innerHTML='';bar()};
 function getLoc(){const b=$('#lc');if(!navigator.geolocation){alert(t('nogeo'));return}if(b){b.disabled=true;b.textContent=t('locing')}
@@ -482,11 +494,16 @@ function collect(){const tn=tbl||($('#tn')?$('#tn').value.trim():''),o={type:'di
 function waText(o){const L=['🛒 '+(C.name||'')+' — '+(o.type==='delivery'?'ডেলিভারি অর্ডার':o.type==='pickup'?'পিকআপ অর্ডার':'অর্ডার')];
  Object.values(cart).forEach(x=>L.push(x.q+' × '+x.n+' = '+m(x.p*x.q)));L.push('সাবটোটাল: '+m(sub()));if(o.fee)L.push('ডেলিভারি চার্জ: '+m(o.fee));L.push('সর্বমোট: '+m(o.total));
  const nm=$('#nm').value.trim(),nt=$('#nt').value.trim();if(nm)L.push('নাম: '+nm);if(o.phone)L.push('ফোন: '+o.phone);if(o.addr)L.push('ঠিকানা: '+o.addr);if(o.loc)L.push('লোকেশন: https://www.google.com/maps/search/?api=1&query='+o.loc.lat+','+o.loc.lng);if(o.table&&o.table!=='-')L.push('টেবিল: '+o.table);if(nt)L.push('নোট: '+nt);return L.join('\n')}
-const PMN={Cash:['নগদ','Cash','نقدي'],Mada:['মাদা','Mada','مدى'],bKash:['বিকাশ','bKash'],Nagad:['নগদ','Nagad'],Rocket:['রকেট','Rocket'],BanglaQR:['বাংলা QR','Bangla QR']};
-const pmList=()=>(C.pms&&C.pms.length?C.pms:(C.sa?['Cash','Mada']:['Cash'])).filter(x=>PMN[x]);
+const PMN={Cash:['ক্যাশ','Cash','نقدي'],Mada:['মাদা','Mada','مدى'],bKash:['বিকাশ','bKash'],Nagad:['নগদ','Nagad'],Rocket:['রকেট','Rocket'],BanglaQR:['বাংলা QR','Bangla QR']};
+const pmList=()=>(C.pms&&C.pms.length?C.pms:(C.sa?['Cash','Mada']:['Cash'])).filter(x=>PMN[x]).filter(x=>C.sa||!Q.pay||x==='Cash'||(Q.pay[x]&&Q.pay[x].on));
+const payCfg=x=>(C.sa||!Q.pay||!x)?null:((Q.pay[x]&&Q.pay[x].on&&(Q.pay[x].num||Q.pay[x].qr))?Q.pay[x]:null);
+let PY={trx:'',l4:'',sh:''};const PQC={};
+function shrink(file,cb){const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{let w=im.width,h=im.height;const k=Math.min(1,900/Math.max(w,h));w=Math.round(w*k);h=Math.round(h*k);const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(im,0,0,w,h);let q=.6,d=c.toDataURL('image/jpeg',q);while(d.length>140000&&q>.3){q-=.1;d=c.toDataURL('image/jpeg',q)}cb(d.length>200000?'':d)};im.onerror=()=>cb('');im.src=r.result};r.onerror=()=>cb('');r.readAsDataURL(file)}
+const payBox=cur=>{const c=payCfg(cur);if(!c)return '';const tot=sub()+feeNow();return `<div class="pyp"><b>${T2('এই নম্বরে টাকা পাঠান','Send the money to this number')}</b>${c.num?`<div class="pyn"><b>${esc(c.num)}</b><button type="button" data-cp="${esc(c.num)}">${T2('কপি','Copy')}</button></div>`:''}<div class="mu">${c.ty==='pay'?'Payment (Merchant)':'Send Money'} · ${T2('মোট','Total')}: <b>${m(tot)}</b></div>${c.qr?'<img id="pyqr" class="pyq" alt="QR" style="display:none">':''}<label>TrxID</label><input type="text" id="py_t" maxlength="20" autocapitalize="characters" autocomplete="off" placeholder="8N7A6D5EE4" value="${esc(PY.trx)}"><label>${T2('অথবা যে নম্বর থেকে টাকা পাঠিয়েছেন, তার শেষ ৪ ডিজিট','Or the last 4 digits of the number you paid from')}</label><input type="tel" id="py_l" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="1234" value="${esc(PY.l4)}"><label>${T2('পেমেন্টের স্ক্রিনশট (ঐচ্ছিক)','Payment screenshot (optional)')}</label><input type="file" id="py_f" accept="image/*">${PY.sh?`<img class="pys" src="${PY.sh}" alt="">`:''}<div class="mu" style="margin-top:8px;font-size:.9em">${T2('টাকা পাঠিয়ে TrxID বা শেষ ৪ ডিজিট দিন। দোকান মিলিয়ে নিলে অর্ডার শুরু হবে।','Pay first, then enter the TrxID or last 4 digits. The shop will check it and start your order.')}</div></div>`};
+function payQr(cur){const c=payCfg(cur);if(!c||!c.qr)return;const put=()=>{const e=$('#pyqr');if(e&&PQC[cur]){e.src=PQC[cur];e.style.display='block'}};if(PQC[cur]){put();return}imgGet('pq_'+cur).then(v=>{if(v){PQC[cur]=v;put()}})}
 const pmCur=()=>{const l=pmList();return l.includes(F.pm)?F.pm:(l[0]||'')};
 const pmL=m=>{const n=PMN[m]||[m,m];return C.sa?(n[2]?n[2]+' / '+n[1]:n[1]):lang==='en'?n[1]:n[0]};
-const pmHTML=()=>{const l=pmList();if(!l.length)return '';const cur=pmCur();return `<label class="mu">${T2('পেমেন্ট মাধ্যম (দোকানে দেবেন)','Payment method (pay at the shop)')}</label><div class="tg pmx">${l.map(x=>`<button data-pm="${x}" class="${cur===x?'on':''}">${esc(pmL(x))}</button>`).join('')}</div>`};
+const pmHTML=()=>{const l=pmList();if(!l.length)return '';const cur=pmCur(),oc=payCfg(cur);return `<label class="mu">${T2('পেমেন্ট মাধ্যম','Payment method')}${cur==='Cash'||!oc?' · '+T2('দোকানে দেবেন','pay at the shop'):''}</label><div class="tg pmx">${l.map(x=>`<button type="button" data-pm="${x}" class="${cur===x?'on':''}">${esc(pmL(x))}</button>`).join('')}</div>${payBox(cur)}`};
 function sheet(){if(!cnt()){closeSh();return}const sv=savN();const need=!HM&&Q.needTable!==false&&!tbl&&!C.sa,closed=Q.open===false||(HM&&!opts().length);
  if(HM&&opts().length&&opts().indexOf(H.ty)<0)H.ty=opts()[0];
  const dlv=HM&&H.ty==='delivery',fe=feeNow(),z=dlv?zoneInfo():null;
@@ -497,23 +514,26 @@ function sheet(){if(!cnt()){closeSh();return}const sv=savN();const need=!HM&&Q.n
  ${dlv?`<div class="row"><span>${t('fee')}</span><b>${fe?m(fe):t('free')}</b></div><div class="row"><span><b>${t('gtot')}</b></span><b style="font-size:19px">${m(sub()+fe)}</b></div>`:''}
  ${homeHTML}${(need&&!HM)?`<label class="mu">${t('tno')}</label><input id="tn" inputmode="numeric" maxlength="10" autocomplete="off" placeholder="${t('tph')}" value="${esc(F.tn)}">`:''}${C.sa?'':pmHTML()}<label class="mu">${t('yname')}</label><input id="nm" maxlength="60" autocomplete="off" name="qo-nick" value="${esc(F.nm)}"><label class="mu">${t('note')}</label><input id="nt" maxlength="150" autocomplete="off" value="${esc(F.nt)}">
  <button class="big" id="sd" ${closed?'disabled style="opacity:.5"':''}>${closed?t('closedBtn'):t('confirm')}</button>${Q.wa?`<button class="big" id="wab" style="background:#25d366;color:#05301a">${t('wa')}</button>`:''}<button class="big" id="cl" style="background:var(--ln);color:var(--ink)">${t('back')}</button></div></div>`;
- $('#cl').onclick=closeSh;$('#sd').onclick=send;$('#sh').onclick=e=>{if(e.target.id=='sh')closeSh()};bar()}
+ $('#cl').onclick=closeSh;$('#sd').onclick=send;if(!C.sa)payQr(pmCur());$('#sh').onclick=e=>{if(e.target.id=='sh')closeSh()};bar()}
 async function send(){
  const o=collect();if(!o)return;const tn=o.table;
+ const pc=C.sa?null:payCfg(pmCur());let pay=null;
+ if(pc){const tx=(PY.trx||'').trim(),l4=(PY.l4||'').trim();if(tx.length<6&&l4.length!==4){alert(T2('TrxID অথবা শেষ ৪ ডিজিট দিন','Enter the TrxID or the last 4 digits'));return}pay={m:pmCur(),amt:o.total,...(tx.length>=6?{trx:tx}:{}),...(l4.length===4?{l4}:{}),...(PY.sh?{sh:PY.sh}:{})}}
+
  try{if(Date.now()-(+localStorage.getItem('qo_t')||0)<8000){alert(t('wait'));return}}catch(e){}
  const sb=$('#sd');sb.disabled=true;
  const id=Array.from(crypto.getRandomValues(new Uint8Array(10)),b=>'abcdefghjkmnpqrstuvwxyz23456789'[b%31]).join('');
- const data=JSON.parse(JSON.stringify({uid,shop:C.name||'',...acctData(),status:'new',t:Date.now(),name:$('#nm').value.trim(),note:((!C.sa&&pmCur()?'[PM:'+pmCur()+'] ':'')+$('#nt').value.trim()).slice(0,150),items:Object.values(cart).map(x=>({id:x.id,n:x.n,p:x.p,q:x.q,...(x.cb?{cb:x.cb.map(String),o:x.o}:{})})),...o}));
+ const data=JSON.parse(JSON.stringify({uid,shop:C.name||'',...acctData(),status:'new',t:Date.now(),name:$('#nm').value.trim(),note:((!C.sa&&pmCur()?'[PM:'+pmCur()+'] ':'')+$('#nt').value.trim()).slice(0,150),items:Object.values(cart).map(x=>({id:x.id,n:x.n,p:x.p,q:x.q,...(x.cb?{cb:x.cb.map(String),o:x.o}:{})})),...(pay?{pay,pst:'verify'}:{}),...o}));
  /* আগে ফোনে সেভ: নেট/ফায়ারবেস যা-ই হোক অর্ডার হারাবে না, ট্র্যাকিং পাতা নিজে পাঠিয়ে দেবে */
  ls('qo_o_'+id,JSON.stringify({d:data,ack:false}));histAdd(id,data);
  let ok=false,perr=null;sb.textContent=T2('পাঠানো হচ্ছে…','Sending…');
  if(navigator.onLine!==false){for(let k=0;k<2&&!ok;k++){const r=await restPut(id,data,k?12000:10000);if(r.ok)ok=true;else{perr=r;if(r.perm)break;await new Promise(z=>setTimeout(z,700))}}}
  ls('qo_dbg',ok?null:(perr?perr.code:'offline'));
  if(perr&&perr.perm){ls('qo_o_'+id,null);alert(t('fail')+' (permission-denied)');sb.disabled=false;sb.textContent=t('confirm');return}
- if(ok)ls('qo_o_'+id,JSON.stringify({d:data,ack:true}));
+ if(ok){const d2=JSON.parse(JSON.stringify(data));if(d2.pay)delete d2.pay.sh;ls('qo_o_'+id,JSON.stringify({d:d2,ack:true}))}
  try{localStorage.setItem('qo_t',Date.now())}catch(e){}
- cart={};saveCart();try{const nv=$('#nm')?$('#nm').value.trim():(F.nm||'');ls('qo_nm',nv||null)}catch(e){}F.nt='';F.tn='';
- location.href='?s='+uid+(tn&&tn!='-'?'&t='+encodeURIComponent(tn):'')+(HM?'&h=1':'')+'&o='+id}
+ PY={trx:'',l4:'',sh:''};cart={};saveCart();try{const nv=$('#nm')?$('#nm').value.trim():(F.nm||'');ls('qo_nm',KM?null:(nv||null))}catch(e){}F.nt='';F.tn='';
+ location.href='?s='+uid+(tn&&tn!='-'?'&t='+encodeURIComponent(tn):'')+(HM?'&h=1':'')+KP()+'&o='+id}
 /* ---------- অর্ডার ট্র্যাকিং + সার্ভিস রেটিং ---------- */
 const nmId=x=>{if(lang!=='en')return x.n;const it=items.find(i=>i.id==x.id);return (it&&it.e)||x.n};
 function ratingHTML(){const done=ls('rt_'+oid);
@@ -532,10 +552,10 @@ function paint0(){const o=lastO;if(!o)return;if(document.activeElement&&document
  const home=o.type==='pickup'||o.type==='delivery',can=o.status=='cancelled',st=o.status=='new'?(lastPend?-1:0):o.status=='accepted'?1:o.status=='ready'?2:3;
  const vs=o.status=='ready'?1:(o.status=='served'||o.status=='billed')?2:0,VF=['wait','ready','served'],VA=[1,1.304,1.837];
  $('#bd').innerHTML=(lastPend&&o.status=='new'?`<div class="cd" style="margin-bottom:10px;background:#5a3b12;animation:none">${t(navigator.onLine===false?'pend':'pend2')}${dbg&&P.get('debug')?`<br><small>⚙ ${esc(dbg)}</small>`:''}</div>`:(dbg&&P.get('debug')&&o.status=='new'?`<div class="mu" style="text-align:center;font-size:.8em;margin-bottom:6px">⚙ ${esc(dbg)}</div>`:''))+''+`<div style="text-align:center">${can?'<div class="ok">✕</div>':`<div class="hero">${vs==0?'👨‍🍳':vs==1?(o.type==='pickup'?'🛍️':o.type==='delivery'?'🛵':'🍽️'):'✅'}</div>`+`<span class="bdg">${t(home?'hvw':'vw')[vs]}</span>`}<h2 style="margin:6px 0">${can?t('sorry'):(vs==0?(lastPend&&o.status=='new'?T2('অর্ডার পাঠানো হচ্ছে…','Sending your order…'):t('sent')):vs==1?t('vt')[1]:'❤')}</h2><div class="mu">${can?'':(vs==0?t('vt')[0]+'<br>':vs==2?t('vt')[2]+'<br>':(o.type==='pickup'?t('pkGo')+'<br>':o.type==='delivery'?t('dlGo')+'<br>':''))}${o.type==='delivery'?t('dl')+' · ':o.type==='pickup'?t('pk')+' · ':''}${o.table&&o.table!='-'?t('table')+esc(o.table)+' · ':''}${esc(o.name||'')}</div></div>
- ${paidHtml(o)}${can?'':`<div class="stp">${(home?t(o.type==='pickup'?'hpk':'hdl'):t('steps')).map((s,k)=>`<div class="${k<=st?'d':''}"><i>${k<=st?'✓':k+1}</i>${s}</div>`).join('')}</div>`}
+ ${payHtml(o)}${paidHtml(o)}${can?'':`<div class="stp">${(home?t(o.type==='pickup'?'hpk':'hdl'):t('steps')).map((s,k)=>`<div class="${k<=st?'d':''}"><i>${k<=st?'✓':k+1}</i>${s}</div>`).join('')}</div>`}
  ${notifBtn(can,vs)}${homeExtra(o,home,vs,can)}<div class="cd" style="animation:none">${o.items.map(x=>`<div class="row"><span>${esc(nmId(x))} × ${x.q}</span><b>${x.o>x.p?`<s class="mu" style="font-weight:500">${m(x.o*x.q)}</s> `:''}${m(x.p*x.q)}</b></div>`).join('')}${o.fee?`<div class="row"><span>${t('fee')}</span><b>${m(o.fee)}</b></div>`:''}<div class="row" style="border-top:1px solid var(--ln)"><span><b>${t('total')}</b></span><b>${m(o.total)}</b></div></div>
  ${can||st<1?'':ratingHTML()}
- <p class="mu" style="text-align:center">${t('foot')}</p><button class="big" onclick="location.href='?s=${uid}${tbl?'&t='+encodeURIComponent(tbl):''}${HM?'&h=1':''}'">${t('more')}</button>`;
+ <p class="mu" style="text-align:center">${t('foot')}</p><button class="big" onclick="location.href='?s=${uid}${tbl?'&t='+encodeURIComponent(tbl):''}${HM?'&h=1':''}${KP()}'">${t('more')}</button>`;
  const v=$('#vv');if(v){v.muted=true;const p=v.play();if(p&&p.catch)p.catch(()=>{})}
  if(!can&&vs<2)lock();else unlock();
  const ck='cf'+oid+(home?'_'+vs:'');if(!sessionStorage.getItem(ck)&&!can){sessionStorage.setItem(ck,1);pop();if(vs==1)readyAlert()}}
@@ -582,7 +602,7 @@ async function watch(){
    if(!md.fromCache){srvOk=true;
     /* সার্ভার বলছে অর্ডার নেই কিন্তু ফোনে সেভ করা আছে → আবার পাঠানো */
     if(lo&&lo.d){if(!lastO){lastO=lo.d;lastPend=true;paint()}if(Date.now()-resendAt>10000){resendAt=Date.now();try{const p=F.setDoc(F.doc(db,'orders',oid),lo.d);p.catch(()=>{})}catch(e){}}return}
-    if(!lastO)$('#bd').innerHTML='<div class="w" style="text-align:center"><p>'+t('nf')+'</p><button class="big" onclick="location.href=\'?s='+esc(uid)+(HM?'&h=1':'')+'\'">'+t('more')+'</button></div>'}
+    if(!lastO)$('#bd').innerHTML='<div class="w" style="text-align:center"><p>'+t('nf')+'</p><button class="big" onclick="location.href=\'?s='+esc(uid)+(HM?'&h=1':'')+KP()+'\'">'+t('more')+'</button></div>'}
    else if(!lastO){if(lo&&lo.d){lastO=lo.d;lastPend=true;paint()}else connecting()}
   },err=>{srvOk=false;dbg=(err&&err.code)||'listen-error';ls('qo_dbg',dbg);if(!lastO)connecting();else paint();again()})}catch(e){again()}}
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&oid)watch()});
@@ -590,6 +610,7 @@ addEventListener('online',()=>{if(!oid)return;deliver();if(!FS&&!sessionStorage.
 init();
 setInterval(()=>{if(oid&&lastO&&lastO.eta&&lastO.type!=='dine'&&lastO.status!=='served'&&lastO.status!=='billed')paint()},30000);
 /* অফলাইন প্রস্তুতি: সার্ভিস ওয়ার্কার চালু করে Firebase ফাইল ও ভিডিও ক্যাশে রাখা */
+if(KM){let ia=Date.now();['click','touchstart','keydown','input'].forEach(ev=>document.addEventListener(ev,()=>{ia=Date.now()},true));setInterval(()=>{const idle=Date.now()-ia,base='?s='+encodeURIComponent(uid)+(P.get('t')?'&t='+encodeURIComponent(P.get('t')):'')+'&k=1';if(oid){if(idle>45000)location.href=base}else if(idle>90000&&(cnt()>0||q||cat||$('#sh'))){cart={};saveCart();location.href=base}},5000)}
 const regSW=()=>{navigator.serviceWorker.register('sw.js').then(()=>navigator.serviceWorker.ready).then(()=>{
  const B='https://www.gstatic.com/firebasejs/10.12.2/';['firebase-app.js','firebase-firestore.js','firebase-component.js','firebase-logger.js','firebase-util.js'].forEach(f=>fetch(B+f).catch(()=>{}));
  ['logo-192.png'].forEach(f=>fetch(f).catch(()=>{}))}).catch(()=>{})};
