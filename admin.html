@@ -94,16 +94,16 @@ function stOf(r){if(!r.sub)return{k:'legacy',l:'No plan',c:'g',d:null};const s=r
  if(d<0)return{k:'expired',l:'Expired '+(-d)+'d',c:'b',d};if(d<=30)return{k:'expiring',l:(s.st=='trial'?'Trial · ':'')+d+' days left',c:'w',d};return{k:s.st=='trial'?'trial':'active',l:(s.st=='trial'?'Trial · ':'Active · ')+d+' days',c:s.st=='trial'?'w':'ok',d}}
 const em=r=>(r.sub&&r.sub.email)||(r.own&&r.own.email)||'';
 async function load(){$('#main').innerHTML='<div class="empty">Loading…</div>';
- try{const [a,b,c,ow]=await Promise.all([getDocs(collection(db,'subs')),getDocs(collection(db,'shops')),getDoc(doc(db,'appcfg','main')),getDocs(collection(db,'owners')).catch(()=>({docs:[]}))]);const m={};
+ try{const [a,b,c,fe,ow]=await Promise.all([getDocs(collection(db,'subs')),getDocs(collection(db,'shops')),getDoc(doc(db,'appcfg','main')),getDoc(doc(db,'appcfg','features')).catch(()=>null),getDocs(collection(db,'owners')).catch(()=>({docs:[]}))]);const m={};
   b.docs.forEach(d=>{const x=d.data();m[d.id]={id:d.id,name:x.name||''}});
   ow.docs.forEach(d=>{m[d.id]=Object.assign(m[d.id]||{id:d.id,name:''},{own:d.data()})});
   a.docs.forEach(d=>{m[d.id]=Object.assign(m[d.id]||{id:d.id,name:''},{sub:d.data()})});
-  cfg=c.exists()?c.data():{};rows=Object.values(m);draw()}catch(e){$('#main').innerHTML='<div class="empty">Could not load: '+esc(e.code||e.message)+'<br><small>Make sure the latest Firestore rules are published.</small></div>'}}
-const NAV=[['acc','📋','Accounts'],['health','🩺','Account health'],['plans','💳','Subscription plans'],['ins','📈','Insights'],['set','⚙️','Settings']];
+  cfg=c.exists()?c.data():{};FT=fe&&fe.exists()?fe.data():{};rows=Object.values(m);draw()}catch(e){$('#main').innerHTML='<div class="empty">Could not load: '+esc(e.code||e.message)+'<br><small>Make sure the latest Firestore rules are published.</small></div>'}}
+const NAV=[['acc','📋','Accounts'],['health','🩺','Account health'],['plans','💳','Subscription plans'],['ins','📈','Insights'],['feat','🧪','New features'],['set','⚙️','Settings']];
 const SETS=[['set-contact','📞','Contact'],['set-price','💰','Price & trial'],['set-brand','🏷️','Brand & lock message'],['set-data','📤','Data export'],['set-sec','🔒','Security']];
 function sideH(){const inSet=pg.startsWith('set');return NAV.map(n=>'<button class="nav '+((n[0]=='set'?inSet&&pg=='set':pg==n[0])?'on':'')+'" onclick="window.go(\''+n[0]+'\')"><span class="i">'+n[1]+'</span>'+n[2]+'</button>'+(n[0]=='set'&&inSet?SETS.map(s=>'<button class="nav sub '+(pg==s[0]?'on':'')+'" onclick="window.go(\''+s[0]+'\')">'+s[2]+'</button>').join(''):'')).join('')}
 function draw(){$('#side').innerHTML=sideH();$('#side').classList.remove('open');$('#scrim').classList.remove('on');
- const p=pg=='acc'?accH():pg=='health'?healthH():pg=='plans'?plansH():pg=='ins'?insH():pg=='set'?setMenu():setPage();$('#main').innerHTML=p}
+ const p=pg=='acc'?accH():pg=='health'?healthH():pg=='plans'?plansH():pg=='ins'?insH():pg=='feat'?featH():pg=='set'?setMenu():setPage();$('#main').innerHTML=p}
 function accH(){const all=rows.map(r=>({r,s:stOf(r)})),cnt=k=>all.filter(x=>x.s.k==k).length;
  return '<h2 class="pt">Accounts</h2><div class="stats"><div class="st"><b>'+all.length+'</b><span>Shops</span></div><div class="st"><b>'+(cnt('active')+cnt('trial')+cnt('life')+cnt('expiring'))+'</b><span>Live</span></div><div class="st"><b>'+cnt('expiring')+'</b><span>Ending ≤30d</span></div><div class="st"><b>'+(cnt('expired')+cnt('suspended'))+'</b><span>Locked / expired</span></div>'+(cnt('legacy')?'<div class="st"><b>'+cnt('legacy')+'</b><span>No plan set</span></div>':'')+'</div>'
  +'<div class="tools"><input id="q" placeholder="Search email, shop or id" value="'+esc(q)+'" oninput="window.sq(this.value)"><button onclick="window.reload()">Refresh</button>'+(cnt('legacy')?'<button class="pri" onclick="window.legacyYear()">Give 1 year to '+cnt('legacy')+' shops</button>':'')+'</div>'
@@ -153,6 +153,17 @@ function setPage(){const t=SETS.filter(s=>s[0]==pg)[0]||SETS[0],b='<button class
  if(pg=='set-data')return b+'<div class="panel"><p class="s">Download every shop with email, plan, validity and notes.</p><div class="act"><button class="pri" onclick="window.csv()">Export CSV</button></div></div>';
  return b+'<div class="panel"><p class="s">Admin access is limited to <b style="color:var(--ink)">'+esc(ADMIN)+'</b> with a verified email, enforced by Firestore rules.</p></div>'}
 async function put(id,patch){const r=rows.find(x=>x.id==id);const cur=r.sub||{};const nx=Object.assign({email:em(r),nm:r.name||'',t0:Date.now(),st:'active'},cur,patch);await setDoc(doc(db,'subs',id),nx);r.sub=nx}
+let FT={};
+const FEATS=[['nd','New QR menu design','Hero banner, round category icons, photo cards, add-ons, smooth cart. The old menu stays as the fallback.']];
+function myShops(){return rows.filter(r=>em(r).toLowerCase()==ADMIN).map(r=>r.id)}
+function featH(){let h='<h2 class="pt">🧪 New features</h2><p style="color:var(--mute);margin:0 0 14px">Try a feature on your own shop first. When you are happy, turn it on for everyone. Switching back is instant and no shop needs to do anything.</p>';
+ FEATS.forEach(f=>{const c=FT[f[0]]||{},md=c.mode||'off',sel=c.shops||[],mine=myShops();
+  h+='<div class="panel"><h3>'+esc(f[1])+'</h3><p class="s">'+esc(f[2])+'</p><div class="seg" style="margin:12px 0">'+[['off','Off'],['me','Only me'],['sel','Selected shops'],['all','All shops']].map(m=>'<button class="'+(md==m[0]?'on':'')+'" onclick="window.ftMode(\''+f[0]+'\',\''+m[0]+'\')">'+m[1]+'</button>').join('')+'</div>'
+  +'<p class="s">'+(md=='off'?'Nobody sees the new design yet, not even you.':md=='all'?'<b style="color:var(--ink)">Every shop</b> sees the new design now.':md=='sel'?'Your shop and the shops ticked below see the new design.':'Only your own shop'+(mine.length?'':' (no shop found for '+esc(ADMIN)+')')+' sees the new design. Other shops see the old menu.')+'</p>';
+  if(md=='sel'){h+='<div style="max-height:320px;overflow:auto;margin-top:8px">'+rows.filter(r=>mine.indexOf(r.id)<0).sort((a,b)=>(a.name||'').localeCompare(b.name||'')).map(r=>'<label style="display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)"><input type="checkbox" style="width:auto" '+(sel.indexOf(r.id)>-1?'checked':'')+' onchange="window.ftShop(\''+f[0]+'\',\''+r.id+'\',this.checked)"><span><b>'+esc(r.name||'(no name)')+'</b><br><small style="color:var(--mute)">'+esc(em(r))+'</small></span></label>').join('')+'</div>'}
+  h+='</div>'});return h}
+window.ftMode=(k,m)=>run(async()=>{const c=Object.assign({},FT[k]||{}),mine=myShops();c.mode=m;c.me=mine;c.shops=c.shops||[];FT=Object.assign({},FT,{[k]:c});await setDoc(doc(db,'appcfg','features'),FT)});
+window.ftShop=(k,id,on)=>run(async()=>{const c=Object.assign({},FT[k]||{mode:'sel'}),a=(c.shops||[]).filter(x=>x!=id);if(on)a.push(id);c.shops=a;c.me=myShops();FT=Object.assign({},FT,{[k]:c});await setDoc(doc(db,'appcfg','features'),FT)});
 const run=async f=>{try{await f();draw();toast('Saved')}catch(e){toast('Failed: '+(e.code||e.message))}};
 const saveCfg=async p=>{cfg=Object.assign({},cfg,p);await setDoc(doc(db,'appcfg','main'),cfg)};
 window.go=p=>{pg=p;draw();scrollTo(0,0)};window.sb=()=>{$('#side').classList.toggle('open');$('#scrim').classList.toggle('on')};
