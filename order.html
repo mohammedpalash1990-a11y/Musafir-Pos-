@@ -6,7 +6,7 @@
 
 :root{--bg:#0d1a1d;--card:#142529;--ink:#e6f0f1;--mu:#8fa5a8;--ln:#244047;--ac:#5cb82e;--acink:#05200a;--hd:#0b2a2e;--z:1;--cw:150px}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:500 calc(15px*var(--z))/1.45 "SAR","Plus Jakarta Sans","Hind Siliguri",system-ui,sans-serif;padding-bottom:140px;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 calc(15px*var(--z))/1.45 "SAR","Plus Jakarta Sans","Hind Siliguri",system-ui,sans-serif;padding-bottom:140px;overflow-x:clip}
 header{background:var(--hd);padding:calc(8px + env(safe-area-inset-top)) 10px 8px;display:flex;align-items:center;gap:6px;position:sticky;top:0;z-index:5}
 header img{width:36px;height:36px;border-radius:10px;flex:none}header b{font-size:17px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .chip{background:var(--card);border:1px solid var(--ln);border-radius:99px;padding:3px 10px;font-size:12px;white-space:nowrap;flex:none}
@@ -206,7 +206,7 @@ button{min-height:44px;touch-action:manipulation}
 #sp h1,#sp p{color:#fff!important}
 
 /* ===== v17: POS-style compact mobile ===== */
-html,body{overflow-x:hidden}
+html{overflow-x:hidden}body{overflow-x:clip}
 body{padding-bottom:96px}
 header{padding:calc(8px + env(safe-area-inset-top)) 12px 8px!important;min-height:0!important;gap:10px!important}
 header img{width:40px!important;height:40px!important;border-radius:12px!important}
@@ -262,7 +262,7 @@ body::after{content:'Powered by Musafir POS';display:block;text-align:center;fon
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.g21{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}.g2 input,.g21 input{min-width:0}
 .rwc{background:linear-gradient(135deg,#5a3b12,#8a5a14);color:#fff;border-radius:14px;padding:12px 14px;margin:0 0 10px}.rwc b{font-size:1.1em}.rwb{height:8px;border-radius:6px;background:#0004;margin-top:8px;overflow:hidden}.rwb i{display:block;height:100%;background:#F5B52E}
 .lg-card{background:#0b2a2e!important;color:#F5F7F3!important}.lg-card .lg-f input{color:#fff}.lg-logo img{position:relative;z-index:1;width:100%;height:100%;border-radius:50%;object-fit:contain;background:#fff}
-.bkp{border:0;background:var(--cd,#fff);color:inherit;border-radius:999px;padding:8px 14px;font:inherit;font-size:13px;font-weight:800;box-shadow:0 1px 6px rgba(0,0,0,.18);cursor:pointer}
+.bkp{border:1px solid var(--ln);background:var(--card);color:var(--ink);border-radius:999px;padding:9px 16px;font:inherit;font-size:14px;font-weight:800;box-shadow:0 1px 6px rgba(0,0,0,.18);cursor:pointer}
 </style><link rel="apple-touch-icon" href="logo-192.png"></head><body><div id="app"></div><canvas id="cfx"></canvas><div id="bar"></div><div id="ovl"></div>
 <script type="module">
 let FS=null,db=null;
