@@ -1,1 +1,21 @@
-{"release": 2, "notes": "Items-sold button, Recent sales page, two-pane settings with inline QR settings, password on delete-all, fixed blank prints."}
+{
+ "release": 3,
+ "notes": "Daily sales removed from All sessions, version box moved to settings sidebar, 'Order ready' wording (shop button and customer page).",
+ "history": [
+  {
+   "release": 3,
+   "date": "2026-11-19",
+   "notes": "Daily sales removed from All sessions; version box in settings sidebar; 'Order ready' wording"
+  },
+  {
+   "release": 2,
+   "date": "2026-11-19",
+   "notes": "Items-sold button, Recent sales page, two-pane settings with inline QR settings, password on delete-all, blank prints fixed"
+  },
+  {
+   "release": 1,
+   "date": "2026-11-12",
+   "notes": "First new POS version (v2): POS panel, session summary pages, new settings look, redesigned QR menu"
+  }
+ ]
+}
