@@ -355,7 +355,7 @@ header #nav{position:static;display:flex;gap:6px;background:none;border:0;paddin
 .rcpt pre.rp{background:#fff!important;color:#000!important;border:1px dashed #000!important}
 </style>
 </head><body>
-<header><div class="brand"><span id="blg" style="display:flex"><svg width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#14454b"/><path d="M19 29h26v6a13 13 0 0 1-13 13 13 13 0 0 1-13-13z" fill="#fff"/><path d="M45 32h2.5a5 5 0 0 1 0 10H43" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/><path d="M15 52h34" stroke="#f5b52e" stroke-width="3.4" stroke-linecap="round"/><path d="M22 24l4.5-8 5.5 8 5.5-8 4.5 8" fill="none" stroke="#f5b52e" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h1 id="shop">Musafir Cafe</h1></div><div class="hr"><button class="v2b" id="relbtn" onclick="relUpdate()" hidden>⬆ Update</button><button class="v2b" id="v2btn" onclick="v2Update()" hidden>⬆ Update</button><div id="hnav"></div><button class="hic" id="lastBtn" onclick="lastInv()" aria-label="Last invoice"></button><button class="chip" id="recentBtn" onclick="window.RCQ='';window.RCALL=false;showRecent()" style="border:0;cursor:pointer">⏱</button><button class="chip" id="today" onclick="showRecent()" style="border:0;cursor:pointer"></button><button class="av" id="av" aria-label="Account" onclick="admOpen()"></button></div></header>
+<header><div class="brand"><span id="blg" style="display:flex"><svg width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#FFF8E7"/><g transform="translate(32 33) scale(.056) translate(-631 -469)"><polygon points="532,262 604,404 470,676 304,676" fill="#C4903A" stroke="#C4903A" stroke-width="16" stroke-linejoin="round"/><polygon points="720,262 958,676 500,676" fill="#0A4540" stroke="#0A4540" stroke-width="16" stroke-linejoin="round"/></g></svg></span><h1 id="shop">Musafir Cafe</h1></div><div class="hr"><button class="v2b" id="relbtn" onclick="relUpdate()" hidden>⬆ Update</button><button class="v2b" id="v2btn" onclick="v2Update()" hidden>⬆ Update</button><div id="hnav"></div><button class="hic" id="lastBtn" onclick="lastInv()" aria-label="Last invoice"></button><button class="chip" id="recentBtn" onclick="window.RCQ='';window.RCALL=false;showRecent()" style="border:0;cursor:pointer">⏱</button><button class="chip" id="today" onclick="showRecent()" style="border:0;cursor:pointer"></button><button class="av" id="av" aria-label="Account" onclick="admOpen()"></button></div></header>
 <div id="ib"></div>
 <div id="sync" class="mute" style="text-align:center;font-size:12px;padding:0 16px 6px"></div>
 <main id="m"></main>
@@ -426,7 +426,7 @@ function I(n){return '<svg class="i" viewBox="0 0 24 24">'+(IC[n]||'')+'</svg>'}
 var LOGO = document.querySelector('.brand svg').outerHTML;
 var LOGO_FAST='<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#000"/><path d="M16 29a16 13 0 0 1 32 0z" fill="#fff"/><rect x="14" y="32" width="36" height="5" rx="2.5" fill="#fff"/><path d="M15 41h34v1a7 7 0 0 1-7 7H22a7 7 0 0 1-7-7z" fill="#fff"/></svg>';
 var LOGO_MART='<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#000"/><path d="M13 18h6l5 22h22l4-16H21" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="27" cy="48" r="3.4" fill="#fff"/><circle cx="43" cy="48" r="3.4" fill="#fff"/></svg>';
-var LOGO_MONO='<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#000"/><path d="M19 29h26v6a13 13 0 0 1-13 13 13 13 0 0 1-13-13z" fill="#fff"/><path d="M45 32h2.5a5 5 0 0 1 0 10H43" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/><path d="M15 52h34" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/><path d="M22 24l4.5-8 5.5 8 5.5-8 4.5 8" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+var LOGO_MONO='<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#000"/><g transform="translate(32 33) scale(.056) translate(-631 -469)"><polygon points="532,262 604,404 470,676 304,676" fill="#fff" stroke="#fff" stroke-width="16" stroke-linejoin="round"/><polygon points="720,262 958,676 500,676" fill="#fff" stroke="#fff" stroke-width="16" stroke-linejoin="round"/></g></svg>';
 var LOGO_REST='<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#000"/><circle cx="32" cy="17" r="3.2" fill="#fff"/><path d="M13 41a19 17 0 0 1 38 0z" fill="#fff"/><rect x="9" y="44" width="46" height="4.5" rx="2.25" fill="#fff"/></svg>';
 function kindNow(){return window.SHOPK==='mart'?'mart':(S.kind==='restaurant'||S.kind==='fast'?S.kind:'coffee')}
 function dlRaw(k){return k=='fast'?LOGO_FAST:k=='mart'?LOGO_MART:k=='restaurant'?LOGO_REST:null}
@@ -1108,13 +1108,14 @@ function logoBox(){var tp=kindNow(),pv=S.logo?'<img src="'+S.logo+'" alt="" styl
  +'<div style="display:flex;align-items:center;gap:12px;margin:10px 0">'+pv+'<div style="flex:1"><label class="btn" style="display:block;text-align:center">'+L('লোগো আপলোড','Upload logo')+'<input type="file" accept="image/*" style="display:none" onchange="logoPick(this)"></label>'+(S.logo?'<button class="bad" style="width:100%;margin-top:6px" onclick="logoDel()">'+L('লোগো সরান','Remove logo')+'</button>':'')+'</div></div>'
  +'<div class="mute" style="font-size:12px">'+L('সাদা বা স্বচ্ছ ব্যাকগ্রাউন্ডে কালো লোগো দিলে প্রিন্টে সবচেয়ে পরিষ্কার আসে। লোগো রসিদ, POS ও QR মেনুতে একসাথে বসবে।','A black logo on a white or transparent background prints best. The logo is used on receipts, the POS and the QR menu.')+'</div></div>'}
 function setShopType(v){S.shopType=v;save();render();try{window.qrPub&&window.qrPub(1)}catch(e){}}
-function logoDel(){delete S.logo;delete S.logoM;save();render();try{window.qrPub&&window.qrPub(1)}catch(e){}}
+function logoSync(){try{if(S.logo)localStorage.setItem('pos_logo',JSON.stringify({l:S.logo,m:S.logoM||''}));else localStorage.removeItem('pos_logo')}catch(e){}try{if(CU&&ready&&window.FB)FB.set('pos','logo',{l:S.logo||'',m:S.logoM||''}).catch(function(){})}catch(e){}}
+function logoDel(){delete S.logo;delete S.logoM;save();logoSync();render();try{window.qrPub&&window.qrPub(1)}catch(e){}}
 function logoPick(inp){var f=inp.files&&inp.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){
  function mk(mx,mono){var k=Math.min(1,mx/im.width,mx/im.height),w=Math.max(1,Math.round(im.width*k)),h=Math.max(1,Math.round(im.height*k)),c=document.createElement('canvas');c.width=w;c.height=h;var x=c.getContext('2d');
   if(mono){x.fillStyle='#fff';x.fillRect(0,0,w,h)}x.drawImage(im,0,0,w,h);
   if(mono){var d=x.getImageData(0,0,w,h),p=d.data;for(var i=0;i<p.length;i+=4){var g=.299*p[i]+.587*p[i+1]+.114*p[i+2],v=g<165?0:255;p[i]=p[i+1]=p[i+2]=v;p[i+3]=255}x.putImageData(d,0,0)}
   return c.toDataURL('image/png')}
- S.logo=mk(256,false);S.logoM=mk(420,true);save();render();toast(L('লোগো সেভ হয়েছে','Logo saved'));try{window.qrPub&&window.qrPub(1)}catch(e){}};
+ S.logo=mk(256,false);S.logoM=mk(420,true);save();logoSync();render();toast(L('লোগো সেভ হয়েছে','Logo saved'));try{window.qrPub&&window.qrPub(1)}catch(e){}};
  im.onerror=function(){toast(L('ছবি পড়া যায়নি','Could not read image'))};im.src=r.result};r.readAsDataURL(f);inp.value=''}
 
 /* ===== PDF menu import ===== */
@@ -1822,8 +1823,10 @@ function doReset(){var e=$('#le').value.trim();if(!e){showLogin(L('আগে ই
 function onPos(snap){var d={};snap.docs.forEach(function(x){d[x.id]=x.data()});
  if(!d.settings&&!d.products){if(snap.metadata.fromCache)return;ready=true;newAcct();sy('on');push();Object.keys(IMG).forEach(function(k){FB.set('pos','img_'+k,{d:IMG[k]})});welcome();return}
  if(d.settings)S=Object.assign({shop:'Musafir Cafe',cur:'৳',tax:0,lang:'bn'},d.settings);if(d.products)P=d.products.list||[];if(d.due)DU=d.due.list||[];if(d.log)lgIn(d.log.list||[]);else if(LG.length)lgPush();khIn(d);
+ var _lg=d.logo,_lb=null;try{_lb=JSON.parse(localStorage.getItem('pos_logo'))}catch(e){}
+ if(_lg&&typeof _lg.l=='string'){if(_lg.l){S.logo=_lg.l;S.logoM=_lg.m||S.logoM}else{delete S.logo;delete S.logoM}}else if(!S.logo&&_lb&&_lb.l){S.logo=_lb.l;S.logoM=_lb.m||S.logoM}
  var n={};Object.keys(d).forEach(function(k){if(k.indexOf('img_')==0&&d[k])n[k.slice(4)]=d[k].d});IMG=n;
- ready=true;lsave();sy('on');bgRender();welcome() }
+ ready=true;lsave();if(S.logo&&!(_lg&&_lg.l))setTimeout(logoSync,300);sy('on');bgRender();welcome() }
 
 function onSales(snap){var l=snap.docs.map(function(x){return x.data()});
  var loc=H.filter(function(x){return x.lc});if(loc.length)H=H.filter(function(x){return !x.lc});

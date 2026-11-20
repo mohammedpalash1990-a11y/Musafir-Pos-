@@ -23,6 +23,14 @@
     {
      "bn": "অ্যাপ সবসময় Sell পেজে খোলে",
      "en": "App always opens on the Sell page"
+    },
+    {
+     "bn": "লোগো আপলোড ক্লাউডে আলাদা সেভ হয়, ভার্সন বদলালেও মুছে যায় না",
+     "en": "Uploaded logo is saved separately in the cloud and survives version changes"
+    },
+    {
+     "bn": "নতুন Musafir POS লোগো ডিফল্ট (আপলোড করলে নিজের লোগো)",
+     "en": "New Musafir POS default logo (your own upload overrides it)"
     }
    ]
   },
