@@ -1,8 +1,31 @@
 {
- "release": 4,
- "name": "P4",
- "notes": "Welcome screen with shop logo or own picture, order-complete hero banner, map icon, compact POS header, version names.",
+ "release": 5,
+ "name": "P5",
+ "notes": "Full-page settings, header Update button, App update page.",
  "history": [
+  {
+   "release": 5,
+   "name": "P5",
+   "date": "2026-11-20",
+   "features": [
+    {
+     "bn": "সেটিংস এখন পূর্ণ পেজ: বাঁ দিকে গ্রুপ মেনু, Back বাটন",
+     "en": "Settings is a full page: grouped left menu, Back button"
+    },
+    {
+     "bn": "নতুন ভার্সন এলে উপরে ছোট Update বাটন",
+     "en": "Small Update button in the header when a new version exists"
+    },
+    {
+     "bn": "সেটিংসে App update পেজ (আগের ভার্সন, কী বদলেছে)",
+     "en": "App update page in Settings (previous version, what changed)"
+    },
+    {
+     "bn": "অ্যাপ সবসময় Sell পেজে খোলে",
+     "en": "App always opens on the Sell page"
+    }
+   ]
+  },
   {
    "release": 4,
    "name": "P4",
