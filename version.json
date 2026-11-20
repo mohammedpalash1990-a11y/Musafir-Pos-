@@ -1,8 +1,54 @@
 {
- "release": 5,
- "name": "P5",
- "notes": "Full-page settings, header Update button, App update page.",
+ "release": 7,
+ "name": "P7",
+ "notes": "QR favorites and star ratings.",
  "history": [
+  {
+   "release": 7,
+   "name": "P7",
+   "date": "2026-11-20",
+   "features": [
+    {
+     "bn": "QR পেজে ফেভারিট: কার্ডে হার্ট ও নিচে Favorites ট্যাব (ফোনে সেভ থাকে)",
+     "en": "QR page favorites: heart on cards and a Favorites tab (saved on the phone)"
+    },
+    {
+     "bn": "পণ্যের কার্ডে ★ রেটিং (অর্ডারের সার্ভিস রেটিং থেকে, ৩টির কম হলে দেখায় না)",
+     "en": "Star rating on item cards (from order ratings; hidden under 3 ratings)"
+    }
+   ]
+  },
+  {
+   "release": 6,
+   "name": "P6",
+   "date": "2026-11-20",
+   "features": [
+    {
+     "bn": "QR পেজ: হেডারে লগো মিশে যায়, অভিবাদন লাইন, Best selling তালিকা",
+     "en": "QR page: logo blends into the header, greeting line, Best selling list"
+    },
+    {
+     "bn": "আজকের সেল চলতি সেশনের হিসাব (রাত ১২টায় ০ হয় না)",
+     "en": "Today's sales follow the open session (no midnight reset)"
+    },
+    {
+     "bn": "সেশনের নিচের Recent তালিকা সরানো",
+     "en": "Recent list under the session removed"
+    },
+    {
+     "bn": "দোকানের ধরনের সিলেক্টর বাদ, সাইন আপের ধরনই চলে",
+     "en": "Shop-type selectors removed; the type chosen at sign-up is used"
+    },
+    {
+     "bn": "মোবাইলে Sell পেজের নিচের বার ট্যাবের ওপর চাপে না",
+     "en": "Sell page bottom bar no longer overlaps the tabs on mobile"
+    },
+    {
+     "bn": "Settings-এর নতুন ফন্ট ও কার্ড ডিজাইন",
+     "en": "Settings: refined typography and card design"
+    }
+   ]
+  },
   {
    "release": 5,
    "name": "P5",
