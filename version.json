@@ -1,21 +1,103 @@
 {
- "release": 3,
- "notes": "Daily sales removed from All sessions, version box moved to settings sidebar, 'Order ready' wording (shop button and customer page).",
+ "release": 4,
+ "name": "P4",
+ "notes": "Welcome screen with shop logo or own picture, order-complete hero banner, map icon, compact POS header, version names.",
  "history": [
   {
+   "release": 4,
+   "name": "P4",
+   "date": "2026-11-20",
+   "features": [
+    {
+     "bn": "স্বাগতম পর্দা: দোকানের লোগো বা নিজের ছবি",
+     "en": "Welcome screen: shop logo or your own picture"
+    },
+    {
+     "bn": "অর্ডার সম্পূর্ণ পেজে হিরো ব্যানার ও Order more বাটন",
+     "en": "Order-complete hero banner with Order more button"
+    },
+    {
+     "bn": "অর্ডার ট্র্যাক কার্টে, ম্যাপ আইকন উপরে",
+     "en": "Order tracking in the cart, map icon on top"
+    },
+    {
+     "bn": "POS মোবাইল হেডার: লোগো ও নাম পুরো, Recent/Today আইকন",
+     "en": "POS mobile header: full logo and name, Recent/Today icons"
+    },
+    {
+     "bn": "ভার্সনের নাম (P1, P2…) ও Details",
+     "en": "Version names (P1, P2…) and Details"
+    }
+   ]
+  },
+  {
    "release": 3,
+   "name": "P3",
    "date": "2026-11-19",
-   "notes": "Daily sales removed from All sessions; version box in settings sidebar; 'Order ready' wording"
+   "features": [
+    {
+     "bn": "All sessions থেকে ডেইলি সেলস বাদ",
+     "en": "Daily sales removed from All sessions"
+    },
+    {
+     "bn": "সেটিংস সাইডবারে ভার্সন বক্স",
+     "en": "Version box in the settings sidebar"
+    },
+    {
+     "bn": "\"Order ready\" লেখা",
+     "en": "\"Order ready\" wording"
+    }
+   ]
   },
   {
    "release": 2,
+   "name": "P2",
    "date": "2026-11-19",
-   "notes": "Items-sold button, Recent sales page, two-pane settings with inline QR settings, password on delete-all, blank prints fixed"
+   "features": [
+    {
+     "bn": "Items-sold বাটন",
+     "en": "Items-sold button"
+    },
+    {
+     "bn": "Recent sales পেজ",
+     "en": "Recent sales page"
+    },
+    {
+     "bn": "দুই-প্যানের সেটিংস",
+     "en": "Two-pane settings"
+    },
+    {
+     "bn": "delete-all-এ পাসওয়ার্ড",
+     "en": "Password on delete-all"
+    },
+    {
+     "bn": "ফাঁকা প্রিন্ট ঠিক",
+     "en": "Blank prints fixed"
+    }
+   ]
   },
   {
    "release": 1,
+   "name": "P1",
    "date": "2026-11-12",
-   "notes": "First new POS version (v2): POS panel, session summary pages, new settings look, redesigned QR menu"
+   "features": [
+    {
+     "bn": "POS প্যানেল",
+     "en": "POS panel"
+    },
+    {
+     "bn": "সেশন সামারি পেজ",
+     "en": "Session summary pages"
+    },
+    {
+     "bn": "নতুন সেটিংস লুক",
+     "en": "New settings look"
+    },
+    {
+     "bn": "নতুন QR মেনু",
+     "en": "Redesigned QR menu"
+    }
+   ]
   }
  ]
 }
