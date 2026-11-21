@@ -1,8 +1,35 @@
 {
- "release": 7,
- "name": "P7",
- "notes": "QR favorites and star ratings.",
+ "release": 8,
+ "name": "P8",
+ "notes": "QR hero and themes, post-order page, screen size.",
  "history": [
+  {
+   "release": 8,
+   "name": "P8",
+   "date": "2026-11-21",
+   "features": [
+    {
+     "bn": "QR হিরো: লেখা ওপরে, ব্যারিস্তা ছবি নিচে, কিছু কাটে না",
+     "en": "QR hero: text on top, barista image below, nothing clipped"
+    },
+    {
+     "bn": "অর্ডারের পরের পেজ নতুন ডিজাইন: Order more আর Sign in পাশাপাশি",
+     "en": "New post-order page: Order more and Sign in side by side"
+    },
+    {
+     "bn": "রঙের থিম এখন QR পেজের হেডার, হিরো, বাটন ও নেভিগেশনে কাজ করে",
+     "en": "Colour themes now apply to the QR header, hero, buttons and navigation"
+    },
+    {
+     "bn": "ফোনে QR পেজ ৯০%-এর মতো মাপে, নাম এক লাইনে",
+     "en": "QR page fits phones like 90% zoom; shop name stays on one line"
+    },
+    {
+     "bn": "Settings: স্ক্রিনের মাপ (Auto/100/90/80), পাতলা স্ক্রলবার, ভার্সন এক কার্ডে",
+     "en": "Settings: screen size (Auto/100/90/80), thin scrollbars, single version card"
+    }
+   ]
+  },
   {
    "release": 7,
    "name": "P7",
