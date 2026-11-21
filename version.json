@@ -1,7 +1,7 @@
 {
  "release": 8,
  "name": "P8",
- "notes": "QR hero and themes, post-order page, screen size.",
+ "notes": "QR-style POS look, settings menu on the right.",
  "history": [
   {
    "release": 8,
@@ -9,24 +9,16 @@
    "date": "2026-11-21",
    "features": [
     {
-     "bn": "QR হিরো: লেখা ওপরে, ব্যারিস্তা ছবি নিচে, কিছু কাটে না",
-     "en": "QR hero: text on top, barista image below, nothing clipped"
+     "bn": "POS-এর নতুন লুক QR পেজের মতো: ক্রিম রঙ, হেডারে লগো মিশে যায়, সাদা আইকন বাটন",
+     "en": "POS look now matches the QR page: cream colours, logo blends into the header, white icon buttons"
     },
     {
-     "bn": "অর্ডারের পরের পেজ নতুন ডিজাইন: Order more আর Sign in পাশাপাশি",
-     "en": "New post-order page: Order more and Sign in side by side"
+     "bn": "Settings-এর মেনু ডান দিকে",
+     "en": "Settings menu moved to the right"
     },
     {
-     "bn": "রঙের থিম এখন QR পেজের হেডার, হিরো, বাটন ও নেভিগেশনে কাজ করে",
-     "en": "Colour themes now apply to the QR header, hero, buttons and navigation"
-    },
-    {
-     "bn": "ফোনে QR পেজ ৯০%-এর মতো মাপে, নাম এক লাইনে",
-     "en": "QR page fits phones like 90% zoom; shop name stays on one line"
-    },
-    {
-     "bn": "Settings: স্ক্রিনের মাপ (Auto/100/90/80), পাতলা স্ক্রলবার, ভার্সন এক কার্ডে",
-     "en": "Settings: screen size (Auto/100/90/80), thin scrollbars, single version card"
+     "bn": "স্ক্রলবারের দাগ নেই, আরেকটু প্রাণবন্ত কার্ড ও বাটন",
+     "en": "No scrollbar lines; livelier cards and buttons"
     }
    ]
   },

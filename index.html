@@ -325,10 +325,6 @@ html.p3 .invg{display:flex!important;flex-direction:column!important;grid-templa
 .s5c{display:flex;flex-direction:column;min-width:0;min-height:0;height:100%}
 .s5t{display:flex;align-items:center;gap:12px;padding:12px 20px;flex:none}.s5t h2{margin:0;flex:1;font-size:20px;min-width:0}.s5b{border-radius:99px;padding:10px 18px;font-weight:800;background:var(--head)!important;color:var(--hink,#fff)!important;border:0!important;white-space:nowrap}.s5m{display:none}
 .s5body{flex:1;min-height:0;overflow:auto;padding:0 20px 28px}
-.scrg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-html.r8 *{scrollbar-width:thin;scrollbar-color:#7f9a9d55 transparent}
-html.r8 ::-webkit-scrollbar{width:7px;height:7px}html.r8 ::-webkit-scrollbar-track{background:transparent}html.r8 ::-webkit-scrollbar-thumb{background:#7f9a9d55;border-radius:8px;border:2px solid transparent;background-clip:content-box}html.r8 ::-webkit-scrollbar-thumb:hover{background:#7f9a9d99;background-clip:content-box}
-html.r8 .s5n{scrollbar-width:none}html.r8 .s5n ::-webkit-scrollbar,html.r8 .s5l::-webkit-scrollbar{width:0}html.r8 .s5l{scrollbar-width:none}
 .s5t h2{font-weight:800;letter-spacing:-.01em;font-size:22px}
 .s5body>*{max-width:780px}
 .s5body .box{padding:20px 22px;border-radius:18px;margin:0 0 16px;border:1px solid var(--line);box-shadow:0 1px 2px rgba(16,40,45,.05),0 14px 28px -18px rgba(16,40,45,.22)}
@@ -373,6 +369,34 @@ header #nav{position:static;display:flex;gap:6px;background:none;border:0;paddin
 @media(max-width:430px){header .brand svg{display:none}header .hr{gap:6px}}
 .r4 header .brand svg,.r4 header .brand img{display:block!important}.r4 #blg svg{width:34px;height:34px}.r4 #blg img{height:34px!important;max-width:64px!important}.r4 header .brand{flex:1 1 0;min-width:0}.r4 #shop{overflow:hidden;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:16px;line-height:1.15;min-width:0;word-break:break-word}@media(max-width:430px){.r4 #shop{font-size:14.5px}.r4 #blg svg{width:30px;height:30px}.r4 header .hr{gap:5px}.r4 #lastBtn{width:38px;height:38px}}.r4 header .hr{flex:none}.r4 .chip svg,.r4 .hic svg{width:19px;height:19px;vertical-align:-4px}.r4 #recentBtn{padding:8px 11px}.r4 #today b{font-weight:800}@media(max-width:430px){.r4 header{padding:10px 10px}.r4 #today{padding:8px 10px;font-size:13px}}.ctile b{font-size:18px;line-height:1.2;text-shadow:0 1px 3px rgba(0,0,0,.5)}.ctile small{text-shadow:0 1px 3px rgba(0,0,0,.5)}
 .rcpt pre.rp{background:#fff!important;color:#000!important;border:1px dashed #000!important}
+/* ===== P8: QR-style look ===== */
+html.r8[data-theme=light]{--bg:#f6f1e8;--card:#fff;--ink:#1f1c17;--mute:#7c7566;--line:#ece4d6}
+@media (prefers-color-scheme:light){html.r8:not([data-theme=dark]){--bg:#f6f1e8;--card:#fff;--ink:#1f1c17;--mute:#7c7566;--line:#ece4d6}}
+html.r8def[data-theme=light]{--ac:#14543b;--blue:#14543b;--soft:#d9ebe3}
+@media (prefers-color-scheme:light){html.r8def:not([data-theme=dark]){--ac:#14543b;--blue:#14543b;--soft:#d9ebe3}}
+html.r8 *{scrollbar-width:none}html.r8 *::-webkit-scrollbar{display:none}
+html.r8 header{background:var(--bg)!important;color:var(--ink)!important;box-shadow:none!important;border:0!important;padding:12px 16px}
+html.r8 header h1{color:var(--ink);font-weight:800;letter-spacing:-.02em}html.r8 #shop{word-break:normal!important;overflow-wrap:break-word!important;font-size:15px}
+html.r8 #blg{width:46px;height:46px;border-radius:16px;background:var(--card);box-shadow:0 8px 18px -8px rgba(0,0,0,.3);align-items:center;justify-content:center;flex:none;overflow:hidden}
+html.r8 #blg svg{width:36px;height:36px;display:block}html.r8 #blg svg rect:first-child{fill:transparent}
+html.r8 #blg img{height:34px!important;max-width:40px!important;width:auto;object-fit:contain}
+html.r8 .hic,html.r8 header #nav button,html.r8 header .chip,html.r8 header .v2b{background:var(--card)!important;color:var(--ink)!important;border:0!important;border-radius:16px;box-shadow:0 6px 16px -9px rgba(0,0,0,.35)}
+html.r8 header #nav button.on{background:var(--ac)!important;color:#fff!important}
+html.r8 header .chip{border-radius:20px}
+html.r8 .av:not(.off){background:#e8c27a;color:#2b2100;border:0;box-shadow:0 6px 16px -8px rgba(0,0,0,.4)}
+@media(max-width:859px){html.r8 nav#nav{background:var(--card)!important;border-radius:22px 22px 0 0;box-shadow:0 -12px 30px -16px rgba(0,0,0,.35)}html.r8 nav#nav button{color:var(--mute)!important}html.r8 nav#nav button.on{color:var(--ac)!important;box-shadow:inset 0 3px 0 var(--ac)}}
+html.r8 header #nav{gap:8px}
+@media(max-width:430px){html.r8 header{padding:10px 10px;gap:6px}html.r8 header .hr{gap:5px}html.r8 .hic{width:38px;height:38px}html.r8 .av{width:38px;height:38px;min-width:38px}html.r8 header .chip{padding:6px 9px;font-size:12.5px}html.r8 #blg{width:42px;height:42px}html.r8 #blg svg{width:32px;height:32px}html.r8 header .brand{gap:8px}}
+html.r8 .box,html.r8 .p,html.r8 .ctile{box-shadow:0 12px 26px -18px rgba(70,45,10,.45);border-color:var(--line)}
+html.r8 .p{transition:transform .15s,box-shadow .2s}html.r8 .p:hover{transform:translateY(-2px);box-shadow:0 16px 30px -16px rgba(70,45,10,.5)}
+html.r8 button{transition:transform .12s,box-shadow .2s,background .15s}html.r8 button:active{transform:scale(.97)}
+html.r8 button.pay{box-shadow:0 14px 26px -14px var(--ac)}
+@media(min-width:701px){html.r8 .s5{grid-template-columns:minmax(0,1fr) 292px}html.r8 .s5n{grid-column:2;grid-row:1;padding:12px 12px 12px 0}html.r8 .s5c{grid-column:1;grid-row:1}
+html.r8 .s5i{margin:2px 0 2px 12px}html.r8 .s5n .s5i.on{width:100%;margin-left:0;border-radius:0 22px 22px 0}
+html.r8 .s5n .s5i.on::before,html.r8 .s5n .s5i.on::after{right:auto;left:0}
+html.r8 .s5n .s5i.on::before{background:radial-gradient(circle at 100% 0,transparent 21.5px,var(--bg) 22px)}
+html.r8 .s5n .s5i.on::after{background:radial-gradient(circle at 100% 100%,transparent 21.5px,var(--bg) 22px)}
+html.r8 .s5o{margin:8px 0 0 12px;width:calc(100% - 12px)!important}html.r8 .s5g summary{padding-left:20px}}
 </style>
 </head><body>
 <header><div class="brand"><span id="blg" style="display:flex"><svg width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#FFF8E7"/><g transform="translate(32 33) scale(.056) translate(-631 -469)"><polygon points="532,262 604,404 470,676 304,676" fill="#C4903A" stroke="#C4903A" stroke-width="16" stroke-linejoin="round"/><polygon points="720,262 958,676 500,676" fill="#0A4540" stroke="#0A4540" stroke-width="16" stroke-linejoin="round"/></g></svg></span><h1 id="shop">Musafir Cafe</h1></div><div class="hr"><button class="v2b" id="relbtn" onclick="relUpdate()" hidden>⬆ Update</button><button class="v2b" id="v2btn" onclick="v2Update()" hidden>⬆ Update</button><div id="hnav"></div><button class="hic" id="lastBtn" onclick="lastInv()" aria-label="Last invoice"></button><button class="chip" id="recentBtn" onclick="window.RCQ='';window.RCALL=false;showRecent()" style="border:0;cursor:pointer">⏱</button><button class="chip" id="today" onclick="showRecent()" style="border:0;cursor:pointer"></button><button class="av" id="av" aria-label="Account" onclick="admOpen()"></button></div></header>
@@ -552,7 +576,7 @@ try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',f
 
 function render(){
  try{pgStyle();tabBrand();var bl=document.getElementById('blg');if(bl){if(BLG0===null)BLG0=bl.innerHTML;bl.innerHTML=S.logo?'<img src="'+S.logo+'" alt="" style="height:40px;max-width:96px;object-fit:contain">':(kindNow()=='coffee'?BLG0:dlSvg(kindNow(),40))}}catch(e){}
- if(view=='kh')view='set';if(view=='due'&&!X().due)view='sell';fixSn();document.documentElement.lang=S.lang;document.documentElement.dir='ltr';document.documentElement.classList.toggle('p3',P3());document.documentElement.classList.toggle('r4',!!(window.relOn&&relOn(4)));document.documentElement.classList.toggle('r8',!!(window.relOn&&relOn(8)));try{zoomApply()}catch(e){}document.documentElement.classList.toggle('s5',view=='set'&&!!(window.relOn&&relOn(5)));$('#shop').textContent=S.shop;document.title=S.shop;sy();
+ if(view=='kh')view='set';if(view=='due'&&!X().due)view='sell';fixSn();document.documentElement.lang=S.lang;document.documentElement.dir='ltr';document.documentElement.classList.toggle('p3',P3());document.documentElement.classList.toggle('r8',!!(window.relOn&&relOn(8)));document.documentElement.classList.toggle('r8def',!!(window.relOn&&relOn(8))&&(window.__thm||'emerald')==='emerald');document.documentElement.classList.toggle('r4',!!(window.relOn&&relOn(4)));document.documentElement.classList.toggle('s5',view=='set'&&!!(window.relOn&&relOn(5)));$('#shop').textContent=S.shop;document.title=S.shop;sy();
  $('#av').textContent=String((typeof CE!='undefined'&&CE)||S.shop||'M').trim().charAt(0).toUpperCase()||'M';
  var td=(window.relOn&&relOn(6))?sesCur().l.reduce(function(a,h){return a+h.total},0):H.filter(function(h){return day(h.t)==tdy()}).reduce(function(a,h){return a+h.total},0);
  if(window.relOn&&relOn(4)){$('#today').innerHTML=I('cash')+' <b>'+$$(td)+'</b>';$('#today').title=t('today')}else $('#today').textContent=t('today')+' '+$$(td);
@@ -1442,17 +1466,11 @@ function qStub(t){return '<div id="qpin" data-t="'+t+'"><div class="mute" style=
 function setGo(k){window.SETPG=k;render();scrollTo(0,0);if(/^q_[shbpxd]$/.test(k)&&window.qrOpenSet)setTimeout(function(){qrOpenSet(k.slice(2))},60)}
 function subShort(){if(!SUB||SUB.st=='legacy')return '';var st=subState();if(+SUB.exp>=4102444800000)return L('লাইফটাইম','Lifetime');var ds=SUB.exp?new Date(+SUB.exp).toISOString().slice(0,10):'';return (SUB.st=='trial'?L('ট্রায়াল','Trial')+' · ':'')+L('মেয়াদ ','Valid until ')+ds+(st.d!==undefined?' ('+st.d+L(' দিন',' days')+')':'')}
 function setNavHtml(k,drw){if(relOn(5))return setNavHtml5(k,drw);var em=(typeof CE!='undefined'&&CE)||'';return '<div class="sdp"><span class="s3a">'+esc(String(S.shop||'M').charAt(0).toUpperCase())+'</span><b>'+esc(S.shop||'')+'</b><small>'+esc(em)+'</small></div><div class="sdl">'+setPages().map(function(x){var sb=x[0]=='sub'?subShort():'';return '<button class="sdi'+(k==x[0]?' on':'')+'" onclick="'+(drw?'setDrw(false);':'')+'setGo(\''+x[0]+'\')"><span class="si">'+x[1]+'</span><span class="sl"><b>'+x[2]+'</b>'+(sb?'<small>'+esc(sb)+'</small>':'')+'</span></button>'}).join('')+'</div>'+(relOn(3)?verCard():'')+'<button class="s3o" onclick="FB.out()">⏻ '+L('লগআউট','Log out')+'</button>'}
-function zoomPref(){try{return localStorage.getItem('pos_zoom')||'auto'}catch(e){return 'auto'}}
-function zoomVal(){if(!(window.relOn&&relOn(8)))return 1;var p=zoomPref();if(p=='auto'){var w=Math.max(innerWidth,innerHeight),h=Math.min(innerWidth,innerHeight);return(innerWidth>=900&&innerHeight<=800)?.9:1}return(+p||100)/100}
-function zoomApply(){var z=zoomVal(),e=document.documentElement;if(z==1){if(e.style.zoom){e.style.zoom='';e.classList.remove('zm')}}else if(e.style.zoom!=String(z)){e.style.zoom=String(z);e.classList.add('zm')}e.style.setProperty('--zf',String(z))}
-function zoomSet(v){try{localStorage.setItem('pos_zoom',v)}catch(e){}zoomApply();render()}
-window.addEventListener('resize',function(){try{zoomApply()}catch(e){}});
-function scrBox(){var p=zoomPref();return '<div class="box"><div class="hd">'+I('set')+'<b>'+L('স্ক্রিনের মাপ','Screen size')+'</b></div><div class="mute" style="margin:0 0 10px">'+L('এই ডিভাইসে লেখা ও বাটন ছোট বা বড় করুন। প্রতিটা ডিভাইসে আলাদা সেভ হয়।','Make text and buttons smaller or larger on this device. Saved per device.')+'</div><div class="scrg">'+['auto','100','90','80'].map(function(v){return '<button class="'+(p==v?'pri':'')+'" onclick="zoomSet(\''+v+'\')">'+(v=='auto'?L('অটো','Auto'):v+'%')+'</button>'}).join('')+'</div><div class="mute" style="margin-top:10px;font-size:12px">'+L('স্ক্রিন','Screen')+': '+innerWidth+'×'+innerHeight+' · '+(window.devicePixelRatio||1).toFixed(2)+'x</div></div>'}
 function appPage(){var r=+(S&&S.v2rel)||1,H=(window.VJ&&VJ.history)||[],cur=H.filter(function(x){return x.release==r})[0],ft=cur&&cur.features||[];
  return '<div class="box"><div class="hd">'+I('set')+'<b>'+L('চলমান ভার্সন','Running version')+' P'+r+'</b></div>'
  +(relAvail()?'<div class="dl"><span>'+L('নতুন ভার্সন','New version')+' P'+window.UPREL+'</span><button class="pri" onclick="relUpdate()">⬆ '+L('আপডেট','Update')+'</button></div>':'<div class="mute" style="margin:6px 0">✓ '+L('আপনি সর্বশেষ ভার্সনে আছেন','You are on the latest version')+'</div>')
  +(ft.length?'<details style="margin:8px 0"><summary class="mute" style="cursor:pointer">'+L('এই ভার্সনে কী বদলেছে','What changed in this version')+'</summary><ul style="margin:6px 0 0;padding-inline-start:20px">'+ft.map(function(f){return '<li>'+(typeof f=='string'?f:L(f.bn,f.en))+'</li>'}).join('')+'</ul></details>':'')
- +'<div class="dl" style="margin-top:8px"><button onclick="v2Rollback()">'+L('আগের ভার্সন','Previous version')+'</button>'+(window.relOn&&relOn(8)?'<button onclick="updApp()">'+L('রিফ্রেশ','Reload app')+'</button>':'')+'</div>'+(window.relOn&&relOn(8)?'<div class="mute" style="font-size:12px;margin-top:8px">'+L('আপনার বিক্রি ও ডেটা মুছবে না।','Your sales and data are kept.')+'</div>':'')+'</div>'+(window.relOn&&relOn(8)?scrBox():verBox())}
+ +'<button style="margin-top:6px" onclick="v2Rollback()">'+L('আগের ভার্সন','Previous version')+'</button></div>'+verBox()}
 var SGO={};
 function setNavHtml5(k,drw){var pg=setPages(),by={};pg.forEach(function(x){by[x[0]]=x});var em=(typeof CE!='undefined'&&CE)||'';
  var G=[[L('দোকান','Shop'),['shop','theme','feat']],[L('বিক্রি','Sales'),['cats','kh','rc','zat','bc']],[L('QR মেনু','QR menu'),['q_s','q_h','q_b','q_p','q_d','q_x']],[L('অ্যাকাউন্ট','Account'),['acct','sub','app']]];
