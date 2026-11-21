@@ -71,9 +71,53 @@ details.more{position:relative}details.more summary{list-style:none;cursor:point
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--head);color:#fff;padding:10px 18px;border-radius:99px;z-index:99;opacity:0;transition:.2s;pointer-events:none}.toast.on{opacity:1;transform:translateX(-50%)}
 .scrim{display:none}
 @media(max-width:820px){.shell{grid-template-columns:1fr}#menu{display:inline-block}.who{display:none}.side{position:fixed;left:0;top:60px;z-index:30;width:270px;transform:translateX(-105%);transition:.2s;box-shadow:0 10px 30px #0005}.side.open{transform:none}.scrim.on{display:block;position:fixed;inset:60px 0 0;background:#0006;z-index:25}.g2{grid-template-columns:1fr}.main{padding:14px 12px 90px}}
+/* ===== Premium look (matches POS / QR) ===== */
+:root,:root[data-theme="light"]{--bg:#f6f1e8;--card:#fff;--ink:#1f1c17;--mute:#7c7566;--line:#ece4d6;--ac:#14543b;--soft:#d9ebe3;--head:#14454b;--gold:#e8c27a;--sh:0 14px 30px -20px rgba(70,45,10,.5)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--gold:#e8c27a;--sh:0 14px 30px -20px #000}}
+:root[data-theme="dark"]{--gold:#e8c27a;--sh:0 14px 30px -20px #000}
+*{scrollbar-width:none}*::-webkit-scrollbar{display:none}
+button{transition:transform .12s,box-shadow .2s,background .15s}button:active{transform:scale(.97)}
+header{background:var(--bg);color:var(--ink);border-bottom:1px solid var(--line);padding:8px 16px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+header button{background:var(--card);color:var(--ink);border:0;border-radius:14px;box-shadow:0 6px 16px -9px rgba(0,0,0,.4)}
+header button.gold{background:linear-gradient(135deg,#f0d08c,var(--gold));color:#2b2100;font-weight:800}
+.who{background:var(--card);border:0;color:var(--ink);box-shadow:0 6px 16px -9px rgba(0,0,0,.4)}
+.mono{width:44px;height:44px;border-radius:15px;background:var(--card);box-shadow:0 8px 18px -8px rgba(0,0,0,.35)}.mono svg{width:36px;height:36px;display:block}
+.brand b{font-weight:800;letter-spacing:-.02em;font-size:18px}.brand small{color:var(--mute);opacity:1;letter-spacing:.14em}
+.side{background:linear-gradient(180deg,var(--head),#0a2b2f);border:0;color:#fff;border-radius:0 26px 26px 0;padding:16px 12px}
+.nav{color:#ffffffe0}.nav .i{background:#ffffff1f}.nav:hover{background:#ffffff14}
+.nav.on{background:var(--card);color:var(--head);box-shadow:inset 4px 0 0 var(--gold),0 10px 20px -12px #000}.nav.on .i{background:var(--soft)}
+.nav.sub{color:#ffffffa8}.nav.sub.on{background:#ffffff26;color:#fff;box-shadow:inset 3px 0 0 var(--gold)}
+.main{padding:22px 24px 100px;max-width:1040px}
+h2.pt{font-size:26px;font-weight:800;letter-spacing:-.02em}
+.st{position:relative;overflow:hidden;border-radius:20px;box-shadow:var(--sh)}
+.st::after{content:"";position:absolute;right:-20px;top:-20px;width:70px;height:70px;border-radius:50%;background:radial-gradient(var(--soft),transparent 70%);opacity:.9}
+.st b{position:relative;z-index:1}
+.stats .st:first-child{background:linear-gradient(135deg,#08241d,var(--head) 55%,#1c6a4a);color:#fff;border:0}.stats .st:first-child span{color:#ffffffb8}.stats .st:first-child::after{background:radial-gradient(#e8c27a66,transparent 70%)}
+.acc,.panel,.hrow,.plan{border-radius:22px;box-shadow:var(--sh)}
+.acc{transition:transform .15s,box-shadow .2s}.acc:hover{transform:translateY(-2px)}
+.av{background:linear-gradient(135deg,var(--head),#1c6a4a);box-shadow:0 0 0 3px var(--soft)}
+.pill{display:inline-flex;align-items:center;gap:6px}.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.chip{box-shadow:0 4px 10px -8px #000}.chip.on{background:linear-gradient(135deg,var(--head),#1c6a4a);box-shadow:0 10px 18px -10px var(--head)}
+button.pri,button.gold{background:linear-gradient(135deg,var(--ac),#0f3d2a);box-shadow:0 12px 22px -12px var(--ac)}
+header button.gold{background:linear-gradient(135deg,#f0d08c,var(--gold));box-shadow:0 6px 16px -9px rgba(0,0,0,.4)}
+.plan.life{background:linear-gradient(135deg,#08241d,var(--head));border:0;box-shadow:0 20px 36px -20px #08241d}
+.seg.big{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:5px;gap:4px}
+.seg.big button{border:0;background:transparent;border-radius:14px}.seg.big button.on{background:linear-gradient(135deg,var(--head),#1c6a4a);color:#fff;box-shadow:0 10px 18px -10px #08241d}
+.vc{position:relative;overflow:hidden}.vc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--gry)}
+.vc-run::before{background:var(--ac)}.vc-up::before{background:var(--gold)}
+.vc-new{background:linear-gradient(135deg,#08241d,var(--head) 60%,#1c6a4a);color:#fff;border:0}.vc-new::before{background:var(--gold)}.vc-new .s{color:#ffffffc4}
+.hero{position:relative;padding:84px 20px 70px}
+.hero::before{content:"";position:absolute;left:50%;top:40px;width:360px;height:360px;margin-left:-180px;border-radius:50%;background:radial-gradient(#e8c27a40,transparent 65%);pointer-events:none}
+.hero .mono.lg{position:relative;width:92px;height:92px;border-radius:30px;margin:0 auto;box-shadow:0 26px 40px -20px rgba(8,36,29,.7);animation:mpop .7s cubic-bezier(.2,.9,.3,1.2) both}.hero .mono.lg svg{width:70px;height:70px}
+.hero h1{position:relative;font-size:32px;font-weight:800;letter-spacing:-.025em}
+.hero p{position:relative}.hero p::after{content:"";display:block;width:48px;height:4px;border-radius:4px;background:var(--gold);margin:20px auto 0}
+@keyframes mpop{from{opacity:0;transform:translateY(14px) scale(.9)}to{opacity:1;transform:none}}
+.side:empty{display:none}.shell:has(.side:empty){grid-template-columns:1fr}
+@media(prefers-reduced-motion:reduce){.hero .mono.lg{animation:none}button,.acc{transition:none}}
+@media(max-width:820px){.main{padding:16px 14px 90px}h2.pt{font-size:23px}}
 </style></head><body>
-<header><button id="menu" onclick="window.sb()">☰</button><div class="mono">M</div><div class="brand"><b>Musafir POS</b><small>Admin Console</small></div><span class="sp"></span><span class="who" id="who"></span><button id="bt" class="gold">Sign in with Google</button></header>
-<div class="shell"><aside class="side" id="side"></aside><main class="main" id="main"><div class="hero"><div class="mono" style="margin:0 auto;width:64px;height:64px;font-size:34px">M</div><h1>Welcome back</h1><p>Sign in with the administrator account to manage shops and subscriptions.</p></div></main></div><div class="scrim" id="scrim" onclick="window.sb()"></div>
+<header><button id="menu" onclick="window.sb()">☰</button><div class="mono"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g transform="translate(32 33) scale(.056) translate(-631 -469)"><polygon points="532,262 604,404 470,676 304,676" fill="#C4903A" stroke="#C4903A" stroke-width="16" stroke-linejoin="round"/><polygon points="720,262 958,676 500,676" fill="#0A4540" stroke="#0A4540" stroke-width="16" stroke-linejoin="round"/></g></svg></div><div class="brand"><b>Musafir POS</b><small>Admin Console</small></div><span class="sp"></span><span class="who" id="who"></span><button id="bt" class="gold">Sign in with Google</button></header>
+<div class="shell"><aside class="side" id="side"></aside><main class="main" id="main"><div class="hero"><div class="mono lg"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g transform="translate(32 33) scale(.056) translate(-631 -469)"><polygon points="532,262 604,404 470,676 304,676" fill="#C4903A" stroke="#C4903A" stroke-width="16" stroke-linejoin="round"/><polygon points="720,262 958,676 500,676" fill="#0A4540" stroke="#0A4540" stroke-width="16" stroke-linejoin="round"/></g></svg></div><h1>Welcome back</h1><p>Sign in with the administrator account to manage shops and subscriptions.</p></div></main></div><div class="scrim" id="scrim" onclick="window.sb()"></div>
 <div class="toast" id="tt"></div>
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -175,10 +219,10 @@ window.upPub=m=>run(async()=>{if(!DEPLOYED)throw new Error('version.json not fou
 function segH(k){const c=FT[k]||{},md=c.mode||'off';return '<div class="seg big" style="margin:12px 0">'+['off','me','sel','all'].map(m=>'<button class="'+(md==m?'on':'')+'" onclick="window.ftAsk(\''+k+'\',\''+m+'\')">'+MD[m]+'</button>').join('')+'</div>'}
 function selH(k){const c=FT[k]||{};if(c.mode!='sel')return '';const mine=myShops(),sel=c.shops||[];return '<div style="max-height:260px;overflow:auto;margin:4px 0 10px">'+rows.filter(r=>mine.indexOf(r.id)<0).sort((a,b)=>(a.name||'').localeCompare(b.name||'')).map(r=>'<label style="display:flex;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)"><input type="checkbox" style="width:auto" '+(sel.indexOf(r.id)>-1?'checked':'')+' onchange="window.ftShop(\''+k+'\',\''+r.id+'\',this.checked)"><span><b>'+esc(r.name||'(no name)')+'</b><br><small style="color:var(--mute)">'+esc(em(r))+'</small></span></label>').join('')+'</div>'}
 const MDT={off:'Nobody is offered it, not even you.',me:'Only your own shop is offered it.',sel:'Your shop and the ticked shops are offered it.',all:'Every shop is offered it. A shop switches only when its owner presses Update.'};
-function slotCard(k,label,tag){const c=FT[k]||{},n=vCnt()[c.rel]||0;return '<div class="panel" style="padding:20px"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h3 style="margin:0;font-size:20px">'+label+' '+vName(c.rel)+'</h3><span style="padding:5px 12px;border-radius:99px;border:1px solid var(--line);font-size:13px">'+n+' shop'+(n==1?'':'s')+' on it</span></div><p class="s" style="margin:6px 0 0">'+tag+'</p>'+segH(k)+selH(k)+'<p class="s">'+MDT[c.mode||'off']+'</p></div>'}
+function slotCard(k,label,tag){const c=FT[k]||{},n=vCnt()[c.rel]||0;return '<div class="panel vc vc-'+k+'" style="padding:20px"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h3 style="margin:0;font-size:20px">'+label+' '+vName(c.rel)+'</h3><span style="padding:5px 12px;border-radius:99px;border:1px solid var(--line);font-size:13px">'+n+' shop'+(n==1?'':'s')+' on it</span></div><p class="s" style="margin:6px 0 0">'+tag+'</p>'+segH(k)+selH(k)+'<p class="s">'+MDT[c.mode||'off']+'</p></div>'}
 function featH(){const up=FT.up||null,run=FT.run||null,dep=DEPLOYED&&DEPLOYED.release,C=dep&&(!up||dep>up.rel)?dep:0;
  let h='<h2 class="pt">🧪 Versions</h2>';
- if(C){h+='<div class="panel" style="padding:20px;border:2px solid var(--head)"><h3 style="margin:0;font-size:20px">🆕 '+vName(C)+' uploaded</h3><p class="s" style="margin:6px 0 0">Nobody sees it until you publish. Start with <b>Only me</b>, check your own shop, then offer it to others.'+(run?' Publishing removes '+vName(run.rel)+' from this page.':'')+'</p><div class="seg big" style="margin-top:12px">'+['me','sel','all'].map(m=>'<button onclick="window.upAsk(\''+m+'\')">Publish · '+MD[m]+'</button>').join('')+'</div></div>'}
+ if(C){h+='<div class="panel vc vc-new" style="padding:20px"><h3 style="margin:0;font-size:20px">🆕 '+vName(C)+' uploaded</h3><p class="s" style="margin:6px 0 0">Nobody sees it until you publish. Start with <b>Only me</b>, check your own shop, then offer it to others.'+(run?' Publishing removes '+vName(run.rel)+' from this page.':'')+'</p><div class="seg big" style="margin-top:12px">'+['me','sel','all'].map(m=>'<button onclick="window.upAsk(\''+m+'\')">Publish · '+MD[m]+'</button>').join('')+'</div></div>'}
  if(run){h+=slotCard('run','▶ Running','Older version, still offered below.')+slotCard('up','✨ New','Newest published version.')}
  else if(up){h+=slotCard('up','▶ Running','The version shops are on now.')+'<div class="panel" style="padding:20px"><h3 style="margin:0;font-size:20px">✨ New</h3><p class="s">'+(C?vName(C)+' is waiting above.':'No new version uploaded yet.')+'</p></div>'}
  else h+='<div class="panel"><p class="s">Nothing published yet. Upload files with a version.json, then publish here.</p></div>';
@@ -236,7 +280,7 @@ window.csv=()=>{const l=[['email','shop','id','status','plan','valid_until','not
 window.sendV=async()=>{try{await sendEmailVerification(user);toast('Verification email sent')}catch(e){toast('Failed: '+(e.code||e.message))}};
 window.chkV=async()=>{try{await user.reload();await user.getIdToken(true);if(auth.currentUser.emailVerified)location.reload();else toast('Not verified yet')}catch(e){toast('Failed: '+(e.code||e.message))}};
 $('#bt').onclick=()=>user?signOut(auth):signInWithPopup(auth,new GoogleAuthProvider()).catch(e=>toast(e.code||e.message));
-const hero=(t,p,b)=>'<div class="hero"><div class="mono" style="margin:0 auto;width:64px;height:64px;font-size:34px">M</div><h1>'+t+'</h1><p>'+p+'</p>'+(b||'')+'</div>';
+const hero=(t,p,b)=>'<div class="hero"><div class="mono lg"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g transform="translate(32 33) scale(.056) translate(-631 -469)"><polygon points="532,262 604,404 470,676 304,676" fill="#C4903A" stroke="#C4903A" stroke-width="16" stroke-linejoin="round"/><polygon points="720,262 958,676 500,676" fill="#0A4540" stroke="#0A4540" stroke-width="16" stroke-linejoin="round"/></g></svg></div><h1>'+t+'</h1><p>'+p+'</p>'+(b||'')+'</div>';
 onAuthStateChanged(auth,u=>{user=u;$('#bt').textContent=u?'Sign out':'Sign in with Google';$('#bt').className=u?'':'gold';$('#who').textContent=u?u.email:'';$('#side').innerHTML='';
  if(!u){$('#main').innerHTML=hero('Welcome back','Sign in with the administrator account to manage shops and subscriptions.');return}
  if((u.email||'').toLowerCase()!==ADMIN){$('#main').innerHTML=hero('Not authorised','This account ('+esc(u.email)+') cannot open the console. Sign out and use the admin account.');return}

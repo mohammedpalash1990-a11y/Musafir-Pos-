@@ -1,7 +1,7 @@
 {
  "release": 8,
  "name": "P8",
- "notes": "QR-style POS look, settings menu on the right.",
+ "notes": "QR-style POS look, settings menu on the right, QR order page polish.",
  "history": [
   {
    "release": 8,
@@ -19,6 +19,22 @@
     {
      "bn": "স্ক্রলবারের দাগ নেই, আরেকটু প্রাণবন্ত কার্ড ও বাটন",
      "en": "No scrollbar lines; livelier cards and buttons"
+    },
+    {
+     "bn": "Update বাটন আইকন, ফোনে নিচের বারে 'Payment'",
+     "en": "Update button as an icon; 'Payment' on the phone order bar"
+    },
+    {
+     "bn": "QR অর্ডার-পরের পেজ: হিরোর মতো বাটন, কফি শপে স্পষ্ট বারিস্তা ছবি, 'Being prepared' ও নিচের কাপ লেখা বাদ",
+     "en": "QR post-order page: hero-style buttons, clear barista art for coffee shops, 'Being prepared' and the cup line removed"
+    },
+    {
+     "bn": "QR হেডারে নাম একই জায়গায় স্থির (আর ওপর-নিচ হয় না)",
+     "en": "QR header name stays fixed (no more jumping)"
+    },
+    {
+     "bn": "Admin প্যানেলের নতুন প্রিমিয়াম লুক (লগো, ক্রিম-সবুজ রঙ, ড্যাশবোর্ড ও ভার্সন কার্ড)",
+     "en": "Admin console premium redesign (logo, cream-green palette, dashboard and version cards)"
     }
    ]
   },
