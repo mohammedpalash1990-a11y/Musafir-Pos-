@@ -35,6 +35,10 @@
     {
      "bn": "Admin প্যানেলের নতুন প্রিমিয়াম লুক (লগো, ক্রিম-সবুজ রঙ, ড্যাশবোর্ড ও ভার্সন কার্ড)",
      "en": "Admin console premium redesign (logo, cream-green palette, dashboard and version cards)"
+    },
+    {
+     "bn": "দোকানের ধরন অনুযায়ী লোগো (বার্গার/রেস্টুরেন্ট/মার্ট) ট্যাব, অ্যাপ আইকন ও QR-এ ঠিক করা",
+     "en": "Shop-type logo (burger/restaurant/mart) fixed in tab, app icon and QR"
     }
    ]
   },
