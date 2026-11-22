@@ -1,221 +1,222 @@
 {
- "release": 9,
- "name": "P9",
- "notes": "QR-style POS look, settings menu on the right, QR order page polish.",
- "history": [
-  {
-   "release": 9,
-   "name": "P9",
-   "date": "2026-11-21",
-   "features": [
+  "release": 9,
+  "name": "P9",
+  "notes": "QR-style POS look, settings menu on the right, QR order page polish.",
+  "history": [
     {
-     "bn": "POS-এর নতুন লুক QR পেজের মতো: ক্রিম রঙ, হেডারে লগো মিশে যায়, সাদা আইকন বাটন",
-     "en": "POS look now matches the QR page: cream colours, logo blends into the header, white icon buttons"
+      "release": 9,
+      "name": "P9",
+      "date": "2026-11-21",
+      "features": [
+        {
+          "bn": "POS-এর নতুন লুক QR পেজের মতো: ক্রিম রঙ, হেডারে লগো মিশে যায়, সাদা আইকন বাটন",
+          "en": "POS look now matches the QR page: cream colours, logo blends into the header, white icon buttons"
+        },
+        {
+          "bn": "Settings-এর মেনু ডান দিকে",
+          "en": "Settings menu moved to the right"
+        },
+        {
+          "bn": "স্ক্রলবারের দাগ নেই, আরেকটু প্রাণবন্ত কার্ড ও বাটন",
+          "en": "No scrollbar lines; livelier cards and buttons"
+        },
+        {
+          "bn": "Update বাটন আইকন, ফোনে নিচের বারে 'Payment'",
+          "en": "Update button as an icon; 'Payment' on the phone order bar"
+        },
+        {
+          "bn": "QR অর্ডার-পরের পেজ: হিরোর মতো বাটন, কফি শপে স্পষ্ট বারিস্তা ছবি, 'Being prepared' ও নিচের কাপ লেখা বাদ",
+          "en": "QR post-order page: hero-style buttons, clear barista art for coffee shops, 'Being prepared' and the cup line removed"
+        },
+        {
+          "bn": "QR হেডারে নাম একই জায়গায় স্থির (আর ওপর-নিচ হয় না)",
+          "en": "QR header name stays fixed (no more jumping)"
+        },
+        {
+          "bn": "Admin প্যানেলের নতুন প্রিমিয়াম লুক (লগো, ক্রিম-সবুজ রঙ, ড্যাশবোর্ড ও ভার্সন কার্ড)",
+          "en": "Admin console premium redesign (logo, cream-green palette, dashboard and version cards)"
+        },
+        {
+          "bn": "দোকানের ধরন অনুযায়ী লোগো (বার্গার/রেস্টুরেন্ট/মার্ট) ট্যাব, অ্যাপ আইকন ও QR-এ ঠিক করা",
+          "en": "Shop-type logo (burger/restaurant/mart) fixed in tab, app icon and QR"
+        },
+        "ZATCA settings: status chips + clearer sandbox section; Settings spacing retouch"
+      ]
     },
     {
-     "bn": "Settings-এর মেনু ডান দিকে",
-     "en": "Settings menu moved to the right"
+      "release": 7,
+      "name": "P7",
+      "date": "2026-11-20",
+      "features": [
+        {
+          "bn": "QR পেজে ফেভারিট: কার্ডে হার্ট ও নিচে Favorites ট্যাব (ফোনে সেভ থাকে)",
+          "en": "QR page favorites: heart on cards and a Favorites tab (saved on the phone)"
+        },
+        {
+          "bn": "পণ্যের কার্ডে ★ রেটিং (অর্ডারের সার্ভিস রেটিং থেকে, ৩টির কম হলে দেখায় না)",
+          "en": "Star rating on item cards (from order ratings; hidden under 3 ratings)"
+        }
+      ]
     },
     {
-     "bn": "স্ক্রলবারের দাগ নেই, আরেকটু প্রাণবন্ত কার্ড ও বাটন",
-     "en": "No scrollbar lines; livelier cards and buttons"
+      "release": 6,
+      "name": "P6",
+      "date": "2026-11-20",
+      "features": [
+        {
+          "bn": "QR পেজ: হেডারে লগো মিশে যায়, অভিবাদন লাইন, Best selling তালিকা",
+          "en": "QR page: logo blends into the header, greeting line, Best selling list"
+        },
+        {
+          "bn": "আজকের সেল চলতি সেশনের হিসাব (রাত ১২টায় ০ হয় না)",
+          "en": "Today's sales follow the open session (no midnight reset)"
+        },
+        {
+          "bn": "সেশনের নিচের Recent তালিকা সরানো",
+          "en": "Recent list under the session removed"
+        },
+        {
+          "bn": "দোকানের ধরনের সিলেক্টর বাদ, সাইন আপের ধরনই চলে",
+          "en": "Shop-type selectors removed; the type chosen at sign-up is used"
+        },
+        {
+          "bn": "মোবাইলে Sell পেজের নিচের বার ট্যাবের ওপর চাপে না",
+          "en": "Sell page bottom bar no longer overlaps the tabs on mobile"
+        },
+        {
+          "bn": "Settings-এর নতুন ফন্ট ও কার্ড ডিজাইন",
+          "en": "Settings: refined typography and card design"
+        }
+      ]
     },
     {
-     "bn": "Update বাটন আইকন, ফোনে নিচের বারে 'Payment'",
-     "en": "Update button as an icon; 'Payment' on the phone order bar"
+      "release": 5,
+      "name": "P5",
+      "date": "2026-11-20",
+      "features": [
+        {
+          "bn": "সেটিংস এখন পূর্ণ পেজ: বাঁ দিকে গ্রুপ মেনু, Back বাটন",
+          "en": "Settings is a full page: grouped left menu, Back button"
+        },
+        {
+          "bn": "নতুন ভার্সন এলে উপরে ছোট Update বাটন",
+          "en": "Small Update button in the header when a new version exists"
+        },
+        {
+          "bn": "সেটিংসে App update পেজ (আগের ভার্সন, কী বদলেছে)",
+          "en": "App update page in Settings (previous version, what changed)"
+        },
+        {
+          "bn": "অ্যাপ সবসময় Sell পেজে খোলে",
+          "en": "App always opens on the Sell page"
+        },
+        {
+          "bn": "লোগো আপলোড ক্লাউডে আলাদা সেভ হয়, ভার্সন বদলালেও মুছে যায় না",
+          "en": "Uploaded logo is saved separately in the cloud and survives version changes"
+        },
+        {
+          "bn": "নতুন Musafir POS লোগো ডিফল্ট (আপলোড করলে নিজের লোগো)",
+          "en": "New Musafir POS default logo (your own upload overrides it)"
+        }
+      ]
     },
     {
-     "bn": "QR অর্ডার-পরের পেজ: হিরোর মতো বাটন, কফি শপে স্পষ্ট বারিস্তা ছবি, 'Being prepared' ও নিচের কাপ লেখা বাদ",
-     "en": "QR post-order page: hero-style buttons, clear barista art for coffee shops, 'Being prepared' and the cup line removed"
+      "release": 4,
+      "name": "P4",
+      "date": "2026-11-20",
+      "features": [
+        {
+          "bn": "স্বাগতম পর্দা: দোকানের লোগো বা নিজের ছবি",
+          "en": "Welcome screen: shop logo or your own picture"
+        },
+        {
+          "bn": "অর্ডার সম্পূর্ণ পেজে হিরো ব্যানার ও Order more বাটন",
+          "en": "Order-complete hero banner with Order more button"
+        },
+        {
+          "bn": "অর্ডার ট্র্যাক কার্টে, ম্যাপ আইকন উপরে",
+          "en": "Order tracking in the cart, map icon on top"
+        },
+        {
+          "bn": "POS মোবাইল হেডার: লোগো ও নাম পুরো, Recent/Today আইকন",
+          "en": "POS mobile header: full logo and name, Recent/Today icons"
+        },
+        {
+          "bn": "ভার্সনের নাম (P1, P2…) ও Details",
+          "en": "Version names (P1, P2…) and Details"
+        }
+      ]
     },
     {
-     "bn": "QR হেডারে নাম একই জায়গায় স্থির (আর ওপর-নিচ হয় না)",
-     "en": "QR header name stays fixed (no more jumping)"
+      "release": 3,
+      "name": "P3",
+      "date": "2026-11-19",
+      "features": [
+        {
+          "bn": "All sessions থেকে ডেইলি সেলস বাদ",
+          "en": "Daily sales removed from All sessions"
+        },
+        {
+          "bn": "সেটিংস সাইডবারে ভার্সন বক্স",
+          "en": "Version box in the settings sidebar"
+        },
+        {
+          "bn": "\"Order ready\" লেখা",
+          "en": "\"Order ready\" wording"
+        }
+      ]
     },
     {
-     "bn": "Admin প্যানেলের নতুন প্রিমিয়াম লুক (লগো, ক্রিম-সবুজ রঙ, ড্যাশবোর্ড ও ভার্সন কার্ড)",
-     "en": "Admin console premium redesign (logo, cream-green palette, dashboard and version cards)"
+      "release": 2,
+      "name": "P2",
+      "date": "2026-11-19",
+      "features": [
+        {
+          "bn": "Items-sold বাটন",
+          "en": "Items-sold button"
+        },
+        {
+          "bn": "Recent sales পেজ",
+          "en": "Recent sales page"
+        },
+        {
+          "bn": "দুই-প্যানের সেটিংস",
+          "en": "Two-pane settings"
+        },
+        {
+          "bn": "delete-all-এ পাসওয়ার্ড",
+          "en": "Password on delete-all"
+        },
+        {
+          "bn": "ফাঁকা প্রিন্ট ঠিক",
+          "en": "Blank prints fixed"
+        }
+      ]
     },
     {
-     "bn": "দোকানের ধরন অনুযায়ী লোগো (বার্গার/রেস্টুরেন্ট/মার্ট) ট্যাব, অ্যাপ আইকন ও QR-এ ঠিক করা",
-     "en": "Shop-type logo (burger/restaurant/mart) fixed in tab, app icon and QR"
+      "release": 1,
+      "name": "P1",
+      "date": "2026-11-12",
+      "features": [
+        {
+          "bn": "POS প্যানেল",
+          "en": "POS panel"
+        },
+        {
+          "bn": "সেশন সামারি পেজ",
+          "en": "Session summary pages"
+        },
+        {
+          "bn": "নতুন সেটিংস লুক",
+          "en": "New settings look"
+        },
+        {
+          "bn": "নতুন QR মেনু",
+          "en": "Redesigned QR menu"
+        }
+      ]
     }
-   ]
-  },
-  {
-   "release": 7,
-   "name": "P7",
-   "date": "2026-11-20",
-   "features": [
-    {
-     "bn": "QR পেজে ফেভারিট: কার্ডে হার্ট ও নিচে Favorites ট্যাব (ফোনে সেভ থাকে)",
-     "en": "QR page favorites: heart on cards and a Favorites tab (saved on the phone)"
-    },
-    {
-     "bn": "পণ্যের কার্ডে ★ রেটিং (অর্ডারের সার্ভিস রেটিং থেকে, ৩টির কম হলে দেখায় না)",
-     "en": "Star rating on item cards (from order ratings; hidden under 3 ratings)"
-    }
-   ]
-  },
-  {
-   "release": 6,
-   "name": "P6",
-   "date": "2026-11-20",
-   "features": [
-    {
-     "bn": "QR পেজ: হেডারে লগো মিশে যায়, অভিবাদন লাইন, Best selling তালিকা",
-     "en": "QR page: logo blends into the header, greeting line, Best selling list"
-    },
-    {
-     "bn": "আজকের সেল চলতি সেশনের হিসাব (রাত ১২টায় ০ হয় না)",
-     "en": "Today's sales follow the open session (no midnight reset)"
-    },
-    {
-     "bn": "সেশনের নিচের Recent তালিকা সরানো",
-     "en": "Recent list under the session removed"
-    },
-    {
-     "bn": "দোকানের ধরনের সিলেক্টর বাদ, সাইন আপের ধরনই চলে",
-     "en": "Shop-type selectors removed; the type chosen at sign-up is used"
-    },
-    {
-     "bn": "মোবাইলে Sell পেজের নিচের বার ট্যাবের ওপর চাপে না",
-     "en": "Sell page bottom bar no longer overlaps the tabs on mobile"
-    },
-    {
-     "bn": "Settings-এর নতুন ফন্ট ও কার্ড ডিজাইন",
-     "en": "Settings: refined typography and card design"
-    }
-   ]
-  },
-  {
-   "release": 5,
-   "name": "P5",
-   "date": "2026-11-20",
-   "features": [
-    {
-     "bn": "সেটিংস এখন পূর্ণ পেজ: বাঁ দিকে গ্রুপ মেনু, Back বাটন",
-     "en": "Settings is a full page: grouped left menu, Back button"
-    },
-    {
-     "bn": "নতুন ভার্সন এলে উপরে ছোট Update বাটন",
-     "en": "Small Update button in the header when a new version exists"
-    },
-    {
-     "bn": "সেটিংসে App update পেজ (আগের ভার্সন, কী বদলেছে)",
-     "en": "App update page in Settings (previous version, what changed)"
-    },
-    {
-     "bn": "অ্যাপ সবসময় Sell পেজে খোলে",
-     "en": "App always opens on the Sell page"
-    },
-    {
-     "bn": "লোগো আপলোড ক্লাউডে আলাদা সেভ হয়, ভার্সন বদলালেও মুছে যায় না",
-     "en": "Uploaded logo is saved separately in the cloud and survives version changes"
-    },
-    {
-     "bn": "নতুন Musafir POS লোগো ডিফল্ট (আপলোড করলে নিজের লোগো)",
-     "en": "New Musafir POS default logo (your own upload overrides it)"
-    }
-   ]
-  },
-  {
-   "release": 4,
-   "name": "P4",
-   "date": "2026-11-20",
-   "features": [
-    {
-     "bn": "স্বাগতম পর্দা: দোকানের লোগো বা নিজের ছবি",
-     "en": "Welcome screen: shop logo or your own picture"
-    },
-    {
-     "bn": "অর্ডার সম্পূর্ণ পেজে হিরো ব্যানার ও Order more বাটন",
-     "en": "Order-complete hero banner with Order more button"
-    },
-    {
-     "bn": "অর্ডার ট্র্যাক কার্টে, ম্যাপ আইকন উপরে",
-     "en": "Order tracking in the cart, map icon on top"
-    },
-    {
-     "bn": "POS মোবাইল হেডার: লোগো ও নাম পুরো, Recent/Today আইকন",
-     "en": "POS mobile header: full logo and name, Recent/Today icons"
-    },
-    {
-     "bn": "ভার্সনের নাম (P1, P2…) ও Details",
-     "en": "Version names (P1, P2…) and Details"
-    }
-   ]
-  },
-  {
-   "release": 3,
-   "name": "P3",
-   "date": "2026-11-19",
-   "features": [
-    {
-     "bn": "All sessions থেকে ডেইলি সেলস বাদ",
-     "en": "Daily sales removed from All sessions"
-    },
-    {
-     "bn": "সেটিংস সাইডবারে ভার্সন বক্স",
-     "en": "Version box in the settings sidebar"
-    },
-    {
-     "bn": "\"Order ready\" লেখা",
-     "en": "\"Order ready\" wording"
-    }
-   ]
-  },
-  {
-   "release": 2,
-   "name": "P2",
-   "date": "2026-11-19",
-   "features": [
-    {
-     "bn": "Items-sold বাটন",
-     "en": "Items-sold button"
-    },
-    {
-     "bn": "Recent sales পেজ",
-     "en": "Recent sales page"
-    },
-    {
-     "bn": "দুই-প্যানের সেটিংস",
-     "en": "Two-pane settings"
-    },
-    {
-     "bn": "delete-all-এ পাসওয়ার্ড",
-     "en": "Password on delete-all"
-    },
-    {
-     "bn": "ফাঁকা প্রিন্ট ঠিক",
-     "en": "Blank prints fixed"
-    }
-   ]
-  },
-  {
-   "release": 1,
-   "name": "P1",
-   "date": "2026-11-12",
-   "features": [
-    {
-     "bn": "POS প্যানেল",
-     "en": "POS panel"
-    },
-    {
-     "bn": "সেশন সামারি পেজ",
-     "en": "Session summary pages"
-    },
-    {
-     "bn": "নতুন সেটিংস লুক",
-     "en": "New settings look"
-    },
-    {
-     "bn": "নতুন QR মেনু",
-     "en": "Redesigned QR menu"
-    }
-   ]
-  }
- ],
- "build": 1,
- "built": "22 Nov 2026"
+  ],
+  "build": 2,
+  "built": "22 Nov 2026"
 }

@@ -341,6 +341,23 @@ html.p3 .invg{display:flex!important;flex-direction:column!important;grid-templa
 .s5body .mute{font-size:12.5px;line-height:1.6}
 .s5body input[type=checkbox]{width:22px;height:22px;accent-color:var(--ac)}
 @media(max-width:700px){.s5body .box{padding:16px;border-radius:16px}.s5t h2{font-size:18px}}
+/* ZATCA + Settings retouch */
+html.r9 .zst{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+html.r9 .zc{font-size:12px;font-weight:800;padding:6px 11px;border-radius:99px;background:var(--soft);color:var(--mute)}
+html.r9 .zc.ok{background:color-mix(in srgb,var(--ac) 14%,#fff);color:var(--ac)}
+html.r9 .zsb{margin-top:20px;padding:16px;border-radius:16px;background:var(--soft);border:1px solid var(--line)}
+html.r9 .zsh{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+html.r9 .zsh b{flex:1;font-size:15px}html.r9 .zsh em{font-style:normal;font-size:11px;font-weight:800;padding:4px 9px;border-radius:99px;background:var(--warn,#c77d00);color:#fff}
+html.r9 .zsb details{margin-top:14px;padding:12px 14px;border-radius:13px;background:var(--card);border:1px solid var(--line)}
+html.r9 .zsb summary{cursor:pointer;font-weight:800}
+html.r9 .zsb button.g{background:var(--card);border:1.5px solid var(--line)}
+@media(min-width:701px){html.r9 .s5body{padding:4px 28px 36px}html.r9 .s5body>*{max-width:820px}}
+html.r9 .s5body .box{margin-bottom:18px}
+html.r9 .s5body .box>.mute:first-of-type{margin-bottom:14px}
+html.r9 .s5body .dl{gap:14px}
+html.r9 .s5body .box button+button{margin-top:10px}
+html.r9 .s5body .zsb .box{background:var(--card)}
+
 @media(max-width:700px){.s5{grid-template-columns:1fr}.s5n{display:none}.s5m{display:inline-block}.s5t{padding:10px 12px}.s5t h2{font-size:17px}.s5body{padding:0 12px 24px}}
 .sdrw .s5p{flex-direction:column;text-align:center;border-bottom:1px solid #ffffff24;padding:10px 8px 14px}.sdrw .s5pn{align-items:center}.sdrw .s5l{flex:1;min-height:0;overflow:auto;padding:6px 0}.sdrw .s5i.on{background:#fff!important;color:var(--head)!important;width:calc(100% - 12px)}.sdrw .s5i.on .si{background:color-mix(in srgb,var(--head) 14%,#fff)}.sdrw .s5o{flex:none}
 .vcd .vct{display:flex;flex-direction:column;gap:2px;color:#fff}.vcd small{opacity:.75;font-size:12px}.vcd button{width:100%;padding:9px 12px;border-radius:12px;font-weight:700;border:0;background:rgba(255,255,255,.16);color:#fff}.vcd .vcu{background:#fff;color:var(--head)}.vcx{color:#fff;font-size:12.5px}.vcx summary{cursor:pointer;opacity:.9;padding:4px 0}.vcx ul{margin:4px 0 6px;padding-inline-start:18px}.vcx b{display:block;margin-top:6px}
@@ -1341,9 +1358,13 @@ function bkBox(){var t0=0;try{t0=+localStorage.getItem('pos_bk')||0}catch(e){}va
  return '<div class="box"><div class="hd">'+I('copy')+'<b>'+L('ব্যাকআপ','Backup')+'</b></div><p style="margin:0 0 8px;font-weight:700;color:'+(CU?'var(--ac)':'var(--warn)')+'">'+(CU?L('☁ ক্লাউড ব্যাকআপ চালু: পণ্য, সেটিংস ও প্রতিটি বিক্রি অটো সেভ হচ্ছে। লগইন করলেই যেকোনো ডিভাইসে ফিরে পাবেন।','☁ Cloud backup ON: products, settings and every sale save automatically. Log in on any device to get them back.'):L('⚠ লগইন নেই: ডেটা শুধু এই ডিভাইসে আছে। ক্লাউড ব্যাকআপের জন্য লগইন করুন।','⚠ Not logged in: data is only on this device. Log in for cloud backup.'))+'</p><p class="mute" style="margin:0 0 8px">'+(t0?L('শেষ ব্যাকআপ: ','Last backup: ')+day(t0):L('এখনো ব্যাকআপ নেওয়া হয়নি','No backup yet'))+(old?' · <b style="color:var(--warn)">'+L('সপ্তাহে একবার নিন','Take one weekly')+'</b>':'')+'</p>'
  +'<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="pri" style="flex:1" onclick="backup()">'+I('copy')+' '+L('ডেটা ডাউনলোড','Download data')+'</button><label class="btn" style="flex:1;text-align:center">'+L('ব্যাকআপ থেকে ফেরান','Restore')+'<input type="file" accept=".json,application/json" hidden onchange="restoreFile(this)"></label></div></div>'}
 
+function zatcaStatus(z){var vok=/^3\d{13}3$/.test(z.vatNumber||''),pok=!!(z.sellerName&&vok&&z.city&&z.street),sa=S.country=='SA';
+ function c(ok,t){return '<span class="zc '+(ok?'ok':'no')+'">'+(ok?'✓':'•')+' '+t+'</span>'}
+ return '<div class="zst">'+c(pok,L('প্রোফাইল','Profile'))+c(vok,'VAT 15-digit')+c(!!z.enabled,L('চালু','Enabled'))+c(!!z.onboardingRequestId,'CSID')+c(sa,L('QR রসিদে','Receipt QR'))+'</div>'}
 function zatcaBox(){
  var z=S.zatca||{},latest=H.slice().sort(function(a,b){return b.t-a.t})[0],saleDefault=z.lastSaleId||(latest?'s'+latest.no:'');
  return '<div class="box"><div class="hd">🧾 <b>'+L('সৌদি ZATCA / FATOORA সেটআপ','Saudi ZATCA / FATOORA setup')+'</b></div>'
+ +zatcaStatus(z)
  +'<p class="mute" style="font-size:12px">'+L('আপনার VAT ব্যবসার তথ্য দিন। CSID, private key, OTP বা গোপন credentials এখানে লিখবেন না।','Enter your VAT business details. Never enter CSID, private key, OTP or secret credentials here.')+'</p>'
  +'<label>'+L('আইনগত ব্যবসার নাম','Legal seller name')+'</label><input id="z_name" value="'+esc(z.sellerName||'')+'">'
  +'<label>Saudi VAT Number (15 digits)</label><input id="z_vat" inputmode="numeric" maxlength="15" value="'+esc(z.vatNumber||'')+'">'
@@ -1353,7 +1374,7 @@ function zatcaBox(){
  +'<label>'+L('শহর','City')+'</label><input id="z_city" value="'+esc(z.city||'')+'">'
  +'<label>'+L('ডিফল্ট ZATCA ইনভয়েস ধরন','Default ZATCA invoice type')+'</label><select id="z_invoice_type"><option value="simplified" '+((z.invoiceType||'simplified')==='simplified'?'selected':'')+'>Simplified (B2C) — Individual customer</option><option value="standard" '+(z.invoiceType==='standard'?'selected':'')+'>Standard (B2B) — VAT-registered business</option></select><p class="mute" style="font-size:12px">'+L('B2B/B2C ধরন শুধু Settings-এ থাকবে; সাধারণ বিক্রি, পেমেন্ট ও রসিদে কোনো অতিরিক্ত ধাপ থাকবে না।','B2B/B2C is configured only here; normal checkout, payment methods and receipts stay simple.')+'</p>'
  +'<label>Commercial Registration (CR) number</label><input id="z_cr" value="'+esc(z.crNumber||'')+'">'
- +'<div class="box" style="margin-top:10px"><b>Sandbox EGS onboarding / invoice tools</b><p class="mute" style="font-size:12px">Sandbox only. Never enter or save your private key here. Generate the CSR with the official ZATCA profile; keep its matching private key in Firebase Secret Manager.</p>'
+ +'<div class="zsb"><div class="zsh"><b>Sandbox EGS onboarding / invoice tools</b><em>Sandbox</em></div><p class="mute" style="font-size:12px">Sandbox only. Never enter or save your private key here. Generate the CSR with the official ZATCA profile; keep its matching private key in Firebase Secret Manager.</p>'
  +'<label>FATOORA OTP (one-time; not saved)</label><input id="z_otp" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="6-digit OTP">'
  +'<label>Base64 CSR (public request only)</label><textarea id="z_csr" rows="3" style="width:100%">'+esc(z.csrDraft||'')+'</textarea>'
  +'<button class="g" style="width:100%;margin-top:6px" onclick="zatcaRequestCsidFromUi()">Request sandbox Compliance CSID</button>'
