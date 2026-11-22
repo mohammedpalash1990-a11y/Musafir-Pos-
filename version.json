@@ -1,11 +1,11 @@
 {
- "release": 8,
- "name": "P8",
+ "release": 9,
+ "name": "P9",
  "notes": "QR-style POS look, settings menu on the right, QR order page polish.",
  "history": [
   {
-   "release": 8,
-   "name": "P8",
+   "release": 9,
+   "name": "P9",
    "date": "2026-11-21",
    "features": [
     {
@@ -215,5 +215,7 @@
     }
    ]
   }
- ]
+ ],
+ "build": 1,
+ "built": "22 Nov 2026"
 }
