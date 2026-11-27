@@ -1,7 +1,7 @@
 {
   "release": 9,
   "name": "P9",
-  "notes": "Total button opens Recent Sales; mobile navigation uses Dashboard in place of Recent.",
+  "notes": "Total button opens Recent Sales; desktop and mobile navigation use Dashboard in place of Recent.",
   "history": [
     {
       "release": 9,
@@ -52,7 +52,7 @@
         "Auto-update when admin releases (cart empty), one-time notice; header Update button removed",
         {
           "bn": "Total বাটনে চাপ দিলে Recent Sales খোলে; মোবাইল নেভিগেশনে Recent-এর জায়গায় Dashboard",
-          "en": "Total button opens Recent Sales; Dashboard replaces Recent in mobile navigation"
+          "en": "Total button opens Recent Sales; Dashboard replaces Recent in desktop and mobile navigation"
         }
       ]
     },
