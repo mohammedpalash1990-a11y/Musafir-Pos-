@@ -319,7 +319,7 @@ const ICONS={
  'shield-check':'<path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/><path d="m9 12 2 2 4-4"/>'
 };
 function icon(name){return '<svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(ICONS[name]||'')+'</svg>'}
-function sideH(){const inSet=pg.startsWith('set');return NAV.map(n=>'<button class="nav '+((n[0]=='set'?inSet&&pg=='set':pg==n[0])?'on':'')+'" onclick="window.go(\\''+n[0]+'\\')"><span class="i">'+icon(n[1])+'</span>'+n[2]+(n[0]=='feat'&&updAvail()?' <span style="background:var(--ac,#2aa58f);color:#fff;border-radius:99px;font-size:10px;font-weight:800;padding:2px 7px;margin-inline-start:6px">NEW</span>':'')+'</button>').join('')}
+function sideH(){const inSet=pg.startsWith('set');return NAV.map(n=>'<button class="nav '+((n[0]=='set'?inSet&&pg=='set':pg==n[0])?'on':'')+'" onclick="window.go(&quot;'+n[0]+'&quot;)"><span class="i">'+icon(n[1])+'</span>'+n[2]+(n[0]=='feat'&&updAvail()?' <span style="background:var(--ac,#2aa58f);color:#fff;border-radius:99px;font-size:10px;font-weight:800;padding:2px 7px;margin-inline-start:6px">NEW</span>':'')+'</button>').join('')}
 function draw(){$('#side').innerHTML=sideH();$('#side').classList.remove('open');$('#scrim').classList.remove('on');
  const p=pg=='ov'?ovH():pg=='acc'?accH():pg=='health'?healthH():pg=='plans'?plansH():pg=='pay'?payH():pg=='ins'?insH():pg=='feat'?featH():pg=='set'?setMenu():setPage();$('#main').innerHTML=p;afterDraw()}
 function accH(){const all=rows.map(r=>({r,s:stOf(r)})),cnt=k=>all.filter(x=>x.s.k==k).length;
