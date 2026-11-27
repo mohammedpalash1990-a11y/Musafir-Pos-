@@ -314,7 +314,12 @@ html.p3 .invg{display:flex!important;flex-direction:column!important;grid-templa
 .s5l{flex:1;min-height:0;overflow:auto;padding:22px 0 8px;scrollbar-width:thin}
 .s5g summary{list-style:none;cursor:pointer;font-size:11.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;opacity:.72;padding:10px 12px 6px 6px;display:flex;justify-content:space-between;align-items:center}.s5g summary::-webkit-details-marker{display:none}.s5g summary::after{content:"\25BE";font-size:12px}.s5g:not([open]) summary::after{content:"\25B8"}
 .s5i{display:flex;align-items:center;gap:11px;width:calc(100% - 12px);text-align:start;background:transparent!important;border:0!important;color:#fff!important;padding:7px 8px;margin:2px 12px 2px 0;border-radius:16px;font-size:14.5px;position:relative;min-height:44px}
-.s5i .si{width:32px;height:32px;border-radius:10px;background:rgba(255,255,255,.12);display:grid;place-items:center;font-size:16px;flex:none}.s5i .sl{display:flex;flex-direction:column;min-width:0;line-height:1.2}.s5i small{font-size:11.5px;opacity:.75;font-weight:500}
+.s5i .si{width:32px;height:32px;border-radius:10px;background:rgba(255,255,255,.12);display:grid;place-items:center;font-size:16px;flex:none}
+.s5i .si svg{display:block;width:19px;height:19px;transition:transform .24s cubic-bezier(.2,.8,.2,1),stroke-width .2s ease;transform-origin:center}
+.s5i:hover .si svg{transform:scale(1.09) rotate(-4deg)}
+.s5i.on .si svg{animation:posSetIconIn .32s cubic-bezier(.2,.8,.2,1) both}
+@keyframes posSetIconIn{from{opacity:.55;transform:scale(.82) rotate(-9deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+@media(prefers-reduced-motion:reduce){.s5i .si svg,.s5i.on .si svg{animation:none!important;transition:none!important}}.s5i .sl{display:flex;flex-direction:column;min-width:0;line-height:1.2}.s5i small{font-size:11.5px;opacity:.75;font-weight:500}
 .s5i:hover{background:rgba(255,255,255,.1)!important}
 .s5n .s5i.on{width:100%;margin-right:0;background:var(--bg)!important;color:var(--head)!important;border-radius:22px 0 0 22px;font-weight:800}
 .s5n .s5i.on .si{background:color-mix(in srgb,var(--head) 14%,#fff)}
@@ -1501,12 +1506,32 @@ function appPage(){var r=+(S&&S.v2rel)||1,H=(window.VJ&&VJ.history)||[],cur=H.fi
  +(relAvail()?'<div class="dl"><span>'+L('নতুন ভার্সন','New version')+' P'+window.UPREL+'</span><button class="pri" onclick="relUpdate()">⬆ '+L('আপডেট','Update')+'</button></div>':'<div class="mute" style="margin:6px 0">✓ '+L('আপনি সর্বশেষ ভার্সনে আছেন','You are on the latest version')+'</div>')
  +(ft.length?'<details style="margin:8px 0"><summary class="mute" style="cursor:pointer">'+L('এই ভার্সনে কী বদলেছে','What changed in this version')+'</summary><ul style="margin:6px 0 0;padding-inline-start:20px">'+ft.map(function(f){return '<li>'+(typeof f=='string'?f:L(f.bn,f.en))+'</li>'}).join('')+'</ul></details>':'')
  +'<button style="margin-top:6px" onclick="v2Rollback()">'+L('আগের ভার্সন','Previous version')+'</button></div>'+verBox()}
+var SETNAVICONS={
+ sub:'<path d="M7 10V7a5 5 0 0 1 10 0v3"/><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M12 14v3"/>',
+ theme:'<circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/>',
+ cats:'<rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="10" width="8" height="11" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/>',
+ feat:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2M12 2v2M22 12h-2"/>',
+ kh:'<circle cx="9" cy="8" r="3"/><path d="M3 20v-1a6 6 0 0 1 12 0v1M16 5a3 3 0 0 1 0 6M18 14a5 5 0 0 1 3 5v1"/>',
+ shop:'<path d="M3 10 5 4h14l2 6"/><path d="M4 10v10h16V10M9 20v-6h6v6"/><path d="M3 10a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0"/>',
+ q_s:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v2M14 20h2M19 19h2v2h-2z"/>',
+ q_h:'<path d="M3 11 12 3l9 8"/><path d="M5 10v10h14V10M9 20v-6h6v6"/>',
+ q_b:'<path d="m12 2 2.2 6.5L21 11l-6.8 2.5L12 20l-2.2-6.5L3 11l6.8-2.5z"/><path d="m19 14 1.2 2.8L23 18l-2.8 1.2L19 22l-1.2-2.8L15 18l2.8-1.2z"/>',
+ q_p:'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/>',
+ q_d:'<path d="M12 3a9 9 0 1 0 9 9c0-1.1-.9-2-2-2h-2a2 2 0 0 1-2-2V6a3 3 0 0 0-3-3z"/><circle cx="7.5" cy="10" r="1"/><circle cx="10" cy="6.5" r="1"/><circle cx="6.5" cy="15" r="1"/>',
+ q_x:'<path d="M20 12v8H4v-8M2 7h20v5H2z"/><path d="M12 7v13M12 7H8.5a2.5 2.5 0 1 1 2.5-2.5V7zM12 7h3.5A2.5 2.5 0 1 0 13 4.5V7z"/>',
+ bc:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 7v10M10 7v10M13 7v10M16 7v10M18 7v10"/>',
+ zat:'<path d="M12 2 20 6v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="m8 12 2.5 2.5L16 9"/>',
+ rc:'<path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>',
+ acct:'<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/>',
+ app:'<path d="M12 16V3M7 8l5-5 5 5"/><path d="M4 14v6h16v-6"/>'
+};
+function setNavIcon(k){return '<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(SETNAVICONS[k]||'')+'</svg>'}
 var SGO={};
 function setNavHtml5(k,drw){var pg=setPages(),by={};pg.forEach(function(x){by[x[0]]=x});var em=(typeof CE!='undefined'&&CE)||'';
  var G=[[L('দোকান','Shop'),['shop','theme','feat']],[L('বিক্রি','Sales'),['cats','kh','rc','zat','bc']],[L('QR মেনু','QR menu'),['q_s','q_h','q_b','q_p','q_d','q_x']],[L('অ্যাকাউন্ট','Account'),['acct','sub','app']]];
  var h='<div class="sdp s5p"><span class="s3a">'+esc(String(S.shop||'M').charAt(0).toUpperCase())+'</span><span class="s5pn"><b>'+esc(S.shop||'')+'</b><small>'+esc(em)+'</small></span></div><div class="s5l">';
  G.forEach(function(g,gi){var it=g[1].filter(function(x){return by[x]});if(!it.length)return;var op=it.indexOf(k)>-1||SGO[gi];
-  h+='<details class="s5g" data-g="'+gi+'"'+(op?' open':'')+' ontoggle="SGO[this.dataset.g]=this.open"><summary>'+g[0]+'</summary>'+it.map(function(x){var p=by[x],sb=x=='sub'?subShort():'';return '<button class="s5i'+(k==x?' on':'')+'" onclick="'+(drw?'setDrw(false);':'')+'setGo(\''+x+'\')"><span class="si">'+p[1]+'</span><span class="sl"><b>'+p[2]+'</b>'+(sb?'<small>'+esc(sb)+'</small>':'')+'</span></button>'}).join('')+'</details>'});
+  h+='<details class="s5g" data-g="'+gi+'"'+(op?' open':'')+' ontoggle="SGO[this.dataset.g]=this.open"><summary>'+g[0]+'</summary>'+it.map(function(x){var p=by[x],sb=x=='sub'?subShort():'';return '<button class="s5i'+(k==x?' on':'')+'" onclick="'+(drw?'setDrw(false);':'')+'setGo(\''+x+'\')"><span class="si">'+setNavIcon(x)+'</span><span class="sl"><b>'+p[2]+'</b>'+(sb?'<small>'+esc(sb)+'</small>':'')+'</span></button>'}).join('')+'</details>'});
  return h+'</div><button class="s3o s5o" onclick="FB.out()">⏻ '+L('লগআউট','Log out')+'</button>'}
 function vSet5(){var pg=setPages(),k=window.SETPG||'shop',cur=pg.filter(function(x){return x[0]==k})[0]||pg.filter(function(x){return x[0]=='shop'})[0]||pg[0];
  return '<div class="s5"><aside class="s5n">'+setNavHtml(cur[0],0)+'</aside><section class="s5c"><div class="s5t"><button class="s5b" onclick="go(\'sell\')">← '+L('ফিরুন','Back')+'</button><h2>'+cur[1]+' '+cur[2]+'</h2><button class="s3m s5m" onclick="setDrw(true)">☰ '+L('মেনু','Menu')+'</button></div><div class="s5body">'+cur[3]()+'</div></section></div>'}
