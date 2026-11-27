@@ -217,6 +217,50 @@ button:focus-visible,.nav:focus-visible{outline:3px solid color-mix(in srgb,var(
  .nav.on .i,.mo .mb{animation:none!important}
  .side,.scrim,.nav,.nav .i,.st,.panel,.hrow,.plan,.setcard,.acc,.ovc,button{transition:none!important}
 }
+
+/* Fine interaction details */
+@keyframes adminIndicatorIn{
+ from{transform:scaleY(.25);opacity:.35}
+ to{transform:scaleY(1);opacity:1}
+}
+@keyframes adminMenuIn{
+ from{opacity:0;transform:translate3d(0,-5px,0) scale(.985)}
+ to{opacity:1;transform:translate3d(0,0,0) scale(1)}
+}
+@keyframes adminBarIn{
+ from{transform:scaleX(.0)}
+ to{transform:scaleX(1)}
+}
+.nav{position:relative;isolation:isolate}
+.nav.on:before{
+ content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;
+ border-radius:0 4px 4px 0;background:var(--gold);
+ transform-origin:center;animation:adminIndicatorIn .28s cubic-bezier(.2,.8,.2,1) both;
+}
+.nav.sub.on:before{left:8px;top:8px;bottom:8px}
+.nav:not(.on):hover .i{background:#ffffff2c;box-shadow:inset 0 0 0 1px #ffffff20}
+details.more[open] .menu{transform-origin:top left;animation:adminMenuIn .18s cubic-bezier(.2,.75,.25,1) both}
+input,select,textarea{
+ transition:border-color .18s ease,box-shadow .18s ease,background-color .18s ease;
+}
+input:focus,select:focus,textarea:focus{
+ box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 13%,transparent);
+}
+input:focus-visible,select:focus-visible,textarea:focus-visible{
+ outline:2px solid color-mix(in srgb,var(--ac) 45%,transparent);outline-offset:1px;
+}
+#main.page-enter .bar i{transform-origin:left;animation:adminBarIn .55s .12s cubic-bezier(.2,.75,.25,1) both}
+#main.play .ovbc i{will-change:transform}
+@media(hover:hover){
+ .chip:not(.on):hover,.seg button:not(.on):hover{border-color:color-mix(in srgb,var(--ac) 35%,var(--line));color:var(--ink)}
+ .menu button:hover{padding-left:16px;transition:padding .16s ease,background .16s ease}
+}
+@media(prefers-reduced-motion:reduce){
+ .nav.on:before,details.more[open] .menu,#main.page-enter .bar i{animation:none!important}
+ input,select,textarea{transition:none!important}
+ #main.play .ovbc i{will-change:auto}
+}
+
 </style></head><body>
 <header><button id="menu" onclick="window.sb()">☰</button><div class="mono"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g transform="translate(32 33) scale(.056) translate(-631 -469)"><polygon points="532,262 604,404 470,676 304,676" fill="#C4903A" stroke="#C4903A" stroke-width="16" stroke-linejoin="round"/><polygon points="720,262 958,676 500,676" fill="#0A4540" stroke="#0A4540" stroke-width="16" stroke-linejoin="round"/></g></svg></div><div class="brand"><b>Musafir POS</b><small>Admin Console</small></div><span class="sp"></span><button id="thm" onclick="window.thm(event)" aria-label="Switch light or dark theme" title="Light / dark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button><span class="who" id="who"></span><button id="bt" class="gold">Sign in with Google</button></header>
 <div class="shell"><aside class="side" id="side"></aside><main class="main" id="main"><div class="hero"><div class="mono lg"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g transform="translate(32 33) scale(.056) translate(-631 -469)"><polygon points="532,262 604,404 470,676 304,676" fill="#C4903A" stroke="#C4903A" stroke-width="16" stroke-linejoin="round"/><polygon points="720,262 958,676 500,676" fill="#0A4540" stroke="#0A4540" stroke-width="16" stroke-linejoin="round"/></g></svg></div><h1>Welcome back</h1><p>Sign in with the administrator account to manage shops and subscriptions.</p></div></main></div><div class="scrim" id="scrim" onclick="window.sb()"></div>
