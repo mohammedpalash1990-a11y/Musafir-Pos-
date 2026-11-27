@@ -1,7 +1,7 @@
 {
   "release": 9,
   "name": "P9",
-  "notes": "QR-style POS look, settings menu on the right, QR order page polish.",
+  "notes": "Total button opens Recent Sales; mobile navigation uses Dashboard in place of Recent.",
   "history": [
     {
       "release": 9,
@@ -49,7 +49,11 @@
           "en": "Shop-type logo (burger/restaurant/mart) fixed in tab, app icon and QR"
         },
         "ZATCA settings: status chips + clearer sandbox section; Settings spacing retouch",
-        "Auto-update when admin releases (cart empty), one-time notice; header Update button removed"
+        "Auto-update when admin releases (cart empty), one-time notice; header Update button removed",
+        {
+          "bn": "Total বাটনে চাপ দিলে Recent Sales খোলে; মোবাইল নেভিগেশনে Recent-এর জায়গায় Dashboard",
+          "en": "Total button opens Recent Sales; Dashboard replaces Recent in mobile navigation"
+        }
       ]
     },
     {
@@ -226,6 +230,6 @@
       ]
     }
   ],
-  "build": 8,
-  "built": "27 Nov 2026"
+  "build": 9,
+  "built": "28 Nov 2026"
 }
