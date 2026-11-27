@@ -273,6 +273,14 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{
 @media(prefers-color-scheme:dark){
  :root:not([data-theme="light"]) .nav.on .i{color:#e6f0f1;background:#244047;border-color:#244047}
 }
+
+/* Loading and first-entry motion remain available when reduced motion is requested */
+.loading-state{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:220px;border:1px solid var(--line);border-radius:20px;background:var(--card);box-shadow:var(--sh)}
+.loading-state b{font-size:16px;color:var(--ink)}
+.loading-state small{font-size:12px;color:var(--mute)}
+.load-ring{width:34px;height:34px;border:3px solid var(--soft);border-top-color:var(--gold);border-right-color:var(--ac);border-radius:50%;animation:adminLoadSpin .9s linear infinite}
+@keyframes adminLoadSpin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.hero .mono.lg{animation:mpop .7s cubic-bezier(.2,.9,.3,1.2) both!important}}
 </style></head><body>
 <header><button id="menu" onclick="window.sb()" aria-label="Open navigation" title="Open navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/></svg></button><div class="mono"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g transform="translate(32 33) scale(.056) translate(-631 -469)"><polygon points="532,262 604,404 470,676 304,676" fill="#C4903A" stroke="#C4903A" stroke-width="16" stroke-linejoin="round"/><polygon points="720,262 958,676 500,676" fill="#0A4540" stroke="#0A4540" stroke-width="16" stroke-linejoin="round"/></g></svg></div><div class="brand"><b>Musafir POS</b><small>Admin Console</small></div><span class="sp"></span><button id="thm" onclick="window.thm(event)" aria-label="Switch light or dark theme" title="Light / dark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button><span class="who" id="who"></span><button id="bt" class="gold">Sign in with Google</button></header>
 <div class="shell"><aside class="side" id="side"></aside><main class="main" id="main"><div class="hero"><div class="mono lg"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g transform="translate(32 33) scale(.056) translate(-631 -469)"><polygon points="532,262 604,404 470,676 304,676" fill="#C4903A" stroke="#C4903A" stroke-width="16" stroke-linejoin="round"/><polygon points="720,262 958,676 500,676" fill="#0A4540" stroke="#0A4540" stroke-width="16" stroke-linejoin="round"/></g></svg></div><h1>Welcome back</h1><p>Sign in with the administrator account to manage shops and subscriptions.</p></div></main></div><div class="scrim" id="scrim" onclick="window.sb()"></div>
@@ -295,7 +303,7 @@ function planOf(r){const s=r.sub;if(!s)return '';if(isLife(s.exp))return 'life';
 function stOf(r){if(!r.sub)return{k:'legacy',l:'No plan',c:'g',d:null};const s=r.sub;if(s.st=='suspended')return{k:'suspended',l:'Suspended',c:'b',d:null};if(isLife(s.exp))return{k:'life',l:'Lifetime',c:'gd',d:99999};const d=Math.ceil((+s.exp-Date.now())/DAY);
  if(d<0)return{k:'expired',l:'Expired '+(-d)+'d',c:'b',d};if(d<=30)return{k:'expiring',l:(s.st=='trial'?'Trial · ':'')+d+' days left',c:'w',d};return{k:s.st=='trial'?'trial':'active',l:(s.st=='trial'?'Trial · ':'Active · ')+d+' days',c:s.st=='trial'?'w':'ok',d}}
 const em=r=>(r.sub&&r.sub.email)||(r.own&&r.own.email)||'';
-async function load(){if(!rows.length)$('#main').innerHTML='<div class="empty">Loading…</div>';
+async function load(){if(!rows.length)$('#main').innerHTML='<div class="empty loading-state" role="status" aria-live="polite"><span class="load-ring" aria-hidden="true"></span><b>Loading…</b><small>Preparing your workspace</small></div>';
  try{const dp=fetch('version.json?_v='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null);const [a,b,c,fe,ow]=await Promise.all([getDocs(collection(db,'subs')),getDocs(collection(db,'shops')),getDoc(doc(db,'appcfg','main')),getDoc(doc(db,'appcfg','features')).catch(()=>null),getDocs(collection(db,'owners')).catch(()=>({docs:[]}))]);const m={};
   b.docs.forEach(d=>{const x=d.data();m[d.id]={id:d.id,name:x.name||'',ver:+x.ver||0,verAt:+x.verAt||0}});
   ow.docs.forEach(d=>{m[d.id]=Object.assign(m[d.id]||{id:d.id,name:''},{own:d.data()})});
