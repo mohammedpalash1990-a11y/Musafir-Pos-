@@ -9,6 +9,10 @@
       "date": "2026-11-21",
       "features": [
         {
+          "bn": "লগইন ও নতুন একাউন্ট আলাদা পেজ: শুধু শব্দে ভাষা (English · বাংলা · العربية), সাইন-আপে দোকানের ধরন ও দেশ; Admin-এ দোকানের ভাষা ও ধরন দেখা যায়",
+          "en": "Separate Sign in and Create account screens with a words-only language switch (English default); shop type and country chosen at sign-up; Admin shows each shop's language and type"
+        },
+        {
           "bn": "Settings ও তার সব অপশনে Admin-style premium SVG icons, smooth hover/active transition এবং reduced-motion support",
           "en": "Premium Admin-style SVG icons across Settings and all its options, with smooth hover/active transitions and reduced-motion support"
         },
@@ -222,6 +226,6 @@
       ]
     }
   ],
-  "build": 5,
+  "build": 6,
   "built": "27 Nov 2026"
 }

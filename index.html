@@ -435,6 +435,29 @@ html.r9 .s5body .zsb .box{background:var(--card)}
 #lgn .lpf{max-width:480px}
 #lgn .lpf .pri{background:linear-gradient(135deg,#14543b,#0a2b2f);border-color:#14543b}
 #lgn .lph .lg button.on{background:#14454b;color:#fff}
+#lgn .lgnHero{max-width:860px;padding:0}
+#lgn .lgS{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);min-height:500px}
+#lgn .lgF{padding:30px 34px 14px;display:flex;flex-direction:column;gap:12px}
+#lgn .lgF .bn{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16px}
+#lgn .lgF h2{margin:4px 0 0;font-size:28px;font-weight:800;color:#1f1c17}
+#lgn .lgF .err{color:var(--warn);font-weight:600;margin:0}
+#lgn .lgF .grp>b{display:block;font-size:12px;color:#7c7566;margin:0 0 6px;font-weight:700}
+#lgn .lgF .grp input{width:100%;box-sizing:border-box;height:44px;border-radius:12px;border:1px solid #e6dece;background:#fbf8f1;padding:0 14px}
+#lgn .lgF .grpo{display:flex;flex-wrap:wrap;gap:6px}
+#lgn .lpq{flex-direction:row;min-height:0;padding:7px 12px;border-radius:999px;gap:6px;font-size:13px;border-width:1.5px}
+#lgn .lpq .ic{font-size:16px}#lgn .lpq svg.fl{width:20px;height:14px;box-shadow:none}
+#lgn .lpq.on::after{content:none}
+#lgn .lgGo{height:46px;border-radius:12px;font-weight:700;margin-top:2px;background:linear-gradient(135deg,#14543b,#0a2b2f);border:1px solid #14543b;color:#fff}
+#lgn .lgF .sw{font-size:13px;color:#7c7566}
+#lgn .lgF .lnk{border:0;background:none;padding:0;color:#14543b;font-weight:700;text-decoration:underline;font-size:13px;min-height:0}
+#lgn .lgL{display:flex;gap:4px;margin-top:2px}
+#lgn .lgL button{border:0;background:transparent;padding:6px 12px;border-radius:999px;font-size:13px;color:#7c7566;font-weight:600;min-height:0}
+#lgn .lgL button.on{background:#d9ebe3;color:#14543b;font-weight:700}
+#lgn .lgP{background:linear-gradient(160deg,#14454b,#0a2b2f);color:#fff;padding:40px 34px;display:flex;flex-direction:column;justify-content:center;gap:12px;position:relative}
+#lgn .lgP:before{content:"";position:absolute;inset-inline-start:0;top:0;bottom:0;width:5px;background:#e8c27a}
+#lgn .lgP h3{font-size:30px;font-weight:800;margin:0;line-height:1.15}
+#lgn .lgP p{margin:0;color:#cfe3e0;font-size:14px;line-height:1.5}
+@media(max-width:700px){#lgn .lgS{grid-template-columns:1fr;min-height:0}#lgn .lgP{display:none}#lgn .lgF{padding:22px 18px 10px}}
 @keyframes posLoginEntrance{from{opacity:0;transform:translate3d(0,12px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
 #lgn.login-enter #lb{animation:posLoginEntrance .58s cubic-bezier(.2,.75,.25,1) both!important}
 @media(max-width:700px){.lgnHero{margin:0;padding:20px 14px 22px;border-radius:0 0 24px 24px}#lgn .lph{padding-top:44px}#lgn .lph .lg{top:0;right:0}#lgn .lpt h2{font-size:23px}}
@@ -535,7 +558,7 @@ var D = {
 var CB = {Drinks:'পানীয়',Food:'খাবার'}, BN = {1:'চা',2:'কফি',3:'ঠান্ডা জুস',4:'পানির বোতল',5:'স্যান্ডউইচ',6:'কেক'};
 
 function load(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v||d}catch(e){return d}}
-var S = load('pos_s',{shop:'Musafir Cafe',cur:'SAR',tax:15,lang:'bn'});
+var S = load('pos_s',{shop:'Musafir Cafe',cur:'SAR',tax:15,lang:'en'});
 try{var _pk=localStorage.getItem('pos_kind');if(_pk&&window.SHOPK!=='mart'){S.kind=_pk;localStorage.setItem('pos_s',JSON.stringify(S));localStorage.removeItem('pos_kind')}}catch(e){}
 if(window.SHOPK==='mart'){S.shopType='mart';if(!S.shop||S.shop==='Musafir Cafe')S.shop='My Supermarket'}
 S.vat=Object.assign({enabled:true,rate:15,pricesIncludeVat:true},S.vat||{});S.tax=Number(S.vat.rate)||15;
@@ -749,9 +772,9 @@ function flag(c,w){var s=c=='SA'?'<rect width="30" height="20" fill="#006c35"/><
 var LPC=null;
 function pendC(){if(LPC)return LPC;var v=null;try{v=localStorage.getItem('pos_pc')}catch(e){}LPC=(v=='SA'||v=='BD')?v:(S.country=='SA'?'SA':'BD');return LPC}
 function lpLM(){try{return !!localStorage.getItem('pos_pl')}catch(e){return false}}
-function lpCountry(c){LPC=c;try{localStorage.setItem('pos_pc',c)}catch(e){}if(!lpLM())S.lang=c=='SA'?'abi':'bi';showLogin()}
-function lpLang(l){S.lang=l;try{localStorage.setItem('pos_pl',l)}catch(e){}showLogin()}
-function newAcct(){var c=pendC();S.country=c;var o=X();if(c=='SA')o.due=false;S.x=o;if(!lpLM())S.lang=c=='SA'?'abi':'bi';pays=null}
+function lpCountry(c){LPC=c;try{localStorage.setItem('pos_pc',c)}catch(e){}showLogin()}
+function lpLang(l){S.lang=l;try{localStorage.setItem('pos_pl',l)}catch(e){}try{lsave()}catch(e){}showLogin()}
+function newAcct(){var c=pendC();S.country=c;var o=X();if(c=='SA')o.due=false;S.x=o;if(!lpLM())S.lang='en';pays=null}
 
 function AL(){return S.lang=='ar'||S.lang=='abi'}
 var _ro=null;function riyalOK(){if(_ro!==null)return _ro;try{var c=document.createElement('canvas').getContext('2d');c.font='32px sans-serif';var a=c.measureText('\u20C1').width;_ro=a>0&&a!=c.measureText('\uFFFF').width&&a!=c.measureText('\uE000').width}catch(e){_ro=false}return _ro}
@@ -1954,25 +1977,35 @@ function lastInv(){var s=H.slice().sort(function(a,b){return b.t-a.t})[0];if(s){
 function ask(msg,fn,yes){var e=$('#cf');if(!e){e=document.createElement('div');e.id='cf';e.className='ov';e.style.alignItems='center';e.style.zIndex=48;document.body.appendChild(e)}
  window.__cf=fn;e.innerHTML='<div class="sheet" style="border-radius:20px;max-width:340px;margin:16px;text-align:center"><div style="font-size:17px;font-weight:700">'+esc(msg)+'</div><div class="mute" style="margin-top:4px">'+L('এটা আর ফেরানো যাবে না','This cannot be undone')+'</div><div style="display:flex;gap:10px;margin-top:16px"><button style="flex:1" onclick="$(\'#cf\').classList.remove(\'show\')">'+L('না','No')+'</button><button class="bad2" style="flex:1" onclick="$(\'#cf\').classList.remove(\'show\');window.__cf()">'+(yes||L('হ্যাঁ, মুছুন','Yes, delete'))+'</button></div></div>';e.classList.add('show')}
 
+Object.assign(AR,{'Create account':'إنشاء حساب','Sign in':'تسجيل الدخول','Coffee shop':'مقهى','Restaurant':'مطعم','Fast food':'وجبات سريعة','Already have an account?':'لديك حساب بالفعل؟','New here?':'جديد هنا؟','Start your shop':'ابدأ متجرك','Welcome back':'مرحبًا بعودتك','One account for every sale, every device you own.':'حساب واحد لكل عملية بيع ولكل أجهزتك.','Your sales and stock are exactly where you left them.':'مبيعاتك ومخزونك كما تركتها تمامًا.','Country (cannot be changed later)':'الدولة (لا يمكن تغييرها لاحقًا)','This language becomes your shop language. You can change it later in Settings.':'ستكون هذه لغة متجرك ويمكنك تغييرها لاحقًا من الإعدادات.'});
+function lpMode(m){window.__lgm=m;showLogin()}
 function showLogin(msg,em){
  var g=$('#lgn'),was=g.classList.contains('show'),e0=$('#le'),p0=$('#lp'),kp=(was&&p0&&msg===undefined)?p0.value:'';
  if(em===undefined&&was&&e0)em=e0.value;
  g.classList.add('show');g.dir=AL()?'rtl':'ltr';if(!was){g.classList.remove('login-enter');void g.offsetWidth;g.classList.add('login-enter')}
- var k=window.SHOPK||'',c=pendC(),LG=[['bn','বাংলা'],['en','English'],['bi','বাংলা+EN'],['abi','عربي+EN']],
- card=function(on,fn,ic,tx,sb){return '<button type="button" class="lpk'+(on?' on':'')+'" onclick="'+fn+'">'+ic+'<span>'+tx+'</span>'+(sb?'<small>'+sb+'</small>':'')+'</button>'};
- $('#lb').innerHTML='<div class="lgnHero"><div class="lph"><div class="bn">'+bLogo(72)+'<span>'+esc(BRAND)+'</span></div><div class="lg" role="group" aria-label="Language">'+LG.map(function(l){return '<button type="button" class="'+(S.lang==l[0]?'on':'')+'" onclick="lpLang(\''+l[0]+'\')">'+l[1]+'</button>'}).join('')+'</div></div>'
- +'<div class="lpt"><h2>'+esc(S.shop)+'</h2><div class="mute">'+L('দোকানের ধরন ও দেশ বাছুন, তারপর লগইন করুন','Welcome! Choose your shop, then log in')+'</div></div>'
- +'<div class="lpg2"><div class="lpc"><b>1 · '+L('দোকানের ধরন','Shop type')+'</b><div class="lpo">'
- +card(!k&&kindNow()=='coffee',"pickKind('coffee')",'<span class="ic">☕</span>',L('কফি শপ','Coffee shop'))
- +card(!k&&kindNow()=='restaurant',"pickKind('restaurant')",'<span class="ic">🍽</span>',L('রেস্টুরেন্ট','Restaurant'))
- +card(!k&&kindNow()=='fast',"pickKind('fast')",'<span class="ic">🍔</span>',L('ফাস্ট ফুড','Fast food'))
- +card(k=='mart',"pickKind('mart')",'<span class="ic">🛒</span>',L('সুপারমার্কেট / বাকালা','Supermarket / Grocery'))
- +'</div></div><div class="lpc"><b>2 · '+L('দেশ','Country')+'</b><div class="lpo">'
- +card(c=='SA',"lpCountry('SA')",flag('SA'),L('সৌদি আরব','Saudi Arabia'),L('রিয়াল · মাদা','Riyal · Mada'))
- +card(c=='BD',"lpCountry('BD')",flag('BD'),L('বাংলাদেশ','Bangladesh'),L('টাকা · bKash','Taka · bKash'))
- +'</div><div class="mute" style="font-size:11px;margin-top:8px">'+L('নতুন একাউন্টের জন্য। পুরোনো একাউন্টে লগইন করলে আগের দেশই থাকবে।','For new accounts. Existing accounts keep their saved country.')+'</div></div></div>'
- +'<div class="box lpf">'+(msg?'<p style="color:var(--warn);font-weight:600;text-align:center;margin:0 0 4px">'+esc(msg)+'</p>':'')+'<p class="mute" style="text-align:center;margin:0 0 4px">'+L('লগইন করুন, সব ডিভাইসে একই হিসাব পাবেন','Log in to see the same data on every device')+'</p><label>Email</label><input id="le" dir="ltr" type="email" autocomplete="email" value="'+esc(em||'')+'"><label>'+L('পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)','Password (min 6 characters)')+'</label><input id="lp" dir="ltr" type="password" autocomplete="current-password"><div style="display:flex;gap:10px;margin-top:14px"><button class="pri" style="flex:1" onclick="doAuth(0)">'+L('লগইন','Log in')+'</button><button style="flex:1" onclick="doAuth(1)">'+L('নতুন একাউন্ট','Sign up')+'</button></div><button style="width:100%;margin-top:10px;border:0;background:none;color:var(--ac)" onclick="doReset()">'+L('পাসওয়ার্ড ভুলে গেছেন?','Forgot password?')+'</button></div>'
- +'<p class="mute" style="font-size:11px;text-align:center;margin:14px 0 0">Powered by '+BRAND+'</p></div>';
+ var up=window.__lgm=='up',k=window.SHOPK||'',c=pendC(),LG=[['en','English'],['bn','বাংলা'],['ar','العربية']],
+ chip=function(on,fn,ic,tx){return '<button type="button" class="lpk lpq'+(on?' on':'')+'" onclick="'+fn+'">'+ic+'<span>'+tx+'</span></button>'};
+ var types=up?'<div class="grp"><b>'+L('দোকানের ধরন','Shop type')+'</b><div class="grpo">'
+ +chip(!k&&kindNow()=='coffee',"pickKind('coffee')",'<span class="ic">☕</span>',L('কফি শপ','Coffee shop'))
+ +chip(!k&&kindNow()=='restaurant',"pickKind('restaurant')",'<span class="ic">🍽</span>',L('রেস্টুরেন্ট','Restaurant'))
+ +chip(!k&&kindNow()=='fast',"pickKind('fast')",'<span class="ic">🍔</span>',L('ফাস্ট ফুড','Fast food'))
+ +chip(k=='mart',"pickKind('mart')",'<span class="ic">🛒</span>',L('সুপারমার্কেট / বাকালা','Supermarket / Grocery'))
+ +'</div></div><div class="grp"><b>'+L('দেশ (পরে বদলানো যাবে না)','Country (cannot be changed later)')+'</b><div class="grpo">'
+ +chip(c=='SA',"lpCountry('SA')",flag('SA'),L('সৌদি আরব','Saudi Arabia'))
+ +chip(c=='BD',"lpCountry('BD')",flag('BD'),L('বাংলাদেশ','Bangladesh'))
+ +'</div></div>':'';
+ $('#lb').innerHTML='<div class="lgnHero"><div class="lgS"><div class="lgF">'
+ +'<div class="bn">'+bLogo(40)+'<span>'+esc(BRAND)+'</span></div>'
+ +'<h2>'+(up?L('নতুন একাউন্ট','Create account'):L('লগইন','Sign in'))+'</h2>'
+ +(msg?'<p class="err">'+esc(msg)+'</p>':'')+types
+ +'<div class="grp"><b>Email</b><input id="le" dir="ltr" type="email" autocomplete="email" value="'+esc(em||'')+'"></div>'
+ +'<div class="grp"><b>'+L('পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)','Password (min 6 characters)')+'</b><input id="lp" dir="ltr" type="password" autocomplete="'+(up?'new-password':'current-password')+'" onkeydown="if(event.key==\'Enter\')doAuth('+(up?1:0)+')"></div>'
+ +'<button class="pri lgGo" onclick="doAuth('+(up?1:0)+')">'+(up?L('একাউন্ট খুলুন','Create account'):L('লগইন','Sign in'))+'</button>'
+ +'<div class="sw">'+(up?L('আগে থেকেই একাউন্ট আছে?','Already have an account?'):L('নতুন?','New here?'))+' <button type="button" class="lnk" onclick="lpMode(\''+(up?'in':'up')+'\')">'+(up?L('লগইন','Sign in'):L('নতুন একাউন্ট','Create account'))+'</button>'+(up?'':' · <button type="button" class="lnk" onclick="doReset()">'+L('পাসওয়ার্ড ভুলে গেছেন?','Forgot password?')+'</button>')+'</div>'
+ +(up?'<div class="mute" style="font-size:12px">'+L('এই ভাষা আপনার দোকানের ভাষা হবে, পরে Settings থেকে বদলানো যাবে।','This language becomes your shop language. You can change it later in Settings.')+'</div>':'')
+ +'<div class="lgL" role="group" aria-label="Language">'+LG.map(function(l){return '<button type="button" class="'+(S.lang==l[0]?'on':'')+'" onclick="lpLang(\''+l[0]+'\')">'+l[1]+'</button>'}).join('')+'</div>'
+ +'</div><div class="lgP"><h3>'+(up?L('আপনার দোকান শুরু করুন','Start your shop'):L('আবার স্বাগতম','Welcome back'))+'</h3><p>'+(up?L('এক একাউন্টে সব বিক্রি, সব ডিভাইস।','One account for every sale, every device you own.'):L('আপনার বিক্রি ও স্টক ঠিক আগের মতোই আছে।','Your sales and stock are exactly where you left them.'))+'</p></div></div>'
+ +'<p class="mute" style="font-size:11px;text-align:center;margin:0;padding:10px 0 14px">Powered by '+esc(BRAND)+'</p></div>';
  if(kp)$('#lp').value=kp
 }
 
@@ -2725,7 +2758,7 @@ window.qrPub=async f=>{if(!uid||!CU||window.SHOPK)return;const ir=(function(){tr
   if(f)toast(L3('মেনু ও সেটিংস প্রকাশ হয়েছে ('+it.length+'টি পণ্য)','Menu and settings published ('+it.length+' items)'))}catch(e){if(f)toast(L3('প্রকাশ হয়নি: নেট/Rules দেখুন','Not published: check connection/rules'))}};
 setInterval(()=>{try{qrPub(0)}catch(e){}},120000);
 let unS=null,ownSig='';
-async function ownSync(){try{const u=auth.currentUser;if(!u)return;const mt=(window.SHOPK||'')==='mart',nm=(window.S&&S.shop)||'';let n=0,ls=0;try{n=(typeof P!='undefined'&&P.length)||0;(typeof H!='undefined'?H:[]).forEach(x=>{if(x&&x.t>ls)ls=x.t})}catch(e){}const sg=u.uid+'|'+(u.email||'')+'|'+mt+'|'+nm+'|'+n+'|'+ls;if(sg===ownSig)return;const d={email:u.email||'',t:Date.now(),v:(typeof APP_V!='undefined'?String(APP_V):'')};d[mt?'mart':'shop']=nm;d[mt?'mn':'n']=n;d[mt?'mls':'ls']=ls;await setDoc(doc(db,'owners',u.uid),d,{merge:true});ownSig=sg}catch(e){}}
+async function ownSync(){try{const u=auth.currentUser;if(!u)return;const mt=(window.SHOPK||'')==='mart',nm=(window.S&&S.shop)||'';let n=0,ls=0;try{n=(typeof P!='undefined'&&P.length)||0;(typeof H!='undefined'?H:[]).forEach(x=>{if(x&&x.t>ls)ls=x.t})}catch(e){}const lg=(window.S&&S.lang)||'',kd=mt?'mart':(typeof kindNow=='function'?kindNow():''),sg=u.uid+'|'+(u.email||'')+'|'+mt+'|'+nm+'|'+n+'|'+ls+'|'+lg+'|'+kd;if(sg===ownSig)return;const d={email:u.email||'',t:Date.now(),v:(typeof APP_V!='undefined'?String(APP_V):''),lang:lg,kind:kd};d[mt?'mart':'shop']=nm;d[mt?'mn':'n']=n;d[mt?'mls':'ls']=ls;await setDoc(doc(db,'owners',u.uid),d,{merge:true});ownSig=sg}catch(e){}}
 setInterval(ownSync,30000);
 
 function subWatch(u){if(unS){try{unS()}catch(e){}unS=null}
