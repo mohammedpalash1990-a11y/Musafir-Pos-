@@ -355,6 +355,13 @@ html.p3 .invg{display:flex!important;flex-direction:column!important;grid-templa
 .s5n{animation:posSettingsSidebar .42s cubic-bezier(.2,.75,.25,1) both}
 .s5c{animation:posSettingsContent .42s cubic-bezier(.2,.75,.25,1) both;animation-delay:.04s}
 .s5t{position:sticky;top:0;z-index:4;min-height:66px;background:var(--head);color:#fff;box-shadow:0 8px 24px rgba(0,25,23,.12);animation:posSettingsHeader .36s cubic-bezier(.2,.75,.25,1) both}
+/* Admin-matched Settings page reveal and responsive header */
+@keyframes adminSettingsReveal{from{opacity:0;transform:translate3d(0,9px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+#m.page-enter .s5n,#m.page-enter .s5c{animation:adminSettingsReveal .46s cubic-bezier(.2,.75,.25,1) both}
+#m.page-enter .s5c{animation-delay:.04s}
+.s5t{display:flex;align-items:center;gap:12px;isolation:isolate}
+.s5t .s5b,.s5t .s5action{flex:none}
+@media(max-width:700px){.s5t{gap:8px;padding:10px 12px;min-height:60px}.s5t h2{font-size:16px;line-height:1.2;flex:1 1 0}.s5t .s5shop{display:none}.s5t .s5b{padding:8px 10px!important}.s5t .s5action{width:38px;min-width:38px;height:38px;min-height:38px}}
 .s5t h2{color:#fff}
 .s5b{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#ffffff18!important;border:1px solid #ffffff35!important;color:#fff!important;min-height:40px;padding:9px 14px!important;transition:background .2s ease,transform .18s ease,box-shadow .2s ease}
 .s5b svg{width:18px;height:18px;stroke:currentColor}
@@ -1892,7 +1899,7 @@ function otpOk(){var o=otpS,c=otpCur().c,v=($('#otpin').value||'').trim();
  if(o.i<o.q.length){o.qr=false;otpFresh();otpView();return}
  otpDone=o.done;otpPass=true;otpS=null;closeDs();window.charge()}
 
-function navHtml(){var tabs=[['sell',L('বিক্রি','Sell'),'sell'],['due',t('dueTab'),'cash'],['dash',L('ড্যাশবোর্ড','Dashboard'),'dash'],['prod',L('পণ্য','Items'),'items'],['set',L('সেটিংস','Settings'),'set']];tabs=tabs.filter(function(x){return x[0]=='sell'||x[0]=='dash'||x[0]=='prod'||x[0]=='set'||(x[0]=='due'&&X().due)});return '<nav id="nav">'+tabs.map(function(x){return '<button class="'+(view==x[0]?'on':'')+'" onclick="'+(x[0]=='set'?'navSet()':'go(\''+x[0]+'\')')+'">'+I(x[2])+'<span>'+x[1]+'</span></button>'}).join('')+'</nav>'}
+function navHtml(){var tabs=[['sell',L('বিক্রি','Sell'),'sell'],['due',t('dueTab'),'cash'],['recent',L('সাম্প্রতিক','Recent'),'clock'],['prod',L('পণ্য','Items'),'items'],['set',L('সেটিংস','Settings'),'set']];tabs=tabs.filter(function(x){return x[0]=='sell'||x[0]=='recent'||x[0]=='prod'||x[0]=='set'||(x[0]=='due'&&X().due)});return '<nav id="nav">'+tabs.map(function(x){var act=x[0]=='set'?'navSet()':x[0]=='recent'?"window.RCQ='';window.RCALL=false;showRecent()":'go(\\''+x[0]+'\\')';return '<button class="'+(view==x[0]?'on':'')+'" onclick="'+act+'">'+I(x[2])+'<span>'+x[1]+'</span></button>'}).join('')+'</nav>'}
 function info0(){var e=$('#ib');if(!e)return;var l=H.length?H.reduce(function(a,x){return x.t>a.t?x:a}):null,d=new Date();
  e.innerHTML='<button class="lb" '+(l?'onclick="showRc('+l.no+')"':'disabled')+'>'+I('print')+' '+L('শেষ ইনভয়েস','Last invoice')+(l?' #'+l.sn+' · '+$$(l.total):'')+'</button>'+(innerWidth<600?navHtml():'')+'<span id="qbs"></span><div style="display:flex;align-items:center;gap:10px"><button class="thm" aria-label="Theme" onclick="togTheme()">'+I(curTheme()=='dark'?'sun':'moon')+'</button><div class="clk"><b>'+d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+'</b><span>'+d.toLocaleDateString(AL()?'ar-SA-u-ca-gregory':S.lang!='en'?'bn-BD':'en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'})+'</span></div></div>';if(window.qbPlace)window.qbPlace()}
 
