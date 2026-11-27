@@ -637,7 +637,7 @@ function render(){
  if(view=='kh')view='set';if(view=='due'&&!X().due)view='sell';fixSn();document.documentElement.lang=S.lang;document.documentElement.dir='ltr';document.documentElement.classList.toggle('p3',P3());document.documentElement.classList.toggle('r9',!!(window.relOn&&relOn(9)));document.documentElement.classList.toggle('r9def',!!(window.relOn&&relOn(9))&&(window.__thm||'emerald')==='emerald');document.documentElement.classList.toggle('r4',!!(window.relOn&&relOn(4)));document.documentElement.classList.toggle('s5',view=='set'&&!!(window.relOn&&relOn(5)));$('#shop').textContent=S.shop;document.title=S.shop;sy();
  $('#av').textContent=String((typeof CE!='undefined'&&CE)||S.shop||'M').trim().charAt(0).toUpperCase()||'M';
  var td=(window.relOn&&relOn(6))?sesCur().l.reduce(function(a,h){return a+h.total},0):H.filter(function(h){return day(h.t)==tdy()}).reduce(function(a,h){return a+h.total},0);
- $('#today').innerHTML=I('cash')+' <b>'+window['$'](td)+'</b>';$('#today').title=L('সাম্প্রতিক বিক্রি','Recent sales');$('#today').style.display='inline-flex';$('#today').setAttribute('aria-label',L('সাম্প্রতিক বিক্রি','Recent sales'));
+ $('#today').innerHTML=I('cash')+' <b>'+window['\x24\x24'](td)+'</b>';$('#today').title=L('সাম্প্রতিক বিক্রি','Recent sales');$('#today').style.display='inline-flex';$('#today').setAttribute('aria-label',L('সাম্প্রতিক বিক্রি','Recent sales'));
  var b=$('#bar');b.style.display=(view=='sell'&&cnt()&&!isWide())?'flex':'none';
  b.innerHTML='<span>'+(window.relOn&&relOn(9)?t('pay'):cnt()+t('itm')+' · '+t('view'))+'</span><span>'+$$(calc().t)+'</span>';
  $('#m').innerHTML=view=='sell'?vSell():view=='due'?vDueTab():view=='dash'?vDash():view=='kh'?vKh():view=='prod'?vProd():vSet();
