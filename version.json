@@ -9,6 +9,10 @@
       "date": "2026-11-21",
       "features": [
         {
+          "bn": "Settings ও তার সব অপশনে Admin-style premium SVG icons, smooth hover/active transition এবং reduced-motion support",
+          "en": "Premium Admin-style SVG icons across Settings and all its options, with smooth hover/active transitions and reduced-motion support"
+        },
+        {
           "bn": "POS-এর নতুন লুক QR পেজের মতো: ক্রিম রঙ, হেডারে লগো মিশে যায়, সাদা আইকন বাটন",
           "en": "POS look now matches the QR page: cream colours, logo blends into the header, white icon buttons"
         },
@@ -218,6 +222,6 @@
       ]
     }
   ],
-  "build": 3,
-  "built": "22 Nov 2026"
+  "build": 4,
+  "built": "27 Nov 2026"
 }
