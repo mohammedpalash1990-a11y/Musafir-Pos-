@@ -397,6 +397,52 @@ html.r9 .s5body .zsb .box{background:var(--card)}
 .vcd .vct{display:flex;flex-direction:column;gap:2px;color:#fff}.vcd small{opacity:.75;font-size:12px}.vcd button{width:100%;padding:9px 12px;border-radius:12px;font-weight:700;border:0;background:rgba(255,255,255,.16);color:#fff}.vcd .vcu{background:#fff;color:var(--head)}.vcx{color:#fff;font-size:12.5px}.vcx summary{cursor:pointer;opacity:.9;padding:4px 0}.vcx ul{margin:4px 0 6px;padding-inline-start:18px}.vcx b{display:block;margin-top:6px}
 .set3c{padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))}
 @media(max-width:699px){.set3c{margin-bottom:84px}}
+
+/* P9 Settings: one page-transition owner; inner-page changes animate content only */
+.s5{animation:none!important}
+.s5n,.s5c,.s5t,.s5body>*{animation:none!important}
+#m.page-enter>.s5{animation:adminPageReveal .46s cubic-bezier(.2,.75,.25,1) both!important}
+#m.page-enter .s5n,#m.page-enter .s5c,#m.page-enter .s5t,#m.page-enter .s5body>*{animation:none!important}
+#m.page-enter-inner>.s5 .s5body{animation:adminPageReveal .46s cubic-bezier(.2,.75,.25,1) both!important}
+#m.page-enter-inner>.s5 .s5n,#m.page-enter-inner>.s5 .s5c,#m.page-enter-inner>.s5 .s5t{animation:none!important}
+/* Admin sidebar tokens and active-state marker */
+.s5n{background:linear-gradient(180deg,var(--head),#0a2b2f)!important;border:0;color:#fff;border-radius:0 26px 26px 0;padding:16px 12px}
+.s5i{color:#ffffffe0!important;border-radius:12px!important;width:100%;margin:2px 0!important;padding:9px 10px!important}
+.s5i .si{background:#ffffff1f!important;border-radius:10px;width:34px;height:34px}
+.s5i:hover{background:#ffffff14!important}
+.s5n .s5i.on{width:100%;margin:2px 0!important;background:var(--card)!important;color:var(--head)!important;border-radius:12px!important;box-shadow:inset 4px 0 0 var(--gold),0 10px 20px -12px #000;font-weight:800}
+.s5n .s5i.on .si{background:var(--soft)!important}
+.s5n .s5i.on::before,.s5n .s5i.on::after{content:none!important}
+.s5g summary{padding-left:10px}
+/* Admin-style mobile drawer: slides in from the left */
+.sdrw .sp{left:0!important;right:auto!important;transform:translateX(-105%);transition:transform .34s cubic-bezier(.22,.8,.25,1);animation:none!important;border-radius:0 26px 26px 0}
+.sdrw.on .sp{transform:translateX(0)}
+.sdrw .sc{opacity:0;transition:opacity .28s ease}
+.sdrw.on .sc{opacity:1}
+/* POS sign-in hero uses the shared shop logo and Admin cream/green/gold surface */
+#lgn #lb{max-width:920px;padding:18px 18px calc(28px + env(safe-area-inset-bottom,0px))}
+.lgnHero{position:relative;isolation:isolate;overflow:hidden;max-width:880px;margin:10px auto 0;padding:28px 26px 26px;border:1px solid #ece4d6;border-radius:28px;background:linear-gradient(155deg,#fffdf8,#f6f1e8);color:#1f1c17;box-shadow:0 24px 60px -34px rgba(8,36,29,.5)}
+.lgnHero:before{content:"";position:absolute;z-index:-1;left:50%;top:-160px;width:420px;height:420px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(#e8c27a55,transparent 68%);pointer-events:none}
+#lgn .lph{justify-content:center;position:relative}
+#lgn .lph .bn{flex-direction:column;gap:8px;font-size:18px}
+#lgn .lph .bn svg{width:72px;height:72px;filter:drop-shadow(0 14px 18px #08241d25)}
+#lgn .lph .lg{position:absolute;right:0;top:0}
+#lgn .lpt{margin:18px 0 14px}
+#lgn .lpt h2{font-size:28px;font-weight:800;color:#14454b}
+#lgn .lpc,#lgn .lpf{background:#fff;border-color:#ece4d6;box-shadow:0 14px 30px -24px rgba(8,36,29,.32)}
+#lgn .lpk{background:#fbf8f1;border-color:#e6dece}
+#lgn .lpk.on{background:#d9ebe3;border-color:#14543b}
+#lgn .lpf{max-width:480px}
+#lgn .lpf .pri{background:linear-gradient(135deg,#14543b,#0a2b2f);border-color:#14543b}
+#lgn .lph .lg button.on{background:#14454b;color:#fff}
+@keyframes posLoginEntrance{from{opacity:0;transform:translate3d(0,12px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+#lgn.login-enter #lb{animation:posLoginEntrance .58s cubic-bezier(.2,.75,.25,1) both!important}
+@media(max-width:700px){.lgnHero{margin:0;padding:20px 14px 22px;border-radius:0 0 24px 24px}#lgn .lph{padding-top:44px}#lgn .lph .lg{top:0;right:0}#lgn .lpt h2{font-size:23px}}
+@media(prefers-reduced-motion:reduce){
+ #m.page-enter>.s5{animation:adminPageReveal .46s cubic-bezier(.2,.75,.25,1) both!important}
+ #m.page-enter-inner>.s5 .s5body{animation:adminPageReveal .46s cubic-bezier(.2,.75,.25,1) both!important}
+ #lgn.login-enter #lb{animation:posLoginEntrance .58s cubic-bezier(.2,.75,.25,1) both!important}
+}
 </style><style id="usrpatch">
 #bar{left:12px;right:12px;width:auto;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;padding:14px 18px;font-size:17px;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:8}
 body:has(#cs.show) #bar,body:has(#ds.show) #bar,body:has(#rc.show) #bar,body:has(#ov.show) #bar,body:has(#lgn.show) #bar,body.qrop #bar{display:none!important}
@@ -641,7 +687,7 @@ function render(){
  var b=$('#bar');b.style.display=(view=='sell'&&cnt()&&!isWide())?'flex':'none';
  b.innerHTML='<span>'+(window.relOn&&relOn(9)?t('pay'):cnt()+t('itm')+' · '+t('view'))+'</span><span>'+$$(calc().t)+'</span>';
  $('#m').innerHTML=view=='sell'?vSell():view=='due'?vDueTab():view=='dash'?vDash():view=='kh'?vKh():view=='prod'?vProd():vSet();
- var __nextMotionKey=view+(view=='set'?'|'+(window.SETPG||''):'');if(__nextMotionKey!==__posMotionKey){__posMotionKey=__nextMotionKey;var __motionRoot=$('#m');if(__motionRoot){__motionRoot.classList.remove('page-enter');void __motionRoot.offsetWidth;__motionRoot.classList.add('page-enter');clearTimeout(window.__posMotionTimer);window.__posMotionTimer=setTimeout(function(){__motionRoot.classList.remove('page-enter')},560)}}
+ var __nextMotionKey=view+(view=='set'?'|'+(window.SETPG||''):'');if(__nextMotionKey!==__posMotionKey){var __innerSet=__posMotionKey.indexOf('set|')===0&&__nextMotionKey.indexOf('set|')===0;__posMotionKey=__nextMotionKey;var __motionRoot=$('#m');if(__motionRoot){__motionRoot.classList.remove('page-enter','page-enter-inner');void __motionRoot.offsetWidth;__motionRoot.classList.add(__innerSet?'page-enter-inner':'page-enter');clearTimeout(window.__posMotionTimer);window.__posMotionTimer=setTimeout(function(){__motionRoot.classList.remove('page-enter','page-enter-inner')},560)}}
  info();if(view=='sell'&&isWide())openCart();
  saveDraft();try{fitSell();setTimeout(fitSell,150)}catch(e){}
 }
@@ -1911,10 +1957,10 @@ function ask(msg,fn,yes){var e=$('#cf');if(!e){e=document.createElement('div');e
 function showLogin(msg,em){
  var g=$('#lgn'),was=g.classList.contains('show'),e0=$('#le'),p0=$('#lp'),kp=(was&&p0&&msg===undefined)?p0.value:'';
  if(em===undefined&&was&&e0)em=e0.value;
- g.classList.add('show');g.dir=AL()?'rtl':'ltr';
+ g.classList.add('show');g.dir=AL()?'rtl':'ltr';if(!was){g.classList.remove('login-enter');void g.offsetWidth;g.classList.add('login-enter')}
  var k=window.SHOPK||'',c=pendC(),LG=[['bn','বাংলা'],['en','English'],['bi','বাংলা+EN'],['abi','عربي+EN']],
  card=function(on,fn,ic,tx,sb){return '<button type="button" class="lpk'+(on?' on':'')+'" onclick="'+fn+'">'+ic+'<span>'+tx+'</span>'+(sb?'<small>'+sb+'</small>':'')+'</button>'};
- $('#lb').innerHTML='<div class="lph"><div class="bn">'+bLogo(34)+'<span>'+esc(BRAND)+'</span></div><div class="lg" role="group" aria-label="Language">'+LG.map(function(l){return '<button type="button" class="'+(S.lang==l[0]?'on':'')+'" onclick="lpLang(\''+l[0]+'\')">'+l[1]+'</button>'}).join('')+'</div></div>'
+ $('#lb').innerHTML='<div class="lgnHero"><div class="lph"><div class="bn">'+bLogo(72)+'<span>'+esc(BRAND)+'</span></div><div class="lg" role="group" aria-label="Language">'+LG.map(function(l){return '<button type="button" class="'+(S.lang==l[0]?'on':'')+'" onclick="lpLang(\''+l[0]+'\')">'+l[1]+'</button>'}).join('')+'</div></div>'
  +'<div class="lpt"><h2>'+esc(S.shop)+'</h2><div class="mute">'+L('দোকানের ধরন ও দেশ বাছুন, তারপর লগইন করুন','Welcome! Choose your shop, then log in')+'</div></div>'
  +'<div class="lpg2"><div class="lpc"><b>1 · '+L('দোকানের ধরন','Shop type')+'</b><div class="lpo">'
  +card(!k&&kindNow()=='coffee',"pickKind('coffee')",'<span class="ic">☕</span>',L('কফি শপ','Coffee shop'))
@@ -1926,7 +1972,7 @@ function showLogin(msg,em){
  +card(c=='BD',"lpCountry('BD')",flag('BD'),L('বাংলাদেশ','Bangladesh'),L('টাকা · bKash','Taka · bKash'))
  +'</div><div class="mute" style="font-size:11px;margin-top:8px">'+L('নতুন একাউন্টের জন্য। পুরোনো একাউন্টে লগইন করলে আগের দেশই থাকবে।','For new accounts. Existing accounts keep their saved country.')+'</div></div></div>'
  +'<div class="box lpf">'+(msg?'<p style="color:var(--warn);font-weight:600;text-align:center;margin:0 0 4px">'+esc(msg)+'</p>':'')+'<p class="mute" style="text-align:center;margin:0 0 4px">'+L('লগইন করুন, সব ডিভাইসে একই হিসাব পাবেন','Log in to see the same data on every device')+'</p><label>Email</label><input id="le" dir="ltr" type="email" autocomplete="email" value="'+esc(em||'')+'"><label>'+L('পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)','Password (min 6 characters)')+'</label><input id="lp" dir="ltr" type="password" autocomplete="current-password"><div style="display:flex;gap:10px;margin-top:14px"><button class="pri" style="flex:1" onclick="doAuth(0)">'+L('লগইন','Log in')+'</button><button style="flex:1" onclick="doAuth(1)">'+L('নতুন একাউন্ট','Sign up')+'</button></div><button style="width:100%;margin-top:10px;border:0;background:none;color:var(--ac)" onclick="doReset()">'+L('পাসওয়ার্ড ভুলে গেছেন?','Forgot password?')+'</button></div>'
- +'<p class="mute" style="font-size:11px;text-align:center;margin:14px 0 0">Powered by '+BRAND+'</p>';
+ +'<p class="mute" style="font-size:11px;text-align:center;margin:14px 0 0">Powered by '+BRAND+'</p></div>';
  if(kp)$('#lp').value=kp
 }
 
