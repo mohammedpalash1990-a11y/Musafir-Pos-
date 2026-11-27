@@ -2077,7 +2077,7 @@ function doAuth2(n,e,p){
  document.querySelectorAll('#lb button').forEach(function(x){x.disabled=true});
  $('#lb').insertAdjacentHTML('afterbegin','<p style="font-weight:700;text-align:center">'+L('অপেক্ষা করুন…','Please wait…')+'</p>');
  var to=setTimeout(function(){showLogin(L('সাড়া নেই। ইন্টারনেট বা অ্যাড-ব্লকার দেখুন','No response. Check internet or ad-blocker'),e)},15000);
- try{FB[n?'signup':'login'](e,p).then(function(){clearTimeout(to)}).catch(function(x){clearTimeout(to);showLogin(errMsg(x),e)})}catch(x){clearTimeout(to);showLogin(String(x),e)}
+ try{FB[n?'signup':'login'](e,p).then(function(){clearTimeout(to)}).catch(function(x){clearTimeout(to);if(n)window.__newShopName='';showLogin(errMsg(x),e)})}catch(x){clearTimeout(to);if(n)window.__newShopName='';showLogin(String(x),e)}
 }
 
 function doReset(){var e=$('#le').value.trim();if(!e){showLogin(L('আগে ইমেইল লিখুন','Enter your email first'));return}FB.reset(e).then(function(){showLogin(L('রিসেট লিংক ইমেইলে পাঠানো হয়েছে','Reset link sent to your email'),e)}).catch(function(x){showLogin(errMsg(x),e)})}
