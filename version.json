@@ -40,7 +40,8 @@
           "bn": "দোকানের ধরন অনুযায়ী লোগো (বার্গার/রেস্টুরেন্ট/মার্ট) ট্যাব, অ্যাপ আইকন ও QR-এ ঠিক করা",
           "en": "Shop-type logo (burger/restaurant/mart) fixed in tab, app icon and QR"
         },
-        "ZATCA settings: status chips + clearer sandbox section; Settings spacing retouch"
+        "ZATCA settings: status chips + clearer sandbox section; Settings spacing retouch",
+        "Auto-update when admin releases (cart empty), one-time notice; header Update button removed"
       ]
     },
     {
@@ -217,6 +218,6 @@
       ]
     }
   ],
-  "build": 2,
+  "build": 3,
   "built": "22 Nov 2026"
 }
