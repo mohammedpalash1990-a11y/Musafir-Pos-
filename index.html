@@ -346,6 +346,28 @@ html.p3 .invg{display:flex!important;flex-direction:column!important;grid-templa
 .s5body .mute{font-size:12.5px;line-height:1.6}
 .s5body input[type=checkbox]{width:22px;height:22px;accent-color:var(--ac)}
 @media(max-width:700px){.s5body .box{padding:16px;border-radius:16px}.s5t h2{font-size:18px}}
+/* Premium Settings page transitions and Admin-style top bar */
+@keyframes posSettingsShell{from{opacity:0}to{opacity:1}}
+@keyframes posSettingsSidebar{from{opacity:0;transform:translate3d(-14px,0,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes posSettingsContent{from{opacity:0;transform:translate3d(0,13px,0) scale(.992)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@keyframes posSettingsHeader{from{opacity:0;transform:translate3d(0,-8px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+.s5{animation:posSettingsShell .34s ease-out both}
+.s5n{animation:posSettingsSidebar .42s cubic-bezier(.2,.75,.25,1) both}
+.s5c{animation:posSettingsContent .42s cubic-bezier(.2,.75,.25,1) both;animation-delay:.04s}
+.s5t{position:sticky;top:0;z-index:4;min-height:66px;background:var(--head);color:#fff;box-shadow:0 8px 24px rgba(0,25,23,.12);animation:posSettingsHeader .36s cubic-bezier(.2,.75,.25,1) both}
+.s5t h2{color:#fff}
+.s5b{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#ffffff18!important;border:1px solid #ffffff35!important;color:#fff!important;min-height:40px;padding:9px 14px!important;transition:background .2s ease,transform .18s ease,box-shadow .2s ease}
+.s5b svg{width:18px;height:18px;stroke:currentColor}
+.s5b:hover,.s5action:hover{background:#ffffff2b!important;box-shadow:0 5px 16px rgba(0,0,0,.14)}
+.s5shop{max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border:1px solid #ffffff35;background:#ffffff12;border-radius:99px;padding:7px 12px;color:#fff;font-size:12px;font-weight:700}
+.s5action{width:40px;min-width:40px;height:40px;min-height:40px;padding:0!important;display:inline-flex;align-items:center;justify-content:center;border:1px solid #ffffff35!important;border-radius:12px!important;background:#ffffff18!important;color:#fff!important}
+.s5action svg{display:block}
+.s5body>*{animation:posSettingsContent .42s cubic-bezier(.2,.75,.25,1) both;animation-delay:calc(var(--motion-i,0)*35ms + .08s)}
+.s5body>.box:nth-child(1){--motion-i:0}.s5body>.box:nth-child(2){--motion-i:1}.s5body>.box:nth-child(3){--motion-i:2}.s5body>.box:nth-child(4){--motion-i:3}.s5body>.box:nth-child(5){--motion-i:4}
+.s5i{transition:background .24s ease,color .24s ease,transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .24s ease}
+.s5i:active{transform:scale(.975)}
+@media(max-width:700px){.s5t{gap:8px;padding:10px 12px;min-height:60px}.s5t h2{font-size:16px;line-height:1.2}.s5shop{display:none}.s5b{padding:8px 10px!important;min-width:40px}.s5b span{display:none}.s5action{width:38px;min-width:38px;height:38px;min-height:38px}.s5body>*{animation-duration:.36s}}
+@media(prefers-reduced-motion:reduce){.s5,.s5n,.s5c,.s5t,.s5body>*,.s5i{animation:none!important;transition:none!important}}
 /* ZATCA + Settings retouch */
 html.r9 .zst{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
 html.r9 .zc{font-size:12px;font-weight:800;padding:6px 11px;border-radius:99px;background:var(--soft);color:var(--mute)}
@@ -1498,7 +1520,7 @@ function setPages(){var a=[['sub','🔑',L('সাবস্ক্রিপশন
  a.push(['rc','🖨',L('রসিদ ও দিনের হিসাব','Receipt & daily accounts'),function(){return rcBox()+accBox()}]);
  a.push(['acct','☁️',L('ব্যাকআপ, ভ্যাট ও লগইন','Backup, VAT & login'),function(){return (relOn(5)?'':verBox())+(S.country=='SA'?'':otpBox())+vSet0()+rpBox()+bkBox()+cntBox()}]);if(relOn(5))a.push(['app','⬆️',L('অ্যাপ আপডেট','App update'),appPage]);return a}
 function qStub(t){return '<div id="qpin" data-t="'+t+'"><div class="mute" style="padding:24px;text-align:center">…</div></div>'}
-function setGo(k){window.SETPG=k;render();scrollTo(0,0);if(/^q_[shbpxd]$/.test(k)&&window.qrOpenSet)setTimeout(function(){qrOpenSet(k.slice(2))},60)}
+function setGo(k){window.SETPG=k;render();var sb=document.querySelector('.s5body');if(sb)sb.scrollTop=0;else scrollTo(0,0);if(/^q_[shbpxd]$/.test(k)&&window.qrOpenSet)setTimeout(function(){qrOpenSet(k.slice(2))},60)}
 function subShort(){if(!SUB||SUB.st=='legacy')return '';var st=subState();if(+SUB.exp>=4102444800000)return L('লাইফটাইম','Lifetime');var ds=SUB.exp?new Date(+SUB.exp).toISOString().slice(0,10):'';return (SUB.st=='trial'?L('ট্রায়াল','Trial')+' · ':'')+L('মেয়াদ ','Valid until ')+ds+(st.d!==undefined?' ('+st.d+L(' দিন',' days')+')':'')}
 function setNavHtml(k,drw){if(relOn(5))return setNavHtml5(k,drw);var em=(typeof CE!='undefined'&&CE)||'';return '<div class="sdp"><span class="s3a">'+esc(String(S.shop||'M').charAt(0).toUpperCase())+'</span><b>'+esc(S.shop||'')+'</b><small>'+esc(em)+'</small></div><div class="sdl">'+setPages().map(function(x){var sb=x[0]=='sub'?subShort():'';return '<button class="sdi'+(k==x[0]?' on':'')+'" onclick="'+(drw?'setDrw(false);':'')+'setGo(\''+x[0]+'\')"><span class="si">'+x[1]+'</span><span class="sl"><b>'+x[2]+'</b>'+(sb?'<small>'+esc(sb)+'</small>':'')+'</span></button>'}).join('')+'</div>'+(relOn(3)?verCard():'')+'<button class="s3o" onclick="FB.out()">⏻ '+L('লগআউট','Log out')+'</button>'}
 function appPage(){var r=+(S&&S.v2rel)||1,H=(window.VJ&&VJ.history)||[],cur=H.filter(function(x){return x.release==r})[0],ft=cur&&cur.features||[];
@@ -1534,7 +1556,7 @@ function setNavHtml5(k,drw){var pg=setPages(),by={};pg.forEach(function(x){by[x[
   h+='<details class="s5g" data-g="'+gi+'"'+(op?' open':'')+' ontoggle="SGO[this.dataset.g]=this.open"><summary>'+g[0]+'</summary>'+it.map(function(x){var p=by[x],sb=x=='sub'?subShort():'';return '<button class="s5i'+(k==x?' on':'')+'" onclick="'+(drw?'setDrw(false);':'')+'setGo(\''+x+'\')"><span class="si">'+setNavIcon(x)+'</span><span class="sl"><b>'+p[2]+'</b>'+(sb?'<small>'+esc(sb)+'</small>':'')+'</span></button>'}).join('')+'</details>'});
  return h+'</div><button class="s3o s5o" onclick="FB.out()">⏻ '+L('লগআউট','Log out')+'</button>'}
 function vSet5(){var pg=setPages(),k=window.SETPG||'shop',cur=pg.filter(function(x){return x[0]==k})[0]||pg.filter(function(x){return x[0]=='shop'})[0]||pg[0];
- return '<div class="s5"><aside class="s5n">'+setNavHtml(cur[0],0)+'</aside><section class="s5c"><div class="s5t"><button class="s5b" onclick="go(\'sell\')">← '+L('ফিরুন','Back')+'</button><h2>'+cur[1]+' '+cur[2]+'</h2><button class="s3m s5m" onclick="setDrw(true)">☰ '+L('মেনু','Menu')+'</button></div><div class="s5body">'+cur[3]()+'</div></section></div>'}
+ return '<div class="s5"><aside class="s5n">'+setNavHtml(cur[0],0)+'</aside><section class="s5c"><div class="s5t"><button class="s5b" onclick="go(\'sell\')" aria-label="'+L('বিক্রিতে ফিরুন','Back to sales')+'">'+setNavIcon('shop')+'<span>'+L('ফিরুন','Back')+'</span></button><h2>'+cur[1]+' '+cur[2]+'</h2><span class="s5shop" title="'+esc(S.shop||'')+'">'+esc(S.shop||'')+'</span><button class="s5action" onclick="togTheme()" aria-label="'+L('থীম পরিবর্তন','Toggle theme')+'" title="'+L('থীম পরিবর্তন','Toggle theme')+'"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button><button class="s3m s5m s5action" onclick="setDrw(true)" aria-label="'+L('মেনু খুলুন','Open menu')+'">☰</button></div><div class="s5body">'+cur[3]()+'</div></section></div>'}
 function setDrw(open){var o=document.getElementById('sdrw');if(!o){o=document.createElement('div');o.id='sdrw';o.className='sdrw';document.body.appendChild(o)}
  if(open===false){o.classList.remove('on');return}
  var k=window.SETPG||setPages()[0][0];o.innerHTML='<div class="sc" onclick="setDrw(false)"></div><div class="sp"><button class="sdx" onclick="setDrw(false)" aria-label="Close">✕</button>'+setNavHtml(k,1)+'</div>';o.classList.add('on')}
