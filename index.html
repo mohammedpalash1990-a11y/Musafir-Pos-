@@ -1969,7 +1969,7 @@ function otpOk(){var o=otpS,c=otpCur().c,v=($('#otpin').value||'').trim();
  if(o.i<o.q.length){o.qr=false;otpFresh();otpView();return}
  otpDone=o.done;otpPass=true;otpS=null;closeDs();window.charge()}
 
-function navHtml(){var tabs=[['sell',L('বিক্রি','Sell'),'sell'],['due',t('dueTab'),'cash'],['recent',L('সাম্প্রতিক','Recent'),'clock'],['prod',L('পণ্য','Items'),'items'],['set',L('সেটিংস','Settings'),'set']];tabs=tabs.filter(function(x){return x[0]=='sell'||x[0]=='recent'||x[0]=='prod'||(x[0]=='due'&&X().due)});return '<nav id="nav">'+tabs.map(function(x){var act=x[0]=='set'?'navSet()':x[0]=='recent'?"window.RCQ='';window.RCALL=false;showRecent()":"go('"+x[0]+"')";return '<button class="'+(view==x[0]?'on':'')+'" onclick="'+act+'">'+I(x[2])+'<span>'+x[1]+'</span></button>'}).join('')+'</nav>'}
+function navHtml(){var tabs=[['sell',L('বিক্রি','Sell'),'sell'],['due',t('dueTab'),'cash'],['dash',L('ড্যাশবোর্ড','Dashboard'),'dash'],['prod',L('পণ্য','Items'),'items'],['set',L('সেটিংস','Settings'),'set']];tabs=tabs.filter(function(x){return x[0]=='sell'||x[0]=='dash'||x[0]=='prod'||(x[0]=='due'&&X().due)});return '<nav id="nav">'+tabs.map(function(x){var act=x[0]=='set'?'navSet()':x[0]=='dash'?"window.DF='today';go('dash')":"go('"+x[0]+"')";return '<button class="'+(view==x[0]?'on':'')+'" onclick="'+act+'">'+I(x[2])+'<span>'+x[1]+'</span></button>'}).join('')+'</nav>'}
 function info0(){var e=$('#ib');if(!e)return;var l=H.length?H.reduce(function(a,x){return x.t>a.t?x:a}):null,d=new Date();
  e.innerHTML='<button class="lb" '+(l?'onclick="showRc('+l.no+')"':'disabled')+'>'+I('print')+' '+L('শেষ ইনভয়েস','Last invoice')+(l?' #'+l.sn+' · '+$$(l.total):'')+'</button>'+(innerWidth<600?navHtml():'')+'<span id="qbs"></span><div style="display:flex;align-items:center;gap:10px"><button class="thm" aria-label="Theme" onclick="togTheme()">'+I(curTheme()=='dark'?'sun':'moon')+'</button><div class="clk"><b>'+d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+'</b><span>'+d.toLocaleDateString(AL()?'ar-SA-u-ca-gregory':S.lang!='en'?'bn-BD':'en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'})+'</span></div></div>';if(window.qbPlace)window.qbPlace()}
 
@@ -2500,7 +2500,7 @@ function pms(){return(S.country=='SA'?['Cash','Mada']:['Cash','bKash','Nagad','R
 function shown(){return $('#pp').classList.contains('show')}
 
 /* ---- বাঁ পাশের অর্ডার প্যানেল (কম্পিউটার): শুধু আইটেম, মোট, ডিসকাউন্ট, পেমেন্ট বাটন ---- */
-(function(){var e=document.getElementById('today');if(e){e.style.cursor='pointer';e.onclick=function(){window.DF='today';go('dash')}}})();
+(function(){var e=document.getElementById('today');if(e){e.style.cursor='pointer';e.onclick=function(){window.RCQ='';window.RCALL=false;showRecent()}}})();
 window.cartSide=function(){
  cleanCart();var ids=Object.keys(cart),c=calc();if(!ids.length)pays=null;
  var h='<div class="cw"><div class="cl">'+orBar()+'<div class="oh"><b>'+L('অর্ডার','Order')+' #'+nextSn()+'</b><span>'+day(Date.now())+' · '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+'</span></div>';
