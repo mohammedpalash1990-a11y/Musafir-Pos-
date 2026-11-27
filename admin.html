@@ -117,7 +117,7 @@ header button.gold{background:linear-gradient(135deg,#f0d08c,var(--gold));box-sh
 
 
 /* motion */
-@keyframes rise{from{opacity:0;transform:translateY(10px);filter:blur(2px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes rise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
 @keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
 @keyframes ringfill{from{stroke-dashoffset:var(--c)}}
 #main.play .ovh,#main.play .ovc,#main.play .ovr .panel{animation:rise .6s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*70ms)}
@@ -153,32 +153,69 @@ button{transition:transform .12s,box-shadow .15s,background .15s}button:active{t
 @media(prefers-reduced-motion:reduce){.ovc{transition:none}.hero .mono.lg{animation:none}button,.acc{transition:none}}
 @media(max-width:820px){.main{padding:16px 14px 90px}h2.pt{font-size:23px}}
 
-/* Refined page motion — soft-focus cascade, tuned to the theme wipe */
+/* Signature motion system — quiet, responsive and consistent */
 @keyframes adminPageReveal{
- from{opacity:0;transform:translateY(10px);filter:blur(2px)}
- to{opacity:1;transform:translateY(0);filter:blur(0)}
+ from{opacity:0;transform:translate3d(0,9px,0)}
+ to{opacity:1;transform:translate3d(0,0,0)}
 }
-#main.page-enter>*{
- animation:adminPageReveal .48s cubic-bezier(.22,.75,.25,1) both;
- animation-delay:calc(var(--motion-i,0)*24ms);
- will-change:opacity,transform,filter
+@keyframes adminModalReveal{
+ from{opacity:0;transform:translate3d(0,12px,0) scale(.975)}
+ to{opacity:1;transform:translate3d(0,0,0) scale(1)}
 }
-.nav{transition:background .32s ease,color .32s ease,box-shadow .32s ease}
+@keyframes adminNavIcon{
+ 0%{transform:scale(.92)}
+ 65%{transform:scale(1.08)}
+ 100%{transform:scale(1)}
+}
+#main.page-enter>*,
+#main.page-enter .st,
+#main.page-enter .ovc,
+#main.page-enter .acc,
+#main.page-enter .panel,
+#main.page-enter .hrow,
+#main.page-enter .plan,
+#main.page-enter .setcard{
+ animation:adminPageReveal .46s cubic-bezier(.2,.75,.25,1) both;
+ animation-delay:calc(var(--motion-i,0)*22ms);
+}
+.nav{transition:background .3s ease,color .3s ease,box-shadow .3s ease}
 .nav:before{content:none}
 .nav:hover{transform:none}
-.nav .i{transition:background .32s ease,box-shadow .32s ease}
+.nav .i{transition:background .3s ease,box-shadow .3s ease,color .3s ease}
+.nav.on .i{animation:adminNavIcon .36s cubic-bezier(.2,.8,.2,1) both}
+.side{transition:transform .34s cubic-bezier(.22,.8,.25,1),box-shadow .34s ease}
+.scrim{opacity:0;transition:opacity .28s ease}
+.scrim.on{opacity:1}
+.mo .mb{animation:adminModalReveal .28s cubic-bezier(.2,.75,.25,1) both}
 .acc,.panel,.hrow,.plan,.setcard,.st,.ovc{transition:box-shadow .28s ease,border-color .28s ease,background .28s ease}
 .acc:hover,.panel:hover,.hrow:hover,.plan:hover,.setcard:hover,.st:hover,.ovc:hover{transform:none;box-shadow:0 14px 30px -24px color-mix(in srgb,var(--ink) 30%,transparent)}
 header{position:sticky}
+button{transition:background .2s ease,border-color .2s ease,box-shadow .2s ease,color .2s ease,transform .16s cubic-bezier(.2,.8,.2,1)}
+button:active{transform:scale(.975)}
 button:focus-visible,.nav:focus-visible{outline:3px solid color-mix(in srgb,var(--gold) 75%,transparent);outline-offset:3px}
 @media(max-width:820px){
  #main{padding:16px 14px 90px}
- #main.page-enter>*{animation-duration:.4s;animation-delay:calc(var(--motion-i,0)*16ms)}
+ #main.page-enter>*,
+ #main.page-enter .st,
+ #main.page-enter .ovc,
+ #main.page-enter .acc,
+ #main.page-enter .panel,
+ #main.page-enter .hrow,
+ #main.page-enter .plan,
+ #main.page-enter .setcard{animation-duration:.4s;animation-delay:calc(var(--motion-i,0)*15ms)}
 }
 @media(hover:none){.acc:hover,.panel:hover,.hrow:hover,.plan:hover,.setcard:hover,.st:hover,.ovc:hover{transform:none;box-shadow:var(--sh)}}
 @media(prefers-reduced-motion:reduce){
- #main.page-enter>*{animation:none!important;filter:none!important;will-change:auto}
- .nav,.nav .i,.st,.panel,.hrow,.plan,.setcard,.acc,.ovc{transition:none}
+ #main.page-enter>*,
+ #main.page-enter .st,
+ #main.page-enter .ovc,
+ #main.page-enter .acc,
+ #main.page-enter .panel,
+ #main.page-enter .hrow,
+ #main.page-enter .plan,
+ #main.page-enter .setcard,
+ .nav.on .i,.mo .mb{animation:none!important}
+ .side,.scrim,.nav,.nav .i,.st,.panel,.hrow,.plan,.setcard,.acc,.ovc,button{transition:none!important}
 }
 </style></head><body>
 <header><button id="menu" onclick="window.sb()">☰</button><div class="mono"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g transform="translate(32 33) scale(.056) translate(-631 -469)"><polygon points="532,262 604,404 470,676 304,676" fill="#C4903A" stroke="#C4903A" stroke-width="16" stroke-linejoin="round"/><polygon points="720,262 958,676 500,676" fill="#0A4540" stroke="#0A4540" stroke-width="16" stroke-linejoin="round"/></g></svg></div><div class="brand"><b>Musafir POS</b><small>Admin Console</small></div><span class="sp"></span><button id="thm" onclick="window.thm(event)" aria-label="Switch light or dark theme" title="Light / dark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button><span class="who" id="who"></span><button id="bt" class="gold">Sign in with Google</button></header>
@@ -212,7 +249,7 @@ const NAV=[['ov','🏠','Overview'],['acc','📋','Accounts'],['health','🩺','
 const SETS=[['set-contact','📞','Contact'],['set-price','💰','Price & trial'],['set-brand','🏷️','Brand & lock message'],['set-data','📤','Data export'],['set-sec','🔒','Security']];
 function sideH(){const inSet=pg.startsWith('set');return NAV.map(n=>'<button class="nav '+((n[0]=='set'?inSet&&pg=='set':pg==n[0])?'on':'')+'" onclick="window.go(\''+n[0]+'\')"><span class="i">'+n[1]+'</span>'+n[2]+(n[0]=='feat'&&updAvail()?' <span style="background:var(--ac,#2aa58f);color:#fff;border-radius:99px;font-size:10px;font-weight:800;padding:2px 7px;margin-inline-start:6px">NEW</span>':'')+'</button>').join('')}
 function draw(){$('#side').innerHTML=sideH();$('#side').classList.remove('open');$('#scrim').classList.remove('on');
- const p=pg=='ov'?ovH():pg=='acc'?accH():pg=='health'?healthH():pg=='plans'?plansH():pg=='pay'?payH():pg=='ins'?insH():pg=='feat'?featH():pg=='set'?setMenu():setPage();$('#main').innerHTML=p;window.__pageMotion=1;afterDraw()}
+ const p=pg=='ov'?ovH():pg=='acc'?accH():pg=='health'?healthH():pg=='plans'?plansH():pg=='pay'?payH():pg=='ins'?insH():pg=='feat'?featH():pg=='set'?setMenu():setPage();$('#main').innerHTML=p;afterDraw()}
 function accH(){const all=rows.map(r=>({r,s:stOf(r)})),cnt=k=>all.filter(x=>x.s.k==k).length;
  return '<h2 class="pt">Accounts</h2><div class="stats"><div class="st"><b>'+all.length+'</b><span>Shops</span></div><div class="st"><b>'+(cnt('active')+cnt('trial')+cnt('life')+cnt('expiring'))+'</b><span>Live</span></div><div class="st"><b>'+cnt('expiring')+'</b><span>Ending ≤30d</span></div><div class="st"><b>'+(cnt('expired')+cnt('suspended'))+'</b><span>Locked / expired</span></div>'+(cnt('legacy')?'<div class="st"><b>'+cnt('legacy')+'</b><span>No plan set</span></div>':'')+'</div>'
  +'<div class="tools"><input id="q" placeholder="Search email, shop or id" value="'+esc(q)+'" oninput="window.sq(this.value)"><button onclick="window.reload()">Refresh</button>'+(cnt('legacy')?'<button class="pri" onclick="window.legacyYear()">Give 1 year to '+cnt('legacy')+' shops</button>':'')+'</div>'
