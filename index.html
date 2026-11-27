@@ -776,7 +776,7 @@ function pendC(){if(LPC)return LPC;var v=null;try{v=localStorage.getItem('pos_pc
 function lpLM(){try{return !!localStorage.getItem('pos_pl')}catch(e){return false}}
 function lpCountry(c){LPC=c;try{localStorage.setItem('pos_pc',c)}catch(e){}showLogin()}
 function lpLang(l){S.lang=l;try{localStorage.setItem('pos_pl',l)}catch(e){}try{lsave()}catch(e){}showLogin()}
-function newAcct(){if(window.__newShopName){S.shop=window.__newShopName;window.__newShopName='';window.__signupShopDraft=''}var c=pendC();S.country=c;var o=X();if(c=='SA')o.due=false;S.x=o;if(!lpLM())S.lang='en';pays=null}
+function newAcct(){if(window.__newShopName){S.shop=window.__newShopName;window.__newShopName='';window.__signupShopDraft='';try{sessionStorage.removeItem('pos_signup_shop_draft')}catch(e){}}var c=pendC();S.country=c;var o=X();if(c=='SA')o.due=false;S.x=o;if(!lpLM())S.lang='en';pays=null}
 
 function AL(){return S.lang=='ar'||S.lang=='abi'}
 var _ro=null;function riyalOK(){if(_ro!==null)return _ro;try{var c=document.createElement('canvas').getContext('2d');c.font='32px sans-serif';var a=c.measureText('\u20C1').width;_ro=a>0&&a!=c.measureText('\uFFFF').width&&a!=c.measureText('\uE000').width}catch(e){_ro=false}return _ro}
@@ -1050,7 +1050,7 @@ window.addEventListener('load',function(){subLoadCache();subApply()});
 /* ===== Multi-shop (same email) & Supermarket mode ===== */
 var MART=window.SHOPK==='mart';
 function shopPick(){var k=window.SHOPK||'';return '<div style="display:flex;gap:8px;margin:0 0 12px"><button class="'+(k?'':'pri')+'" style="flex:1;padding:10px 6px" onclick="switchShop(\'\')">☕ '+L('ক্যাফে / রেস্টুরেন্ট / ফাস্ট ফুড','Cafe / Restaurant / Fast food')+'</button><button class="'+(k=='mart'?'pri':'')+'" style="flex:1;padding:10px 6px" onclick="switchShop(\'mart\')">🛒 '+L('সুপারমার্কেট / বাকালা','Supermarket / Grocery')+'</button></div>'}
-function pickKind(k){if(k==='mart'){switchShop('mart');return}if(window.SHOPK==='mart'){try{localStorage.setItem('pos_kind',k)}catch(e){}switchShop('');return}S.kind=k;save();try{tabBrand()}catch(e){}showLogin()}
+function pickKind(k){try{var sn=$('#lsn');if(sn)sessionStorage.setItem('pos_signup_shop_draft',sn.value)}catch(e){}if(k==='mart'){switchShop('mart');return}if(window.SHOPK==='mart'){try{localStorage.setItem('pos_kind',k)}catch(e){}switchShop('');return}S.kind=k;save();try{tabBrand()}catch(e){}showLogin()}
 function switchShop(k){if((window.SHOPK||'')===k)return;try{localStorage.setItem('pos_shop',k)}catch(e){}location.reload()}
 var UNITS={pc:'pc',kg:'kg',g:'g',l:'L',pack:'pack'};
 function unitL(u){return UNITS[u]||'pc'}
@@ -1164,10 +1164,10 @@ function openInvoice(no,autoPrint){
 /* P9 login refresh gate + full-screen video-reference onboarding */
 html.pos-auth-pending body>header,html.pos-auth-pending body>#ib,html.pos-auth-pending body>#sync,html.pos-auth-pending body>#m,html.pos-auth-pending body>#bar{visibility:hidden!important}
 html.pos-auth-pending #lgn{display:flex!important;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;background:#061c18;padding:24px}
-html.pos-auth-pending #lgn:before{content:'Checking your session';color:#e9e1d2;font:600 13px/1.4 'Plus Jakarta Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase}
+html.pos-auth-pending #lgn #lb{display:none!important}html.pos-auth-pending #lgn:before{content:'Checking your session';color:#e9e1d2;font:600 13px/1.4 'Plus Jakarta Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase}
 #lgn.show{position:fixed;inset:0;z-index:9999;display:flex;align-items:stretch;justify-content:stretch;padding:0;background:#061c18;overflow:auto}
 #lgn #lb{display:flex;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;overflow:auto}
-#lgn .lgnHero{width:100%;height:100%;min-height:100%;max-width:none;margin:0;padding:0;border:0;border-radius:0;background:#f6f1e8;color:#1e241f;box-shadow:none}
+#lgn .lgnHero{width:100%;height:100%;min-height:100%;max-width:none;margin:0;padding:0;border:0;border-radius:0;background:#f6f1e8;color:#1e241f;box-shadow:none}#lgn .lgnHero>p{display:none!important}
 #lgn .lgS{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);width:100%;height:100%;min-height:100%;overflow:hidden}
 #lgn .lgF{order:0;justify-content:center;gap:clamp(10px,1.7vh,18px);min-width:0;padding:clamp(24px,5.5vw,88px);background:#f6f1e8}
 #lgn .lgF .bn{font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:#15513f}
@@ -2036,6 +2036,7 @@ Object.assign(AR,{'Create account':'إنشاء حساب','Sign in':'تسجيل �
 function lpMode(m){window.__lgm=m;showLogin()}
 function showLogin(msg,em){
  var g=$('#lgn'),was=g.classList.contains('show'),e0=$('#le'),p0=$('#lp'),kp=(was&&p0&&msg===undefined)?p0.value:'',sn0=$('#lsn');
+ try{if(!window.__signupShopDraft)window.__signupShopDraft=sessionStorage.getItem('pos_signup_shop_draft')||''}catch(e){}
  if(sn0&&sn0.value)window.__signupShopDraft=sn0.value;
  if(em===undefined&&was&&e0)em=e0.value;
  g.classList.add('show');g.dir=AL()?'rtl':'ltr';if(!was){g.classList.remove('login-enter');void g.offsetWidth;g.classList.add('login-enter')}
@@ -2048,7 +2049,7 @@ function showLogin(msg,em){
  +'<div class="bn">'+bLogo(40)+'<span>'+esc(BRAND)+'</span></div>'
  +'<h2>'+(up?L('নতুন একাউন্ট','Create account'):L('লগইন','Sign in'))+'</h2>'
  +(msg?'<p class="err">'+esc(msg)+'</p>':'')+types
- +(up?'<div class="grp"><b>Shop Name</b><input id="lsn" dir="auto" type="text" autocomplete="organization" maxlength="80" value="'+esc(window.__signupShopDraft||'')+'" oninput="window.__signupShopDraft=this.value"></div>':'')
+ +(up?'<div class="grp"><b>Shop Name</b><input id="lsn" dir="auto" type="text" autocomplete="organization" maxlength="80" value="'+esc(window.__signupShopDraft||'')+'" oninput="window.__signupShopDraft=this.value;try{sessionStorage.setItem('pos_signup_shop_draft',this.value)}catch(e){}"></div>':'')
  +'<div class="grp"><b>Email Address</b><input id="le" dir="ltr" type="email" autocomplete="email" value="'+esc(em||'')+'"></div>'
  +'<div class="grp"><b>'+L('পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)','Password (min 6 characters)')+'</b><input id="lp" dir="ltr" type="password" autocomplete="'+(up?'new-password':'current-password')+'" onkeydown="if(event.key==\'Enter\')doAuth('+(up?1:0)+')"></div>'
  +'<button class="pri lgGo" onclick="doAuth('+(up?1:0)+')">'+(up?L('একাউন্ট খুলুন','Create account'):L('লগইন','Sign in'))+'</button>'
