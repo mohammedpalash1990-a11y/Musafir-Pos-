@@ -117,7 +117,7 @@ header button.gold{background:linear-gradient(135deg,#f0d08c,var(--gold));box-sh
 
 
 /* motion */
-@keyframes rise{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(10px);filter:blur(2px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
 @keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
 @keyframes ringfill{from{stroke-dashoffset:var(--c)}}
 #main.play .ovh,#main.play .ovc,#main.play .ovr .panel{animation:rise .6s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*70ms)}
@@ -153,24 +153,31 @@ button{transition:transform .12s,box-shadow .15s,background .15s}button:active{t
 @media(prefers-reduced-motion:reduce){.ovc{transition:none}.hero .mono.lg{animation:none}button,.acc{transition:none}}
 @media(max-width:820px){.main{padding:16px 14px 90px}h2.pt{font-size:23px}}
 
-/* Subtle page transitions — match the light/dark theme transition */
-@keyframes adminPageFade{from{opacity:0}to{opacity:1}}
-#main.page-enter>*{animation:adminPageFade .42s cubic-bezier(.65,0,.35,1) both;animation-delay:calc(var(--motion-i,0)*18ms)}
-.nav{transition:background .28s ease,color .28s ease,box-shadow .28s ease}
+/* Refined page motion — soft-focus cascade, tuned to the theme wipe */
+@keyframes adminPageReveal{
+ from{opacity:0;transform:translateY(10px);filter:blur(2px)}
+ to{opacity:1;transform:translateY(0);filter:blur(0)}
+}
+#main.page-enter>*{
+ animation:adminPageReveal .48s cubic-bezier(.22,.75,.25,1) both;
+ animation-delay:calc(var(--motion-i,0)*24ms);
+ will-change:opacity,transform,filter
+}
+.nav{transition:background .32s ease,color .32s ease,box-shadow .32s ease}
 .nav:before{content:none}
 .nav:hover{transform:none}
-.nav .i{transition:background .28s ease}
-.acc,.panel,.hrow,.plan,.setcard,.st,.ovc{transition:box-shadow .25s ease,border-color .25s ease,background .25s ease}
+.nav .i{transition:background .32s ease,box-shadow .32s ease}
+.acc,.panel,.hrow,.plan,.setcard,.st,.ovc{transition:box-shadow .28s ease,border-color .28s ease,background .28s ease}
 .acc:hover,.panel:hover,.hrow:hover,.plan:hover,.setcard:hover,.st:hover,.ovc:hover{transform:none;box-shadow:0 14px 30px -24px color-mix(in srgb,var(--ink) 30%,transparent)}
 header{position:sticky}
 button:focus-visible,.nav:focus-visible{outline:3px solid color-mix(in srgb,var(--gold) 75%,transparent);outline-offset:3px}
 @media(max-width:820px){
  #main{padding:16px 14px 90px}
- #main.page-enter>*{animation-duration:.42s;animation-delay:calc(var(--motion-i,0)*14ms)}
+ #main.page-enter>*{animation-duration:.4s;animation-delay:calc(var(--motion-i,0)*16ms)}
 }
 @media(hover:none){.acc:hover,.panel:hover,.hrow:hover,.plan:hover,.setcard:hover,.st:hover,.ovc:hover{transform:none;box-shadow:var(--sh)}}
 @media(prefers-reduced-motion:reduce){
- #main.page-enter>*{animation-duration:.2s;animation-delay:0ms}
+ #main.page-enter>*{animation:none!important;filter:none!important;will-change:auto}
  .nav,.nav .i,.st,.panel,.hrow,.plan,.setcard,.acc,.ovc{transition:none}
 }
 </style></head><body>
