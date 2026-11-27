@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="bn"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>(function(){try{if(!new URLSearchParams(location.search).has("r"))document.documentElement.classList.add("pos-auth-pending")}catch(e){document.documentElement.classList.add("pos-auth-pending")}})()</script>
 <script>(function(){var K='';try{K=localStorage.getItem('pos_shop')||''}catch(e){}window.SHOPK=K;if(!K)return;try{document.documentElement.classList.add('mart')}catch(e){}var G={pos_shop:1,pos_theme:1,pos_thm:1,pos_night:1,pos_fsz:1,pos_lg:1,pos_uid:1,pos_pc:1,pos_pl:1,pos_kind:1},P=Storage.prototype,g=P.getItem,s=P.setItem,r=P.removeItem;function m(k){return(typeof k==='string'&&k.indexOf('pos_')===0&&!G[k])?k+'@'+K:k}P.getItem=function(k){return g.call(this,this===localStorage?m(k):k)};P.setItem=function(k,v){return s.call(this,this===localStorage?m(k):k,v)};P.removeItem=function(k){return r.call(this,this===localStorage?m(k):k)}})()</script>
 <title>Musafir Cafe - POS</title>
 <link rel="manifest" href="manifest.json?v=2">
@@ -775,7 +776,7 @@ function pendC(){if(LPC)return LPC;var v=null;try{v=localStorage.getItem('pos_pc
 function lpLM(){try{return !!localStorage.getItem('pos_pl')}catch(e){return false}}
 function lpCountry(c){LPC=c;try{localStorage.setItem('pos_pc',c)}catch(e){}showLogin()}
 function lpLang(l){S.lang=l;try{localStorage.setItem('pos_pl',l)}catch(e){}try{lsave()}catch(e){}showLogin()}
-function newAcct(){var c=pendC();S.country=c;var o=X();if(c=='SA')o.due=false;S.x=o;if(!lpLM())S.lang='en';pays=null}
+function newAcct(){if(window.__newShopName){S.shop=window.__newShopName;window.__newShopName='';window.__signupShopDraft=''}var c=pendC();S.country=c;var o=X();if(c=='SA')o.due=false;S.x=o;if(!lpLM())S.lang='en';pays=null}
 
 function AL(){return S.lang=='ar'||S.lang=='abi'}
 var _ro=null;function riyalOK(){if(_ro!==null)return _ro;try{var c=document.createElement('canvas').getContext('2d');c.font='32px sans-serif';var a=c.measureText('\u20C1').width;_ro=a>0&&a!=c.measureText('\uFFFF').width&&a!=c.measureText('\uE000').width}catch(e){_ro=false}return _ro}
@@ -1159,7 +1160,60 @@ function rcHtml(s){  var r=Object.assign(RD(),{qr:true}),id=invCode(s),qrT='INV:
 function openInvoice(no,autoPrint){
  var s=H.find(function(h){return h.no==no});if(!s)return;
  var w=window.open('','_blank');if(!w){toast(L('Invoice window blocked','Invoice window was blocked'));return}
- w.document.open();w.document.write('<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(S.shop)+' · Invoice #'+esc(s.sn)+'</title><style>'+sarCss()+pgStyle()+'body{margin:0;padding:20px;background:#f3f4f6;font:15px "SAR",Arial,sans-serif;color:#111}.page{max-width:520px;margin:0 auto}.rcpt{background:#fff;color:#000;font:700 15px/1.4 "SAR",Arial,sans-serif;padding:18px;border:1px solid #ddd}.rs{display:block;text-align:center;font-size:25px}.rm,.rt,.ft{display:flex;justify-content:space-between;gap:8px;padding:5px 0;border-top:1px dashed #777}.rcpt table{width:100%;border-collapse:collapse}.rcpt td{padding:5px 2px}.rcpt td.q{text-align:center}.rcpt td.a{text-align:right}.rt.g{font-size:22px;font-weight:bold;border-top:2px solid #111}.ft{display:block;text-align:center}.qrw svg{width:110px;height:110px}.cid{font:12px "SAR",monospace;text-align:center;margin-top:8px}.xl{text-align:center;margin-top:8px}.actions{display:flex;gap:10px;margin:14px 0}.actions button{flex:1;padding:12px;border:0;border-radius:8px;font-weight:bold;cursor:pointer}.print{background:#187b36;color:#fff}.rl{display:flex;justify-content:center;margin-bottom:6px}.rl svg{height:48px;width:auto}.rl img{height:56px;max-width:70%;width:auto}.rhd{text-align:center;font-size:13px;line-height:1.3}@media print{@page{margin:0}body{padding:0;background:#fff}.actions{display:none}.page{max-width:none}.rcpt{border:0;padding:0 2mm 1.5mm;font-size:12px;line-height:1.22;font-weight:800}.rl svg{height:9mm}.rs{font-size:15px;margin:0}.rm{font-size:11px;padding:.5mm 0}.rcpt td,.rt,.rcpt th{font-size:12px;padding:.25mm 0}.rt.g{font-size:15px}.ft svg,.qrw svg{width:22mm;height:22mm}.xl,.cid{font-size:10.5px;margin-top:1mm}}</style></head><body><main class="page">'+rcHtml(s)+'<div class="actions"><button class="print" onclick="window.print()">'+t('print')+'</button><button onclick="window.close()">'+t('done')+'</button></div></main></body></html>');w.document.close();if(autoPrint)setTimeout(function(){try{w.focus();w.print()}catch(e){}},500)
+ w.document.open();w.document.write('<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(S.shop)+' · Invoice #'+esc(s.sn)+'</title><style>'+sarCss()+pgStyle()+'body{margin:0;padding:20px;background:#f3f4f6;font:15px "SAR",Arial,sans-serif;color:#111}.page{max-width:520px;margin:0 auto}.rcpt{background:#fff;color:#000;font:700 15px/1.4 "SAR",Arial,sans-serif;padding:18px;border:1px solid #ddd}.rs{display:block;text-align:center;font-size:25px}.rm,.rt,.ft{display:flex;justify-content:space-between;gap:8px;padding:5px 0;border-top:1px dashed #777}.rcpt table{width:100%;border-collapse:collapse}.rcpt td{padding:5px 2px}.rcpt td.q{text-align:center}.rcpt td.a{text-align:right}.rt.g{font-size:22px;font-weight:bold;border-top:2px solid #111}.ft{display:block;text-align:center}.qrw svg{width:110px;height:110px}.cid{font:12px "SAR",monospace;text-align:center;margin-top:8px}.xl{text-align:center;margin-top:8px}.actions{display:flex;gap:10px;margin:14px 0}.actions button{flex:1;padding:12px;border:0;border-radius:8px;font-weight:bold;cursor:pointer}.print{background:#187b36;color:#fff}.rl{display:flex;justify-content:center;margin-bottom:6px}.rl svg{height:48px;width:auto}.rl img{height:56px;max-width:70%;width:auto}.rhd{text-align:center;font-size:13px;line-height:1.3}@media print{@page{margin:0}body{padding:0;background:#fff}.actions{display:none}.page{max-width:none}.rcpt{border:0;padding:0 2mm 1.5mm;font-size:12px;line-height:1.22;font-weight:800}.rl svg{height:9mm}.rs{font-size:15px;margin:0}.rm{font-size:11px;padding:.5mm 0}.rcpt td,.rt,.rcpt th{font-size:12px;padding:.25mm 0}.rt.g{font-size:15px}.ft svg,.qrw svg{width:22mm;height:22mm}.xl,.cid{font-size:10.5px;margin-top:1mm}}
+/* P9 login refresh gate + full-screen video-reference onboarding */
+html.pos-auth-pending body>header,html.pos-auth-pending body>#ib,html.pos-auth-pending body>#sync,html.pos-auth-pending body>#m,html.pos-auth-pending body>#bar{visibility:hidden!important}
+html.pos-auth-pending #lgn{display:flex!important;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;background:#061c18;padding:24px}
+html.pos-auth-pending #lgn:before{content:'Checking your session';color:#e9e1d2;font:600 13px/1.4 'Plus Jakarta Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase}
+#lgn.show{position:fixed;inset:0;z-index:9999;display:flex;align-items:stretch;justify-content:stretch;padding:0;background:#061c18;overflow:auto}
+#lgn #lb{display:flex;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;overflow:auto}
+#lgn .lgnHero{width:100%;height:100%;min-height:100%;max-width:none;margin:0;padding:0;border:0;border-radius:0;background:#f6f1e8;color:#1e241f;box-shadow:none}
+#lgn .lgS{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);width:100%;height:100%;min-height:100%;overflow:hidden}
+#lgn .lgF{order:0;justify-content:center;gap:clamp(10px,1.7vh,18px);min-width:0;padding:clamp(24px,5.5vw,88px);background:#f6f1e8}
+#lgn .lgF .bn{font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:#15513f}
+#lgn .lgF .bn svg{width:38px;height:38px;filter:none}
+#lgn .lgF h2{font-size:clamp(28px,3vw,42px);line-height:1.1;letter-spacing:-.045em;color:#19251f}
+#lgn .lgF .grp{width:100%;max-width:440px}
+#lgn .lgF .grp>b{font-size:11px;letter-spacing:.04em;color:#716e62;text-transform:none}
+#lgn .lgF .grp input,#lgn .lgF .grp select{height:48px;border:0;border-bottom:1px solid #bdb7a9;border-radius:0;background:transparent;padding:0 2px;color:#19251f;box-shadow:none}
+#lgn .lgF .grp input:focus,#lgn .lgF .grp select:focus{border-bottom:2px solid #b58b43;outline:none}
+#lgn .lgF .grp select{appearance:auto;cursor:pointer}
+#lgn .lgGo{width:100%;max-width:440px;height:50px;margin-top:8px;border:0;border-radius:999px;background:linear-gradient(110deg,#0e4b3b,#062c28);box-shadow:0 10px 24px #062c282c;color:#fff;transition:transform .22s ease,box-shadow .22s ease,filter .22s ease}
+#lgn .lgGo:hover{transform:translateY(-2px);box-shadow:0 14px 28px #062c2838;filter:brightness(1.08)}
+#lgn .lgF .sw{max-width:440px;flex-wrap:wrap;border-top:1px solid #e4ddcf;color:#716e62;font-size:12px}
+#lgn .lgF .lnk{color:#14543b}
+#lgn .lgL{max-width:440px}
+#lgn .lgL button{color:#777365}
+#lgn .lgL button.on{background:#dce9df;color:#14543b}
+#lgn .lgP{order:1;display:flex;justify-content:center;gap:18px;padding:clamp(36px,7vw,104px);background:radial-gradient(ellipse at 78% 18%,#1c604a 0,transparent 42%),linear-gradient(145deg,#0b3d32,#041e1c);color:#f7f1e6;clip-path:polygon(9% 0,100% 0,100% 100%,0 100%)}
+#lgn .lgP:before{display:none}
+#lgn .lgP:after{content:' ';position:absolute;inset:0;pointer-events:none;background:linear-gradient(130deg,transparent 35%,#ffffff08 35.2%,transparent 35.5%)}
+#lgn .lgP h3{max-width:520px;font:400 clamp(34px,4.4vw,62px)/1.04 Georgia,'Times New Roman',serif;letter-spacing:-.035em;color:#f8f1e5}
+#lgn .lgP p{max-width:330px;color:#c4d9ce;font-size:clamp(13px,1.2vw,16px);line-height:1.7}
+#lgn .lgS.is-signup .lgP{order:0;clip-path:polygon(0 0,100% 0,91% 100%,0 100%)}
+#lgn .lgS.is-signup .lgF{order:1}
+#lgn.login-enter .lgS.is-signin .lgF{animation:posFormIn .55s cubic-bezier(.2,.75,.25,1) both}
+#lgn.login-enter .lgS.is-signin .lgP{animation:posPanelIn .7s cubic-bezier(.2,.75,.25,1) both}
+#lgn.login-enter .lgS.is-signup .lgF{animation:posFormIn .55s cubic-bezier(.2,.75,.25,1) both}
+#lgn.login-enter .lgS.is-signup .lgP{animation:posPanelIn .7s cubic-bezier(.2,.75,.25,1) both}
+@keyframes posFormIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes posPanelIn{from{opacity:.55;transform:translateX(22px)}to{opacity:1;transform:translateX(0)}}
+@media(max-width:760px){
+ #lgn.show{padding:0}
+ #lgn #lb{height:100dvh;min-height:100dvh;overflow:auto}
+ #lgn .lgnHero{height:auto;min-height:100dvh}
+ #lgn .lgS{height:auto;min-height:100dvh;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(160px,25dvh) auto;overflow:visible}
+ #lgn .lgP,#lgn .lgS.is-signup .lgP{order:0;min-height:160px;padding:28px 24px;clip-path:none;gap:8px}
+ #lgn .lgP h3{font-size:clamp(29px,8vw,40px)}
+ #lgn .lgP p{font-size:12px;line-height:1.45}
+ #lgn .lgF,#lgn .lgS.is-signup .lgF{order:1;justify-content:flex-start;padding:26px clamp(22px,7vw,38px) calc(30px + env(safe-area-inset-bottom,0px));gap:12px}
+ #lgn .lgF h2{font-size:30px}
+ #lgn .lgF .grp{max-width:none}
+ #lgn .lgGo,#lgn .lgF .sw,#lgn .lgL{max-width:none}
+}
+@media(max-height:620px) and (min-width:761px){#lgn #lb{overflow:auto}#lgn .lgF{justify-content:flex-start;padding-top:22px;padding-bottom:22px}#lgn .lgS{min-height:620px}}
+@media(prefers-reduced-motion:reduce){#lgn.login-enter .lgS .lgF,#lgn.login-enter .lgS .lgP{animation:none!important}#lgn .lgGo{transition:none}}
+</style></head><body><main class="page">'+rcHtml(s)+'<div class="actions"><button class="print" onclick="window.print()">'+t('print')+'</button><button onclick="window.close()">'+t('done')+'</button></div></main></body></html>');w.document.close();if(autoPrint)setTimeout(function(){try{w.focus();w.print()}catch(e){}},500)
 }
 function printSale(no){openInvoice(no,true)}
 function showRc(no){
@@ -1981,25 +2035,21 @@ function ask(msg,fn,yes){var e=$('#cf');if(!e){e=document.createElement('div');e
 Object.assign(AR,{'Create account':'إنشاء حساب','Sign in':'تسجيل الدخول','Coffee shop':'مقهى','Restaurant':'مطعم','Fast food':'وجبات سريعة','Already have an account?':'لديك حساب بالفعل؟','New here?':'جديد هنا؟','Start your shop':'ابدأ متجرك','Welcome back':'مرحبًا بعودتك','One account for every sale, every device you own.':'حساب واحد لكل عملية بيع ولكل أجهزتك.','Your sales and stock are exactly where you left them.':'مبيعاتك ومخزونك كما تركتها تمامًا.','Country (cannot be changed later)':'الدولة (لا يمكن تغييرها لاحقًا)','This language becomes your shop language. You can change it later in Settings.':'ستكون هذه لغة متجرك ويمكنك تغييرها لاحقًا من الإعدادات.'});
 function lpMode(m){window.__lgm=m;showLogin()}
 function showLogin(msg,em){
- var g=$('#lgn'),was=g.classList.contains('show'),e0=$('#le'),p0=$('#lp'),kp=(was&&p0&&msg===undefined)?p0.value:'';
+ var g=$('#lgn'),was=g.classList.contains('show'),e0=$('#le'),p0=$('#lp'),kp=(was&&p0&&msg===undefined)?p0.value:'',sn0=$('#lsn');
+ if(sn0&&sn0.value)window.__signupShopDraft=sn0.value;
  if(em===undefined&&was&&e0)em=e0.value;
  g.classList.add('show');g.dir=AL()?'rtl':'ltr';if(!was){g.classList.remove('login-enter');void g.offsetWidth;g.classList.add('login-enter')}
  var up=window.__lgm=='up',k=window.SHOPK||'',c=pendC(),LG=[['en','English'],['bn','বাংলা'],['ar','العربية']],
  chip=function(on,fn,ic,tx){return '<button type="button" class="lpk lpq'+(on?' on':'')+'" onclick="'+fn+'">'+ic+'<span>'+tx+'</span></button>'};
- var types=up?'<div class="grp"><b>'+L('দোকানের ধরন','Shop type')+'</b><div class="grpo">'
- +chip(!k&&kindNow()=='coffee',"pickKind('coffee')",'<span class="ic">☕</span>',L('কফি শপ','Coffee shop'))
- +chip(!k&&kindNow()=='restaurant',"pickKind('restaurant')",'<span class="ic">🍽</span>',L('রেস্টুরেন্ট','Restaurant'))
- +chip(!k&&kindNow()=='fast',"pickKind('fast')",'<span class="ic">🍔</span>',L('ফাস্ট ফুড','Fast food'))
- +chip(k=='mart',"pickKind('mart')",'<span class="ic">🛒</span>',L('সুপারমার্কেট / বাকালা','Supermarket / Grocery'))
- +'</div></div><div class="grp"><b>'+L('দেশ (পরে বদলানো যাবে না)','Country (cannot be changed later)')+'</b><div class="grpo">'
- +chip(c=='SA',"lpCountry('SA')",flag('SA'),L('সৌদি আরব','Saudi Arabia'))
- +chip(c=='BD',"lpCountry('BD')",flag('BD'),L('বাংলাদেশ','Bangladesh'))
- +'</div></div>':'';
- $('#lb').innerHTML='<div class="lgnHero"><div class="lgS"><div class="lgF">'
+ var types=up?'<div class="grp"><b>'+L('দোকানের ধরন','Shop Type')+'</b><select id="ltype" onchange="pickKind(this.value)">'
+ +[['coffee',L('কফি শপ','Coffee shop')],['restaurant',L('রেস্টুরেন্ট','Restaurant')],['fast',L('ফাস্ট ফুড','Fast food')],['mart',L('সুপারমার্কেট / বাকালা','Supermarket / Grocery')]].map(function(x){return '<option value="'+x[0]+'"'+((k=='mart'?x[0]=='mart':kindNow()==x[0])?' selected':'')+'>'+x[1]+'</option>'}).join('')
+ +'</select></div><div class="grp"><b>'+L('দেশ (পরে বদলানো যাবে না)','Country (cannot be changed later)')+'</b><select id="lcountry" onchange="lpCountry(this.value)"><option value="SA"'+(c=='SA'?' selected':'')+'>'+L('সৌদি আরব','Saudi Arabia')+'</option><option value="BD"'+(c=='BD'?' selected':'')+'>'+L('বাংলাদেশ','Bangladesh')+'</option></select></div>':'';
+ $('#lb').innerHTML='<div class="lgnHero"><div class="lgS '+(up?'is-signup':'is-signin')+'"><div class="lgF">'
  +'<div class="bn">'+bLogo(40)+'<span>'+esc(BRAND)+'</span></div>'
  +'<h2>'+(up?L('নতুন একাউন্ট','Create account'):L('লগইন','Sign in'))+'</h2>'
  +(msg?'<p class="err">'+esc(msg)+'</p>':'')+types
- +'<div class="grp"><b>Email</b><input id="le" dir="ltr" type="email" autocomplete="email" value="'+esc(em||'')+'"></div>'
+ +(up?'<div class="grp"><b>Shop Name</b><input id="lsn" dir="auto" type="text" autocomplete="organization" maxlength="80" value="'+esc(window.__signupShopDraft||'')+'" oninput="window.__signupShopDraft=this.value"></div>':'')
+ +'<div class="grp"><b>Email Address</b><input id="le" dir="ltr" type="email" autocomplete="email" value="'+esc(em||'')+'"></div>'
  +'<div class="grp"><b>'+L('পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)','Password (min 6 characters)')+'</b><input id="lp" dir="ltr" type="password" autocomplete="'+(up?'new-password':'current-password')+'" onkeydown="if(event.key==\'Enter\')doAuth('+(up?1:0)+')"></div>'
  +'<button class="pri lgGo" onclick="doAuth('+(up?1:0)+')">'+(up?L('একাউন্ট খুলুন','Create account'):L('লগইন','Sign in'))+'</button>'
  +'<div class="sw">'+(up?L('আগে থেকেই একাউন্ট আছে?','Already have an account?'):L('নতুন?','New here?'))+' <button type="button" class="lnk" onclick="lpMode(\''+(up?'in':'up')+'\')">'+(up?L('লগইন','Sign in'):L('নতুন একাউন্ট','Create account'))+'</button>'+(up?'':' · <button type="button" class="lnk" onclick="doReset()">'+L('পাসওয়ার্ড ভুলে গেছেন?','Forgot password?')+'</button>')+'</div>'
@@ -2019,9 +2069,9 @@ function errMsg(x){var c=(x&&x.code)||'';
  return c||String((x&&x.message)||x||'Error')
 }
 
-function doAuth(n){var e=$('#le').value.trim(),p=$('#lp').value;
- if(!e||!p){showLogin(L('ইমেইল ও পাসওয়ার্ড দিন','Enter email and password'),e);return}
- if(n){var c=pendC(),nm=c=='SA'?L('সৌদি আরব','Saudi Arabia'):L('বাংলাদেশ','Bangladesh'),st=window.SHOPK=='mart'?L('সুপারমার্কেট','Supermarket'):(kindNow()=='fast'?L('ফাস্ট ফুড','Fast food'):kindNow()=='restaurant'?L('রেস্টুরেন্ট','Restaurant'):L('কফি শপ','Coffee shop'));ask(L('নতুন একাউন্ট','Create account for')+': '+nm+' · '+st+'. '+L('পরে দেশ বদলানো যাবে না। চালিয়ে যাবেন?','Country cannot be changed later. Continue?'),function(){doAuth2(1,e,p)},L('হ্যাঁ, খুলুন','Yes, create'));return}
+function doAuth(n){var e=$('#le').value.trim(),p=$('#lp').value,sn=n?String(($('#lsn')&&$('#lsn').value)||'').trim():'';
+ if(!e||!p||(n&&!sn)){showLogin(n&&!sn?L('দোকানের নাম লিখুন','Enter shop name'):L('ইমেইল ও পাসওয়ার্ড দিন','Enter email and password'),e);return}
+ if(n){var c=pendC(),nm=c=='SA'?L('সৌদি আরব','Saudi Arabia'):L('বাংলাদেশ','Bangladesh'),st=window.SHOPK=='mart'?L('সুপারমার্কেট','Supermarket'):(kindNow()=='fast'?L('ফাস্ট ফুড','Fast food'):kindNow()=='restaurant'?L('রেস্টুরেন্ট','Restaurant'):L('কফি শপ','Coffee shop'));ask(L('নতুন একাউন্ট','Create account for')+': '+nm+' · '+st+'. '+L('পরে দেশ বদলানো যাবে না। চালিয়ে যাবেন?','Country cannot be changed later. Continue?'),function(){window.__newShopName=sn;doAuth2(1,e,p)},L('হ্যাঁ, খুলুন','Yes, create'));return}
  doAuth2(0,e,p)}
 function doAuth2(n,e,p){
  document.querySelectorAll('#lb button').forEach(function(x){x.disabled=true});
@@ -2051,7 +2101,8 @@ function onSales(snap){var l=snap.docs.map(function(x){return x.data()});
 setInterval(function(){if(CU&&window.FB&&ss!=='on'&&navigator.onLine!==false&&!document.hidden){try{FB.stop();FB.listen('pos',onPos,onErr);FB.listen('sales',onSales,onErr)}catch(e){}}},15000);
 
 function startAuth(){FB.watch(function(u){FB.stop();
- if(!u){CU=null;ready=false;upl=false;showLogin();return}
+ if(!u){CU=null;ready=false;upl=false;document.documentElement.classList.remove('pos-auth-pending');showLogin();return}
+ document.documentElement.classList.remove('pos-auth-pending');
  CU=u.uid;CE=u.email||'';var lu=null;try{lu=localStorage.getItem('pos_uid');localStorage.setItem('pos_uid',CU)}catch(e){}
  if(lu&&lu!==CU){H=[];P=[];IMG={};S={shop:'Musafir Cafe',cur:'৳',tax:0,lang:S.lang}}
  $('#lgn').classList.remove('show');upl=false;ready=false;sy('off');render();
@@ -2061,8 +2112,8 @@ function startAuth(){FB.watch(function(u){FB.stop();
 function hasLocal(){try{return !!localStorage.getItem('pos_uid')}catch(e){return false}}
 function enterLocal(){$('#lgn').classList.remove('show');CU=null;sy('off');render();toast(L('অফলাইন মোড: বিক্রি ফোনে জমা হবে','Offline mode: sales kept on device'))}
 
-function boot(){if(PUBR){startPub();return}if(!cfgOK){sy('cfg');$('#lgn').classList.add('show');$('#lb').innerHTML='<h2>Firebase setup</h2><p>index.html এর শুরুতে <b>FIREBASE_CONFIG</b> বসান।</p>';return}
- if(window.FB)startAuth();else{window.onFB=startAuth;setTimeout(function(){if(!window.FB&&hasLocal()){enterLocal();return}if(!window.FB){$('#lgn').classList.add('show');$('#lb').innerHTML='<h2>Firebase</h2><p style="color:var(--warn);font-weight:700">'+L('Firebase লোড হয়নি। নেট চেক করে পেজ রিফ্রেশ করুন।','Firebase failed to load. Refresh page.')+'</p>'}},navigator.onLine===false?500:4000)}}
+function boot(){if(PUBR){startPub();return}if(!cfgOK){document.documentElement.classList.remove('pos-auth-pending');sy('cfg');$('#lgn').classList.add('show');$('#lb').innerHTML='<h2>Firebase setup</h2><p>index.html এর শুরুতে <b>FIREBASE_CONFIG</b> বসান।</p>';return}
+ if(window.FB)startAuth();else{window.onFB=startAuth;setTimeout(function(){if(!window.FB&&hasLocal()){document.documentElement.classList.remove('pos-auth-pending');enterLocal();return}if(!window.FB){document.documentElement.classList.remove('pos-auth-pending');$('#lgn').classList.add('show');$('#lb').innerHTML='<h2>Firebase</h2><p style="color:var(--warn);font-weight:700">'+L('Firebase লোড হয়নি। নেট চেক করে পেজ রিফ্রেশ করুন।','Firebase failed to load. Refresh page.')+'</p>'}},navigator.onLine===false?500:4000)}}
 
 function greet(h){return h>=5&&h<11?L('সুপ্রভাত','Good morning'):h>=11&&h<16?L('শুভ দুপুর','Good afternoon'):h>=16&&h<19?L('শুভ সন্ধ্যা','Good evening'):L('শুভ রাত্রি','Good night')}
 function welcome(){var r=RD();if(!r.welcome)return;try{if(sessionStorage.getItem('pos_wel'))return;sessionStorage.setItem('pos_wel','1')}catch(e){}
@@ -2197,7 +2248,7 @@ if(!/PASTE/.test(window.FIREBASE_CONFIG.apiKey)){
   reset:e=>sendPasswordResetEmail(auth,e),
   verify:async p=>{const u=auth.currentUser;if(!u||!u.email)throw {code:'nouser'};await reauthenticateWithCredential(u,EmailAuthProvider.credential(u.email,p))},
   stop:()=>{un.forEach(f=>f());un=[]},
-  out:()=>{window.FB.stop();return signOut(auth)},
+  out:()=>{document.documentElement.classList.add('pos-auth-pending');window.FB.stop();return signOut(auth).catch(e=>{document.documentElement.classList.remove('pos-auth-pending');throw e})},
   set:(c,i,d)=>setDoc(ref(c,i),JSON.parse(JSON.stringify(d))),
   del:(c,i)=>deleteDoc(ref(c,i)),
   pub:c=>getDoc(doc(db,'receipts',c)).then(s=>s.exists()?s.data():null),
