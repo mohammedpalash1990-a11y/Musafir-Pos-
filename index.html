@@ -2049,7 +2049,7 @@ function showLogin(msg,em){
  +'<div class="bn">'+bLogo(40)+'<span>'+esc(BRAND)+'</span></div>'
  +'<h2>'+(up?L('নতুন একাউন্ট','Create account'):L('লগইন','Sign in'))+'</h2>'
  +(msg?'<p class="err">'+esc(msg)+'</p>':'')+types
- +(up?'<div class="grp"><b>Shop Name</b><input id="lsn" dir="auto" type="text" autocomplete="organization" maxlength="80" value="'+esc(window.__signupShopDraft||'')+'" oninput="window.__signupShopDraft=this.value;try{sessionStorage.setItem('pos_signup_shop_draft',this.value)}catch(e){}"></div>':'')
+ +(up?'<div class="grp"><b>Shop Name</b><input id="lsn" dir="auto" type="text" autocomplete="organization" maxlength="80" value="'+esc(window.__signupShopDraft||'')+'" oninput="window.__signupShopDraft=this.value;try{sessionStorage.setItem(\'pos_signup_shop_draft\',this.value)}catch(e){}"></div>':'')
  +'<div class="grp"><b>Email Address</b><input id="le" dir="ltr" type="email" autocomplete="email" value="'+esc(em||'')+'"></div>'
  +'<div class="grp"><b>'+L('পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)','Password (min 6 characters)')+'</b><input id="lp" dir="ltr" type="password" autocomplete="'+(up?'new-password':'current-password')+'" onkeydown="if(event.key==\'Enter\')doAuth('+(up?1:0)+')"></div>'
  +'<button class="pri lgGo" onclick="doAuth('+(up?1:0)+')">'+(up?L('একাউন্ট খুলুন','Create account'):L('লগইন','Sign in'))+'</button>'
