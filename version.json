@@ -31,6 +31,10 @@
         {
           "bn": "পণ্য পেজ দুই ভাগে: লিস্ট ও ফর্ম, বাকি পেজে সারসংক্ষেপ কার্ড",
           "en": "Items page split into list and form; Due page with summary cards"
+        },
+        {
+          "bn": "সেটিংসে বিষয়ভিত্তিক চিপ ট্যাব, পণ্য পেজে আইটেম যোগ/লিস্ট ট্যাব, মোবাইলেও পাশে আইকন-সাইডবার",
+          "en": "Settings sections as chip tabs, Items add/list tabs, icon sidebar docks on mobile too"
         }
       ]
     },
@@ -249,6 +253,6 @@
       ]
     }
   ],
-  "build": 1,
+  "build": 2,
   "built": "28 Nov 2026"
 }
