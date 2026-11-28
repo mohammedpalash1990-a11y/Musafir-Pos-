@@ -23,6 +23,10 @@
         {
           "bn": "পুরো POS-এ ধাপে ধাপে মোশন, পেজ বদলালে একবারই চলে",
           "en": "Staged motion across the POS, plays once per page change"
+        },
+        {
+          "bn": "ড্যাশবোর্ডে অ্যাডমিনের মতো ওভারভিউ: কার্ড, ৭ দিনের বার, পেমেন্ট রিং, সংখ্যা গোনা",
+          "en": "Admin-style dashboard overview: cards, 7-day bars, payment ring, count-up"
         }
       ]
     },
@@ -241,6 +245,6 @@
       ]
     }
   ],
-  "build": 3,
+  "build": 4,
   "built": "28 Nov 2026"
 }
