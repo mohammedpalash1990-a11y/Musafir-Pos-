@@ -43,6 +43,10 @@
         {
           "bn": "রসিদ ও হিসাব পেজ বিষয়ভিত্তিক চিপে ভাগ",
           "en": "Receipt & accounts page split into section chips"
+        },
+        {
+          "bn": "Admin-এ আলাদা বিল্ড-আপডেট অপশন (Off / Only me / Selected / All)",
+          "en": "Admin build-update audience: Off / Only me / Selected / All"
         }
       ]
     },
@@ -261,6 +265,6 @@
       ]
     }
   ],
-  "build": 5,
+  "build": 6,
   "built": "28 Nov 2026"
 }
