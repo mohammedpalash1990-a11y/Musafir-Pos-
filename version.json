@@ -1,8 +1,27 @@
 {
-  "release": 9,
-  "name": "P9",
-  "notes": "QR-style POS look, settings menu on the right, QR order page polish.",
+  "release": 10,
+  "name": "P10",
+  "notes": "Glass sidebar from the menu icon, settings inside it, premium line icons.",
   "history": [
+    {
+      "release": 10,
+      "name": "P10",
+      "date": "2026-11-28",
+      "features": [
+        {
+          "bn": "হেডারে তিন-ডটের মেনু: গ্লাস সাইডবার, ভাঁজ করা যায়, মোশনসহ",
+          "en": "Menu icon in the header opens a glass sidebar that folds to an icon rail, with motion"
+        },
+        {
+          "bn": "সেটিংস, অ্যাকাউন্ট, লগইন/লগআউট সাইডবারের ভেতরে",
+          "en": "Settings, account and log in/out live inside the sidebar"
+        },
+        {
+          "bn": "নতুন লাইন আইকন, সেটিংস পেজে আলাদা ডুপ্লিকেট মেনু নেই",
+          "en": "New line icons; no duplicate menu on the settings page"
+        }
+      ]
+    },
     {
       "release": 9,
       "name": "P9",
@@ -218,6 +237,6 @@
       ]
     }
   ],
-  "build": 8,
+  "build": 1,
   "built": "28 Nov 2026"
 }
