@@ -39,6 +39,10 @@
         {
           "bn": "একই রিলিজে নতুন বিল্ড এলে POS-এ আপডেট বার",
           "en": "Update bar in POS when a new build of the same release is live"
+        },
+        {
+          "bn": "রসিদ ও হিসাব পেজ বিষয়ভিত্তিক চিপে ভাগ",
+          "en": "Receipt & accounts page split into section chips"
         }
       ]
     },
@@ -257,6 +261,6 @@
       ]
     }
   ],
-  "build": 3,
+  "build": 4,
   "built": "28 Nov 2026"
 }
