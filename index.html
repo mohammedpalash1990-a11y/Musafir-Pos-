@@ -89,30 +89,32 @@ nav button .i{width:23px;height:23px}
 .lpk.on::after{content:"\2713";position:absolute;top:5px;inset-inline-end:8px;color:var(--ac);font-weight:800;font-size:15px}
 .lpk .ic{font-size:30px;line-height:1}.lpk svg.fl{width:46px;height:31px;border-radius:5px;box-shadow:0 0 0 1px rgba(0,0,0,.25)}
 .lpf{max-width:460px;margin:14px auto 0}
-#lgn .lgnHero{max-width:860px;margin:18px auto 0;padding:0;background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 24px 50px -28px rgba(70,45,10,.35);color:#1f1c17}
+#lgn .lgnHero{max-width:940px;margin:20px auto 0;padding:0;background:#fff;border-radius:26px;overflow:hidden;box-shadow:0 26px 54px -30px rgba(70,45,10,.4);color:#1f1c17}
 #lgn .lgnHero .mute{color:#7c7566}
-#lgn .lgS{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);min-height:500px}
-#lgn .lgF{padding:30px 34px 14px;display:flex;flex-direction:column;gap:12px}
-#lgn .lgF .bn{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16px}
-#lgn .lgF h2{margin:4px 0 0;font-size:28px;font-weight:800;color:#1f1c17}
+#lgn .lgS{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);min-height:540px}
+#lgn .lgP{order:0;background:linear-gradient(160deg,#14454b,#0a2b2f);color:#fff;padding:34px 40px 34px 34px;display:flex;flex-direction:column;justify-content:center;gap:14px;clip-path:polygon(0 0,100% 0,88% 100%,0 100%);margin-inline-end:-6%;position:relative;z-index:1}
+#lgn .lgP .bn{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16px;margin-bottom:auto}
+#lgn .lgP .kick{display:flex;align-items:center;gap:10px;color:#e8c27a;font-size:13px;font-weight:700}
+#lgn .lgP .kick:before{content:"";width:34px;height:2px;background:#e8c27a}
+#lgn .lgP h3{font-size:34px;font-weight:800;margin:0;line-height:1.12}
+#lgn .lgP p{margin:0 0 auto;color:#cfe3e0;font-size:14px;line-height:1.55}
+#lgn .lgF{order:1;padding:34px 38px 14px 54px;display:flex;flex-direction:column;gap:12px}
+#lgn .lgF h2{margin:0;font-size:28px;font-weight:800;color:#14454b}
+#lgn .lgF .sub{margin:-6px 0 2px;font-size:13.5px}
 #lgn .lgF .err{color:var(--warn);font-weight:600;margin:0}
-#lgn .lgF .grp>b{display:block;font-size:12px;color:#7c7566;margin:0 0 6px;font-weight:700}
-#lgn .lgF .grp input{width:100%;box-sizing:border-box;height:44px;border-radius:12px;border:1px solid #e6dece;background:#fbf8f1;padding:0 14px}
-#lgn .lgF .grpo{display:flex;flex-wrap:wrap;gap:6px}
-#lgn .lpq{flex-direction:row;min-height:0;padding:7px 12px;border-radius:999px;gap:6px;font-size:13px;border-width:1.5px}
-#lgn .lpq .ic{font-size:16px}#lgn .lpq svg.fl{width:20px;height:14px;box-shadow:none}
-#lgn .lpq.on::after{content:none}
-#lgn .lgGo{height:46px;border-radius:12px;font-weight:700;margin-top:2px;background:linear-gradient(135deg,#14543b,#0a2b2f);border:1px solid #14543b;color:#fff}
-#lgn .lgF .sw{font-size:13px;color:#7c7566}
-#lgn .lgF .lnk{border:0;background:none;padding:0;color:#14543b;font-weight:700;text-decoration:underline;font-size:13px;min-height:0}
-#lgn .lgL{display:flex;gap:4px;margin-top:2px}
+#lgn .lgF .grp>b{display:block;font-size:12.5px;color:#6f6858;margin:0 0 6px;font-weight:700}
+#lgn .lgF .grp input,#lgn .lgF .grp select{width:100%;box-sizing:border-box;height:46px;border-radius:12px;border:1px solid #e6dece;background:#fbf8f1;padding:0 14px;font-size:15px;color:#1f1c17;appearance:none;-webkit-appearance:none}
+#lgn .lgF .grp select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%237c7566' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+#lgn[dir=rtl] .lgF .grp select{background-position:left 14px center;padding-right:14px;padding-left:36px}
+#lgn .lgF .grp input:focus,#lgn .lgF .grp select:focus{outline:2px solid #14543b55;border-color:#14543b}
+#lgn .lgF .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#lgn .lgGo{height:48px;border-radius:12px;font-weight:700;margin-top:2px;background:linear-gradient(135deg,#14543b,#0a2b2f);border:1px solid #14543b;color:#fff;font-size:15px}
+#lgn .lgF .sw{font-size:13.5px;color:#7c7566;text-align:center}
+#lgn .lgF .lnk{border:0;background:none;padding:0;color:#14543b;font-weight:700;text-decoration:underline;font-size:13.5px;min-height:0}
+#lgn .lgL{display:flex;gap:4px;justify-content:center}
 #lgn .lgL button{border:0;background:transparent;padding:6px 12px;border-radius:999px;font-size:13px;color:#7c7566;font-weight:600;min-height:0}
 #lgn .lgL button.on{background:#d9ebe3;color:#14543b;font-weight:700}
-#lgn .lgP{background:linear-gradient(160deg,#14454b,#0a2b2f);color:#fff;padding:40px 34px;display:flex;flex-direction:column;justify-content:center;gap:12px;position:relative}
-#lgn .lgP:before{content:"";position:absolute;inset-inline-start:0;top:0;bottom:0;width:5px;background:#e8c27a}
-#lgn .lgP h3{font-size:30px;font-weight:800;margin:0;line-height:1.15}
-#lgn .lgP p{margin:0;color:#cfe3e0;font-size:14px;line-height:1.5}
-@media(max-width:700px){#lgn .lgS{grid-template-columns:1fr;min-height:0}#lgn .lgP{display:none}#lgn .lgF{padding:22px 18px 10px}}
+@media(max-width:700px){#lgn .lgnHero{margin:10px auto 0;border-radius:22px}#lgn .lgS{grid-template-columns:1fr;min-height:0}#lgn .lgP{clip-path:polygon(0 0,100% 0,100% 86%,0 100%);margin:0 0 -10px;padding:16px 20px 30px;gap:6px}#lgn .lgP .bn{margin-bottom:6px}#lgn .lgP .kick{display:none}#lgn .lgP h3{font-size:20px}#lgn .lgP p{display:none}#lgn .lgF{padding:18px 20px 8px;gap:10px}#lgn .lgF h2{font-size:24px}}
 @keyframes lgStep{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes lgFade{from{opacity:0}to{opacity:1}}
 @keyframes lgPanel{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
@@ -702,7 +704,7 @@ function pendC(){if(LPC)return LPC;var v=null;try{v=localStorage.getItem('pos_pc
 function lpLM(){try{return !!localStorage.getItem('pos_pl')}catch(e){return false}}
 function lpCountry(c){LPC=c;try{localStorage.setItem('pos_pc',c)}catch(e){}showLogin()}
 function lpLang(l){S.lang=l;try{localStorage.setItem('pos_pl',l)}catch(e){}try{lsave()}catch(e){}showLogin()}
-function newAcct(){var c=pendC();S.country=c;var o=X();if(c=='SA')o.due=false;S.x=o;if(!lpLM())S.lang='en';pays=null}
+function newAcct(){var c=pendC();S.country=c;try{var ns=localStorage.getItem('pos_newshop');if(ns){S.shop=ns;localStorage.removeItem('pos_newshop')}}catch(x){}var o=X();if(c=='SA')o.due=false;S.x=o;if(!lpLM())S.lang='en';pays=null}
 
 function AL(){return S.lang=='ar'||S.lang=='abi'}
 var _ro=null;function riyalOK(){if(_ro!==null)return _ro;try{var c=document.createElement('canvas').getContext('2d');c.font='32px sans-serif';var a=c.measureText('\u20C1').width;_ro=a>0&&a!=c.measureText('\uFFFF').width&&a!=c.measureText('\uE000').width}catch(e){_ro=false}return _ro}
@@ -1886,34 +1888,28 @@ function ask(msg,fn,yes){var e=$('#cf');if(!e){e=document.createElement('div');e
  window.__cf=fn;e.innerHTML='<div class="sheet" style="border-radius:20px;max-width:340px;margin:16px;text-align:center"><div style="font-size:17px;font-weight:700">'+esc(msg)+'</div><div class="mute" style="margin-top:4px">'+L('এটা আর ফেরানো যাবে না','This cannot be undone')+'</div><div style="display:flex;gap:10px;margin-top:16px"><button style="flex:1" onclick="$(\'#cf\').classList.remove(\'show\')">'+L('না','No')+'</button><button class="bad2" style="flex:1" onclick="$(\'#cf\').classList.remove(\'show\');window.__cf()">'+(yes||L('হ্যাঁ, মুছুন','Yes, delete'))+'</button></div></div>';e.classList.add('show')}
 
 Object.assign(AR,{'Create account':'إنشاء حساب','Sign in':'تسجيل الدخول','Coffee shop':'مقهى','Restaurant':'مطعم','Fast food':'وجبات سريعة','Already have an account?':'لديك حساب بالفعل؟','New here?':'جديد هنا؟','Start your shop':'ابدأ متجرك','Welcome back':'مرحبًا بعودتك','One account for every sale, every device you own.':'حساب واحد لكل عملية بيع ولكل أجهزتك.','Your sales and stock are exactly where you left them.':'مبيعاتك ومخزونك كما تركتها تمامًا.','Country (cannot be changed later)':'الدولة (لا يمكن تغييرها لاحقًا)','This language becomes your shop language. You can change it later in Settings.':'ستكون هذه لغة متجرك ويمكنك تغييرها لاحقًا من الإعدادات.'});
+Object.assign(AR,{'Shop name':'اسم المتجر','Your shop name':'اسم متجرك','Enter password':'أدخل كلمة المرور','A better way to run your business':'طريقة أفضل لإدارة عملك','Sales, products and records in one account, across your devices.':'المبيعات والمنتجات والسجلات في حساب واحد على جميع أجهزتك.','Create your account':'أنشئ حسابك','Enter your shop details to get started.':'أدخل بيانات متجرك للبدء.','Sign in to continue.':'سجّل الدخول للمتابعة.','Business, simplified':'أعمال أبسط'});
 function lpMode(m){window.__lgm=m;showLogin()}
 function showLogin(msg,em){
- var g=$('#lgn'),was=g.classList.contains('show'),e0=$('#le'),p0=$('#lp'),kp=(was&&p0&&msg===undefined)?p0.value:'';
+ var g=$('#lgn'),was=g.classList.contains('show'),e0=$('#le'),p0=$('#lp'),n0=$('#ln'),kp=(was&&p0&&msg===undefined)?p0.value:'',nm=(was&&n0)?n0.value:'';
  if(em===undefined&&was&&e0)em=e0.value;
- g.classList.add('show');g.dir=AL()?'rtl':'ltr';if(!was){g.classList.remove('lgDone');clearTimeout(window.__lgT);window.__lgT=setTimeout(function(){g.classList.add('lgDone')},1100)}if(!was){g.classList.remove('login-enter');void g.offsetWidth;g.classList.add('login-enter')}
- var up=window.__lgm=='up',k=window.SHOPK||'',c=pendC(),LG=[['en','English'],['bn','বাংলা'],['ar','العربية']],
- chip=function(on,fn,ic,tx){return '<button type="button" class="lpk lpq'+(on?' on':'')+'" onclick="'+fn+'">'+ic+'<span>'+tx+'</span></button>'};
- var types=up?'<div class="grp"><b>'+L('দোকানের ধরন','Shop type')+'</b><div class="grpo">'
- +chip(!k&&kindNow()=='coffee',"pickKind('coffee')",'<span class="ic">☕</span>',L('কফি শপ','Coffee shop'))
- +chip(!k&&kindNow()=='restaurant',"pickKind('restaurant')",'<span class="ic">🍽</span>',L('রেস্টুরেন্ট','Restaurant'))
- +chip(!k&&kindNow()=='fast',"pickKind('fast')",'<span class="ic">🍔</span>',L('ফাস্ট ফুড','Fast food'))
- +chip(k=='mart',"pickKind('mart')",'<span class="ic">🛒</span>',L('সুপারমার্কেট / বাকালা','Supermarket / Grocery'))
- +'</div></div><div class="grp"><b>'+L('দেশ (পরে বদলানো যাবে না)','Country (cannot be changed later)')+'</b><div class="grpo">'
- +chip(c=='SA',"lpCountry('SA')",flag('SA'),L('সৌদি আরব','Saudi Arabia'))
- +chip(c=='BD',"lpCountry('BD')",flag('BD'),L('বাংলাদেশ','Bangladesh'))
- +'</div></div>':'';
- $('#lb').innerHTML='<div class="lgnHero"><div class="lgS"><div class="lgF">'
- +'<div class="bn">'+bLogo(40)+'<span>'+esc(BRAND)+'</span></div>'
- +'<h2>'+(up?L('নতুন একাউন্ট','Create account'):L('লগইন','Sign in'))+'</h2>'
- +(msg?'<p class="err">'+esc(msg)+'</p>':'')+types
- +'<div class="grp"><b>Email</b><input id="le" dir="ltr" type="email" autocomplete="email" value="'+esc(em||'')+'"></div>'
- +'<div class="grp"><b>'+L('পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)','Password (min 6 characters)')+'</b><input id="lp" dir="ltr" type="password" autocomplete="'+(up?'new-password':'current-password')+'" onkeydown="if(event.key==\'Enter\')doAuth('+(up?1:0)+')"></div>'
+ g.classList.add('show');g.dir=AL()?'rtl':'ltr';if(!was){g.classList.remove('lgDone');clearTimeout(window.__lgT);window.__lgT=setTimeout(function(){g.classList.add('lgDone')},1100)}
+ var up=window.__lgm=='up',k=window.SHOPK||'',c=pendC(),cur=k=='mart'?'mart':kindNow(),LG=[['en','English'],['bn','বাংলা'],['ar','العربية']],
+ opt=function(v,cv,tx){return '<option value="'+v+'"'+(v==cv?' selected':'')+'>'+tx+'</option>'},
+ sel=up?'<div class="grp"><b>'+L('দোকানের নাম','Shop name')+'</b><input id="ln" autocomplete="organization" value="'+esc(nm)+'" placeholder="'+L('আপনার দোকানের নাম','Your shop name')+'"></div>'
+ +'<div class="two"><div class="grp"><b>'+L('দোকানের ধরন','Shop type')+'</b><select id="lk" onchange="pickKind(this.value)">'
+ +opt('coffee',cur,L('কফি শপ','Coffee shop'))+opt('restaurant',cur,L('রেস্টুরেন্ট','Restaurant'))+opt('fast',cur,L('ফাস্ট ফুড','Fast food'))+opt('mart',cur,L('সুপারমার্কেট / বাকালা','Supermarket / Grocery'))
+ +'</select></div><div class="grp"><b>'+L('দেশ','Country')+'</b><select id="lc" onchange="lpCountry(this.value)">'+opt('SA',c,L('সৌদি আরব','Saudi Arabia'))+opt('BD',c,L('বাংলাদেশ','Bangladesh'))+'</select></div></div>':'';
+ $('#lb').innerHTML='<div class="lgnHero"><div class="lgS"><div class="lgP"><div class="bn">'+bLogo(34)+'<span>'+esc(BRAND)+'</span></div>'
+ +'<div class="kick">'+L('ব্যবসা, সহজ করে','Business, simplified')+'</div><h3>'+(up?L('আপনার ব্যবসা চালানোর আরও ভালো উপায়','A better way to run your business'):L('আবার স্বাগতম','Welcome back'))+'</h3><p>'+(up?L('এক একাউন্টে বিক্রি, পণ্য ও হিসাব, সব ডিভাইসে।','Sales, products and records in one account, across your devices.'):L('আপনার বিক্রি ও স্টক ঠিক আগের মতোই আছে।','Your sales and stock are exactly where you left them.'))+'</p></div>'
+ +'<div class="lgF"><h2>'+(up?L('একাউন্ট খুলুন','Create your account'):L('লগইন','Sign in'))+'</h2><div class="mute sub">'+(up?L('শুরু করতে দোকানের তথ্য দিন।','Enter your shop details to get started.'):L('চালিয়ে যেতে লগইন করুন।','Sign in to continue.'))+'</div>'
+ +(msg?'<p class="err">'+esc(msg)+'</p>':'')+sel
+ +'<div class="grp"><b>Email</b><input id="le" dir="ltr" type="email" autocomplete="email" placeholder="name@example.com" value="'+esc(em||'')+'"></div>'
+ +'<div class="grp"><b>'+L('পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)','Password (min 6 characters)')+'</b><input id="lp" dir="ltr" type="password" autocomplete="'+(up?'new-password':'current-password')+'" placeholder="'+L('পাসওয়ার্ড','Enter password')+'" onkeydown="if(event.key==\'Enter\')doAuth('+(up?1:0)+')"></div>'
  +'<button class="pri lgGo" onclick="doAuth('+(up?1:0)+')">'+(up?L('একাউন্ট খুলুন','Create account'):L('লগইন','Sign in'))+'</button>'
  +'<div class="sw">'+(up?L('আগে থেকেই একাউন্ট আছে?','Already have an account?'):L('নতুন?','New here?'))+' <button type="button" class="lnk" onclick="lpMode(\''+(up?'in':'up')+'\')">'+(up?L('লগইন','Sign in'):L('নতুন একাউন্ট','Create account'))+'</button>'+(up?'':' · <button type="button" class="lnk" onclick="doReset()">'+L('পাসওয়ার্ড ভুলে গেছেন?','Forgot password?')+'</button>')+'</div>'
- +(up?'<div class="mute" style="font-size:12px">'+L('এই ভাষা আপনার দোকানের ভাষা হবে, পরে Settings থেকে বদলানো যাবে।','This language becomes your shop language. You can change it later in Settings.')+'</div>':'')
  +'<div class="lgL" role="group" aria-label="Language">'+LG.map(function(l){return '<button type="button" class="'+(S.lang==l[0]?'on':'')+'" onclick="lpLang(\''+l[0]+'\')">'+l[1]+'</button>'}).join('')+'</div>'
- +'</div><div class="lgP"><h3>'+(up?L('আপনার দোকান শুরু করুন','Start your shop'):L('আবার স্বাগতম','Welcome back'))+'</h3><p>'+(up?L('এক একাউন্টে সব বিক্রি, সব ডিভাইস।','One account for every sale, every device you own.'):L('আপনার বিক্রি ও স্টক ঠিক আগের মতোই আছে।','Your sales and stock are exactly where you left them.'))+'</p></div></div>'
- +'<p class="mute" style="font-size:11px;text-align:center;margin:0;padding:10px 0 14px">Powered by '+esc(BRAND)+'</p></div>';
+ +'<p class="mute" style="font-size:11px;text-align:center;margin:0;padding:0 0 10px">Powered by '+esc(BRAND)+'</p></div></div></div>';
  if(kp)$('#lp').value=kp
 }
 
@@ -1926,7 +1922,7 @@ function errMsg(x){var c=(x&&x.code)||'';
  return c||String((x&&x.message)||x||'Error')
 }
 
-function doAuth(n){var e=$('#le').value.trim(),p=$('#lp').value;
+function doAuth(n){var e=$('#le').value.trim(),p=$('#lp').value;if(n){var n1=$('#ln');try{n1&&n1.value.trim()?localStorage.setItem('pos_newshop',n1.value.trim()):localStorage.removeItem('pos_newshop')}catch(x){}}
  if(!e||!p){showLogin(L('ইমেইল ও পাসওয়ার্ড দিন','Enter email and password'),e);return}
  if(n){var c=pendC(),nm=c=='SA'?L('সৌদি আরব','Saudi Arabia'):L('বাংলাদেশ','Bangladesh'),st=window.SHOPK=='mart'?L('সুপারমার্কেট','Supermarket'):(kindNow()=='fast'?L('ফাস্ট ফুড','Fast food'):kindNow()=='restaurant'?L('রেস্টুরেন্ট','Restaurant'):L('কফি শপ','Coffee shop'));ask(L('নতুন একাউন্ট','Create account for')+': '+nm+' · '+st+'. '+L('পরে দেশ বদলানো যাবে না। চালিয়ে যাবেন?','Country cannot be changed later. Continue?'),function(){doAuth2(1,e,p)},L('হ্যাঁ, খুলুন','Yes, create'));return}
  doAuth2(0,e,p)}
