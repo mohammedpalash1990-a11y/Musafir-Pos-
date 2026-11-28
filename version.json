@@ -19,6 +19,10 @@
         {
           "bn": "নতুন লাইন আইকন, সেটিংস পেজে আলাদা ডুপ্লিকেট মেনু নেই",
           "en": "New line icons; no duplicate menu on the settings page"
+        },
+        {
+          "bn": "পুরো POS-এ ধাপে ধাপে মোশন, পেজ বদলালে একবারই চলে",
+          "en": "Staged motion across the POS, plays once per page change"
         }
       ]
     },
@@ -237,6 +241,6 @@
       ]
     }
   ],
-  "build": 1,
+  "build": 2,
   "built": "28 Nov 2026"
 }

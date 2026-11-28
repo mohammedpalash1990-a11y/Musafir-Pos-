@@ -485,6 +485,12 @@ html.r10 .hic.kb{color:var(--head)}
 @keyframes glI{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
 @media(max-width:700px){.gls .gsp{top:8px;right:8px;bottom:8px;--w:292px}}
 @media(prefers-reduced-motion:reduce){.gls .gsp,.gls .gsc,.gls .gpill,.gls .gfold{transition:none}.gls.on .gxi,.gls.on .gg,.gls.on .gh>*{animation:none}}
+html.r10 #m.mo>*,html.r10 .s5body.mo>*{animation:moIn .55s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--n,0)*70ms)}
+html.r10 .mo>:nth-child(1){--n:0}html.r10 .mo>:nth-child(2){--n:1}html.r10 .mo>:nth-child(3){--n:2}html.r10 .mo>:nth-child(4){--n:3}html.r10 .mo>:nth-child(5){--n:4}html.r10 .mo>:nth-child(n+6){--n:5}
+html.r10 header.mo .brand,html.r10 header.mo .hr>*{animation:moIn .5s cubic-bezier(.2,.8,.2,1) backwards}html.r10 header.mo .hr>:nth-child(n){animation-delay:calc(var(--h,0)*50ms)}
+html.r10 header.mo .hr>:nth-child(4){--h:1}html.r10 header.mo .hr>:nth-child(5){--h:2}html.r10 header.mo .hr>:nth-child(6){--h:3}html.r10 header.mo .hr>:nth-child(7){--h:4}
+@keyframes moIn{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){html.r10 .mo>*,html.r10 header.mo *{animation:none!important}}
 </style>
 </head><body>
 <header><div class="brand"><span id="blg" style="display:flex"><svg width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#FFF8E7"/><g transform="translate(32 33) scale(.056) translate(-631 -469)"><polygon points="532,262 604,404 470,676 304,676" fill="#C4903A" stroke="#C4903A" stroke-width="16" stroke-linejoin="round"/><polygon points="720,262 958,676 500,676" fill="#0A4540" stroke="#0A4540" stroke-width="16" stroke-linejoin="round"/></g></svg></span><h1 id="shop">Musafir Cafe</h1></div><div class="hr"><button class="v2b" id="relbtn" onclick="relUpdate()" hidden>⬆ Update</button><button class="v2b" id="v2btn" onclick="v2Update()" hidden>⬆ Update</button><div id="hnav"></div><button class="hic" id="lastBtn" onclick="lastInv()" aria-label="Last invoice"></button><button class="chip" id="recentBtn" onclick="window.RCQ='';window.RCALL=false;showRecent()" style="border:0;cursor:pointer">⏱</button><button class="chip" id="today" onclick="showRecent()" style="border:0;cursor:pointer"></button><button class="av" id="av" aria-label="Account" onclick="admOpen()"></button></div></header>
@@ -2139,6 +2145,11 @@ function glsOpen(){var g=document.getElementById('gls');if(!g){g=document.create
  g.querySelector('.gsp').innerHTML=glsBuild();g.classList.remove('off');void g.offsetWidth;g.classList.add('on');setTimeout(glsPill,30)}
 function glsClose(){var g=document.getElementById('gls');if(g)g.classList.remove('on')}
 document.addEventListener('keydown',function(e){if(e.key=='Escape')glsClose()});
+/* P10 staged motion: once per page change */
+function r10Mo(sel){var m=document.querySelector(sel);if(!m||!r10On())return;m.classList.remove('mo');void m.offsetWidth;m.classList.add('mo');clearTimeout(m.__mt);m.__mt=setTimeout(function(){m.classList.remove('mo')},1300)}
+var _go10=go;go=function(v){var o=view;var r=_go10.apply(this,arguments);if(view!==o)r10Mo('#m');return r};
+var _sg10=setGo;setGo=function(k){var o=window.SETPG;var r=_sg10.apply(this,arguments);if(k!==o)r10Mo('.s5body');return r};
+(function(){var d=0;window.addEventListener('load',function(){setTimeout(function(){if(!d&&r10On()){d=1;var h=document.querySelector('header');if(h){h.classList.add('mo');setTimeout(function(){h.classList.remove('mo')},1300)}r10Mo('#m')}},900)})})();
 </script>
 
 <script type="module">
