@@ -35,6 +35,10 @@
         {
           "bn": "সেটিংসে বিষয়ভিত্তিক চিপ ট্যাব, পণ্য পেজে আইটেম যোগ/লিস্ট ট্যাব, মোবাইলেও পাশে আইকন-সাইডবার",
           "en": "Settings sections as chip tabs, Items add/list tabs, icon sidebar docks on mobile too"
+        },
+        {
+          "bn": "একই রিলিজে নতুন বিল্ড এলে POS-এ আপডেট বার",
+          "en": "Update bar in POS when a new build of the same release is live"
         }
       ]
     },
@@ -253,6 +257,6 @@
       ]
     }
   ],
-  "build": 2,
+  "build": 3,
   "built": "28 Nov 2026"
 }
