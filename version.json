@@ -1,11 +1,11 @@
 {
-  "release": 10,
-  "name": "P10",
-  "notes": "Glass sidebar from the menu icon, settings inside it, premium line icons.",
+  "release": 11,
+  "name": "P11",
+  "notes": "Glass sidebar, admin-style dashboard, redesigned Items and Due pages, staged motion.",
   "history": [
     {
-      "release": 10,
-      "name": "P10",
+      "release": 11,
+      "name": "P11",
       "date": "2026-11-28",
       "features": [
         {
@@ -27,6 +27,10 @@
         {
           "bn": "ড্যাশবোর্ডে অ্যাডমিনের মতো ওভারভিউ: কার্ড, ৭ দিনের বার, পেমেন্ট রিং, সংখ্যা গোনা",
           "en": "Admin-style dashboard overview: cards, 7-day bars, payment ring, count-up"
+        },
+        {
+          "bn": "পণ্য পেজ দুই ভাগে: লিস্ট ও ফর্ম, বাকি পেজে সারসংক্ষেপ কার্ড",
+          "en": "Items page split into list and form; Due page with summary cards"
         }
       ]
     },
@@ -245,6 +249,6 @@
       ]
     }
   ],
-  "build": 4,
+  "build": 1,
   "built": "28 Nov 2026"
 }
